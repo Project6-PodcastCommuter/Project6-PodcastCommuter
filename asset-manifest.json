@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Project6-PodcastCommuter/static/css/main.54e0a021.chunk.css",
+    "main.js": "/Project6-PodcastCommuter/static/js/main.0c3d88db.chunk.js",
+    "main.js.map": "/Project6-PodcastCommuter/static/js/main.0c3d88db.chunk.js.map",
+    "runtime-main.js": "/Project6-PodcastCommuter/static/js/runtime-main.546b7159.js",
+    "runtime-main.js.map": "/Project6-PodcastCommuter/static/js/runtime-main.546b7159.js.map",
+    "static/js/2.80f097c8.chunk.js": "/Project6-PodcastCommuter/static/js/2.80f097c8.chunk.js",
+    "static/js/2.80f097c8.chunk.js.map": "/Project6-PodcastCommuter/static/js/2.80f097c8.chunk.js.map",
+    "index.html": "/Project6-PodcastCommuter/index.html",
+    "precache-manifest.3e07246456a50ff830d729d09640edd2.js": "/Project6-PodcastCommuter/precache-manifest.3e07246456a50ff830d729d09640edd2.js",
+    "service-worker.js": "/Project6-PodcastCommuter/service-worker.js",
+    "static/css/main.54e0a021.chunk.css.map": "/Project6-PodcastCommuter/static/css/main.54e0a021.chunk.css.map",
+    "static/js/2.80f097c8.chunk.js.LICENSE.txt": "/Project6-PodcastCommuter/static/js/2.80f097c8.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/Project6-PodcastCommuter/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.546b7159.js",
+    "static/js/2.80f097c8.chunk.js",
+    "static/css/main.54e0a021.chunk.css",
+    "static/js/main.0c3d88db.chunk.js"
+  ]
+}
