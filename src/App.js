@@ -8,8 +8,7 @@ class Podcast extends Component{
     super();
 
     this.state={
-      start:'',
-      end:'',
+      keyword: '',
     }
   }
 
@@ -31,31 +30,46 @@ class Podcast extends Component{
   render(){
     return(
       <div>Hi</div>
+      <h1>Testing</h1>
     )
   }
 }
 
+class Map extends Component{
+  constructor(){
+    super()
+    this.state={
+      
+    }
+  }
+  render(){
 
-function App() {
-  return (
-    <div className="App">
-      <Podcast />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          BEST GROUP!🙌
-        </a>
-      </header>
-    </div>
-  );
+  }
+}
+
+
+class App extends Component{
+  render(){
+    return (
+      <div className="App">
+        <Podcast />
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BEST GROUP!🙌
+          </a>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
