@@ -29,8 +29,10 @@ class Podcast extends Component{
 
   render(){
     return(
-      <div>Hi</div>
-      <h1>Testing</h1>
+      <div className="podcastContent">
+        <div>Hi</div>
+        <h1>Testing</h1>
+      </div>
     )
   }
 }
@@ -39,11 +41,31 @@ class Map extends Component{
   constructor(){
     super()
     this.state={
-      
+      start: '',
+      end: '',
     }
   }
-  render(){
 
+  componentDidMount(){
+    axios({
+      url: 'http://www.mapquestapi.com/directions/v2/route',
+      params: {
+        key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
+        from: '5 St Joseph Street, Toronto',
+        to: '483 Queen St W, Toronto',
+        routeType: 'pedestrian'
+      }
+    }).then(response => {
+      console.log(response)
+    })
+  }
+  
+  render(){
+    return(
+      <div className="mapContent">
+        <h1>Map testing</h1>
+      </div>
+    )
   }
 }
 
@@ -53,6 +75,7 @@ class App extends Component{
     return (
       <div className="App">
         <Podcast />
+        <Map />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
