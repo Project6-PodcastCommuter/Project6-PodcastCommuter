@@ -1,7 +1,76 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import axios from 'axios';
+
+
+class Map extends Component {
+  constructor() {
+    super()
+    this.state = {
+      from: '',
+      to: '',
+      routeType: '',
+      sessionId: '',
+    }
+  }
+
+  // onChange function
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  mapSubmit = (e) => {
+    //5 St Joseph Street, Toronto
+    //485 Queen St W, Toronto
+    e.preventDefault()
+    const routeType = 'pedestrian'
+
+    //axios for route
+    axios({
+      url: 'http://www.mapquestapi.com/directions/v2/route',
+      params: {
+        key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
+        from: this.state.from,
+        to: this.state.to,
+        routeType: routeType,
+      }
+    }).then(response => {
+      // console.log(response)
+      // userRouteTime is a string
+      const userRouteTime = response.data.route.legs[0].formattedTime;
+      const sessionId = response.data.route.sessionId;
+
+      // this.setState({
+      //   sessionId: sessionId
+      // })
+      // console.log(sessionId);
+      // console.log(typeof(userRouteTime));
+      // console.log(response)
+    })
+    const url = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`
+    console.log(url)
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <form action="" onSubmit={this.mapUserInput} className="mapForm">
+          <label htmlFor="from">Start</label>
+          <input type="text" id="from" name="from" value={this.state.from} onChange={this.handleChange} />
+          <label htmlFor="end">End</label>
+          <input type="text" id="to" name="to" value={this.state.to} onChange={this.handleChange} />
+          <button className="mapSubmitButton" onClick={this.mapSubmit}>Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+
+
+
 
 class App extends Component {
   constructor() {
@@ -16,8 +85,6 @@ class App extends Component {
       podUrl: ''
     }
   }
-
-
 
   handleChange = (e) => {
     console.log(e.target.value)
@@ -63,17 +130,6 @@ class App extends Component {
       this.setState({
         podData: newState,
       })
-
-
-      // this.setState = ({
-      //   podData: 'response.data.results',
-      //   podTitle: 'response.data.results.title_original',
-      //   podDescription: 'response.data.results.description_original',
-      //   podImage: 'response.data.results.image',
-      //   podUrl: 'response.data.results.podcast_listennotes_url',
-
-      // })
-      // console.log(response);
     });
   }
 
@@ -95,18 +151,19 @@ class App extends Component {
           </input>
           <button type="submit" value='submit'>Search</button>
         </form>
+        <Map />
         <div>
 
-        {this.state.podData.map((response) => {
-          return (
-            <div>
-              <h3>{response.podTitle}</h3>
-              <p>{response.podDescription}</p>
-              <p>{response.podUrl}</p>
-              <img src={response.podImage} alt={this.state.podTitle}></img>
-            </div>
-          )
-        })}
+          {this.state.podData.map((response) => {
+            return (
+              <div>
+                <h3>{response.podTitle}</h3>
+                <p>{response.podDescription}</p>
+                <p>{response.podUrl}</p>
+                <img src={response.podImage} alt={this.state.podTitle}></img>
+              </div>
+            )
+          })}
 
 
 
@@ -115,63 +172,5 @@ class App extends Component {
     )
   }
 }
-
-// class Map extends Component{
-//   constructor(){
-//     super()
-//     this.state={
-//       start: '',
-//       end: '',
-//     }
-//   }
-
-//   componentDidMount(){
-//     axios({
-//       url: 'http://www.mapquestapi.com/directions/v2/route',
-//       params: {
-//         key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
-//         from: '5 St Joseph Street, Toronto',
-//         to: '483 Queen St W, Toronto',
-//         routeType: 'pedestrian'
-//       }
-//     }).then(response => {
-//       console.log(response)
-//     })
-//   }
-
-//   render(){
-//     return(
-//       <div className="mapContent">
-//         <h1>Map testing</h1>
-//       </div>
-//     )
-//   }
-// }
-
-
-// class App extends Component{
-//   render(){
-//     return (
-//       <div className="App">
-//         <Podcast />
-//         {/* <Map /> */}
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <p>
-//             Edit <code>src/App.js</code> and save to reload.
-//           </p>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             BEST GROUP!🙌
-//           </a>
-//         </header>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
