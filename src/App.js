@@ -3,16 +3,16 @@ import logo from './logo.svg';
 import './App.scss';
 import axios from 'axios';
 
-class Podcast extends Component{
-  constructor(){
+class Podcast extends Component {
+  constructor() {
     super();
 
-    this.state={
+    this.state = {
       keyword: '',
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     axios({
       url: `https://listen-api.listennotes.com/api/v2/search`,
       method: `GET`,
@@ -27,8 +27,8 @@ class Podcast extends Component{
     });
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="podcastContent">
         <div>Hi</div>
         <h1>Testing</h1>
@@ -37,16 +37,16 @@ class Podcast extends Component{
   }
 }
 
-class Map extends Component{
-  constructor(){
+class Map extends Component {
+  constructor() {
     super()
-    this.state={
+    this.state = {
       start: '',
       end: '',
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     axios({
       url: 'http://www.mapquestapi.com/directions/v2/route',
       params: {
@@ -59,9 +59,9 @@ class Map extends Component{
       console.log(response)
     })
   }
-  
-  render(){
-    return(
+
+  render() {
+    return (
       <div className="mapContent">
         <h1>Map testing</h1>
       </div>
@@ -69,9 +69,8 @@ class Map extends Component{
   }
 }
 
-
-class App extends Component{
-  render(){
+class App extends Component {
+  render() {
     return (
       <div className="App">
         <Podcast />
