@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.scss';
 import axios from 'axios';
 
+
 class App extends Component {
     constructor() {
         super();
-
+        
         this.state = {
             userInput: '',
             podData: [],
@@ -14,6 +15,7 @@ class App extends Component {
             podImage: '',
             podUrl: ''
         }
+        
     }
 
     handleChange = (e) => {
@@ -25,7 +27,7 @@ class App extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
 
         axios({
             url: `https://listen-api.listennotes.com/api/v2/search`,
@@ -37,8 +39,8 @@ class App extends Component {
                 type: "episode",
                 language: 'English',
                 // these will have to be dynamic, based on user's duration of commute
-                len_min: 10,
-                len_max: 15
+                len_min: this.props.commuteTime,
+                len_max: this.props.commuteTime + 5,
             }
         }).then((response) => {
 
