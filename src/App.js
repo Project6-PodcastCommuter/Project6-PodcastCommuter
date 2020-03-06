@@ -7,10 +7,13 @@ class Map extends Component {
   constructor() {
     super()
     this.state = {
-      from: '',
-      to: '',
+      from: '5 st joseph street, Toronto',
+      to: '485 Queen Street West, Toronto',
       routeType: '',
-      sessionId: '',
+      travelHour: '',
+      travelMinutes: '',
+      mapImage: '',
+      
     }
   }
 
@@ -40,14 +43,20 @@ class Map extends Component {
       // console.log(response)
       // userRouteTime is a string
       const userRouteTime = response.data.route.legs[0].formattedTime;
+      const hour = userRouteTime.slice(0, 2);
+      const minutes = userRouteTime.slice(3, 5);
       const sessionId = response.data.route.sessionId;
 
-      // this.setState({
-      //   sessionId: sessionId
-      // })
+      this.setState({
+        travelHour: hour,
+        travelMinutes: minutes,
+        mapImage: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+      })
       // console.log(sessionId);
-      // console.log(typeof(userRouteTime));
+      // console.log((userRouteTime));
       // console.log(response)
+      console.log(minutes);
+      console.log(hour);
     })
     const url = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`
     console.log(url)
@@ -63,6 +72,18 @@ class Map extends Component {
           <input type="text" id="to" name="to" value={this.state.to} onChange={this.handleChange} />
           <button className="mapSubmitButton" onClick={this.mapSubmit}>Submit</button>
         </form>
+
+        {!this.state.mapImage ? null : (
+
+          <div className="routeResults">
+            <div className="mapContainer">
+          
+              <img src={this.state.mapImage} alt="Travel route map from start to end"/>
+          
+            </div>
+            {this.state.travelHour !== "00" ? <p>It's going to take {this.state.travelHour} hrs {this.state.travelMinutes} minutes to walk.</p> : <p>It's going to take {this.state.travelMinutes} minutes to walk.</p>}
+          </div>
+        )}
       </div>
     );
   }
