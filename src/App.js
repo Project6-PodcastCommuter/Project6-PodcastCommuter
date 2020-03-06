@@ -10,9 +10,9 @@ class Map extends Component {
       from: '5 st joseph street, Toronto',
       to: '485 Queen Street West, Toronto',
       routeType: '',
-      travelHour: '',
-      travelMinutes: '',
-      mapImage: '',
+      travelHour: [],
+      travelMinutes: [],
+      mapImage: [],
       
     }
   }
@@ -28,38 +28,61 @@ class Map extends Component {
     //5 St Joseph Street, Toronto
     //485 Queen St W, Toronto
     e.preventDefault()
-    const routeType = 'pedestrian'
+    const routeType = ['pedestrian', 'bicycle']
 
     //axios for route
-    axios({
-      url: 'http://www.mapquestapi.com/directions/v2/route',
-      params: {
-        key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
-        from: this.state.from,
-        to: this.state.to,
-        routeType: routeType,
-      }
-    }).then(response => {
-      // console.log(response)
-      // userRouteTime is a string
-      const userRouteTime = response.data.route.legs[0].formattedTime;
-      const hour = userRouteTime.slice(0, 2);
-      const minutes = userRouteTime.slice(3, 5);
-      const sessionId = response.data.route.sessionId;
+    routeType.forEach((type)=> {
+      axios({
+        url: 'http://www.mapquestapi.com/directions/v2/route',
+        params: {
+          key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
+          from: this.state.from,
+          to: this.state.to,
+          routeType: type,
+        }
+      }).then(response => {
+        // console.log(response)
+        // userRouteTime is a string
 
-      this.setState({
-        travelHour: hour,
-        travelMinutes: minutes,
-        mapImage: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+        const userRouteTime = response.data.route.legs[0].formattedTime;
+        const hour = userRouteTime.slice(0, 2);
+        const minutes = userRouteTime.slice(3, 5);
+
+        this.setState({
+          travelHour: [...this.state.travelHour, hour],
+          travelMinutes: [...this.state.travelMinutes, minutes],
+          mapImage: [...this.state.mapImage, `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`],
+        })
       })
-      // console.log(sessionId);
-      // console.log((userRouteTime));
-      // console.log(response)
-      console.log(minutes);
-      console.log(hour);
     })
-    const url = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`
-    console.log(url)
+    // axios({
+    //   url: 'http://www.mapquestapi.com/directions/v2/route',
+    //   params: {
+    //     key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
+    //     from: this.state.from,
+    //     to: this.state.to,
+    //     routeType: routeType,
+    //   }
+    // }).then(response => {
+    //   // console.log(response)
+    //   // userRouteTime is a string
+    //   const userRouteTime = response.data.route.legs[0].formattedTime;
+    //   const hour = userRouteTime.slice(0, 2);
+    //   const minutes = userRouteTime.slice(3, 5);
+
+    //   this.setState({
+    //     travelHour: hour,
+    //     travelMinutes: minutes,
+    //     mapImage: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+    //   })
+    //   // console.log(sessionId);
+    //   // console.log((userRouteTime));
+    //   // console.log(response)
+    //   console.log(minutes);
+    //   console.log(hour);
+    // })
+    // const url = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`
+    // console.log(url)
   }
 
   render() {
@@ -76,12 +99,28 @@ class Map extends Component {
         {!this.state.mapImage ? null : (
 
           <div className="routeResults">
-            <div className="mapContainer">
-          
-              <img src={this.state.mapImage} alt="Travel route map from start to end"/>
-          
+            <div className="pedestrianResult">
+              <div className="mapContainer">
+            
+                <img src={this.state.mapImage[0]} alt="Travel route map from start to end"/>
+            
+              </div>
+              {this.state.travelHour[0] !== "00" ? <p>It's going to take {this.state.travelHour[0]} hrs {this.state.travelMinutes[0]} minutes to walk.</p> : <p>It's going to take {this.state.travelMinutes[0]} minutes to walk.</p>}
+
             </div>
-            {this.state.travelHour !== "00" ? <p>It's going to take {this.state.travelHour} hrs {this.state.travelMinutes} minutes to walk.</p> : <p>It's going to take {this.state.travelMinutes} minutes to walk.</p>}
+
+            <div className="bicycleResult">
+              <div className="mapContainer">
+
+                <img src={this.state.mapImage[1]} alt="Travel route map from start to end" />
+
+              </div>
+              {this.state.travelHour[1] !== "00" ? <p>It's going to take {this.state.travelHour[1]} hrs {this.state.travelMinutes[1]} minutes to bike.</p> : <p>It's going to take {this.state.travelMinutes[1]} minutes to bike.</p>}
+
+            </div>
+
+
+
           </div>
         )}
       </div>
