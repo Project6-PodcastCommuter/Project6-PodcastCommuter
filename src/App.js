@@ -123,6 +123,8 @@ class App extends Component {
           podUrl: podcast.podcast_listennotes_url,
         })
 
+        return podcast;
+
       })
 
       console.log(newState);
