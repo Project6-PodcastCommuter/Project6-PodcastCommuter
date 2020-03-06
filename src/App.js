@@ -8,8 +8,8 @@ class Map extends Component {
   constructor() {
     super()
     this.state = {
-      from: '',
-      to: '',
+      from: '283 dundas st. west, toronto, ON',
+      to: '485 Queen St. West, Toronto, ON',
       routeType: '',
       travelHourPedestrian: "",
       travelMinutesPedestrian: "",
@@ -17,6 +17,7 @@ class Map extends Component {
       travelHourBicycle: "",
       travelMinutesBicycle: "",
       mapImageBicycle: "",
+      commuteTime: 0,
     }
   }
 
@@ -79,10 +80,31 @@ class Map extends Component {
     })
   }
 
+  chooseBike = () => {
+    const time = Number(this.state.travelHourBicycle) * 60 + Number(this.state.travelMinutesBicycle)
+    console.log(time)
+
+    this.setState({
+      commuteTime: time,
+    })
+  }
+
+  chooseWalk = () => {
+    const time = Number(this.state.travelHourPedestrian) * 60 + Number(this.state.travelMinutesPedestrian)
+    console.log(time)
+
+    this.setState({
+      commuteTime: time,
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <Podcast />
+        <Podcast
+          commuteTime={this.state.commuteTime}
+          
+        />
         <form action="" onSubmit={this.mapUserInput} className="mapForm">
           <label htmlFor="from">Start</label>
           <input type="text" id="from" name="from" value={this.state.from} onChange={this.handleChange} />
@@ -101,7 +123,7 @@ class Map extends Component {
 
               </div>
               {this.state.travelHourPedestrian !== "00" ? <p>It's going to take {this.state.travelHourPedestrian} hrs {this.state.travelMinutesPedestrian} minutes to walk.</p> : <p>It's going to take {this.state.travelMinutesPedestrian} minutes to walk.</p>}
-
+              <button onClick={this.chooseWalk} alt='' >Walk</button>
             </div>
 
             <div className="bicycleResult">
@@ -111,11 +133,15 @@ class Map extends Component {
 
               </div>
               {this.state.travelHourBicycle !== "00" ? <p>It's going to take {this.state.travelHourBicycle} hrs {this.state.travelMinutesBicycle} minutes to bike.</p> : <p>It's going to take {this.state.travelMinutesBicycle} minutes to bike.</p>}
-
+              <button onClick={this.chooseBike} alt='' >Bike</button>
             </div>
 
+              
           </div>
         )}
+
+        
+       
       </div>
     );
   }
