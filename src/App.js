@@ -124,7 +124,6 @@ render() {
 
 
 class App extends Component {
-<<<<<<< HEAD
   constructor() {
     super();
 
@@ -225,7 +224,6 @@ class App extends Component {
       </div>
     )
   }
-=======
 constructor() {
 	super();
 
@@ -324,7 +322,6 @@ render() {
 	</div>
 	)
 }
->>>>>>> 6b29326c9387e3f2e538a980634ebeeabaa6231b
 }
 
 export default App;
