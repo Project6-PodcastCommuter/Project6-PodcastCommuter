@@ -53,9 +53,9 @@ class Map extends Component {
       this.setState({
         travelHourPedestrian: hour,
         travelMinutesPedestrian: minutes,
-		mapImagePedestrian: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
-		isLoading: false,
-      })
+        mapImagePedestrian: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`,
+        isLoading: false
+      });
     })
 
     //AXIOS CALL FOR BICYCLE ROUTE TYPE
@@ -77,7 +77,7 @@ class Map extends Component {
       this.setState({
         travelHourBicycle: hour,
         travelMinutesBicycle: minutes,
-		mapImageBicycle: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+		// mapImageBicycle: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,300@2x&start=${this.state.from}&end=${this.state.to}`,
 		isLoading: false,
       })
     })
@@ -118,11 +118,11 @@ class Map extends Component {
 
         {!this.state.mapImagePedestrian ? null : (
 
-          <div className="routeResults">
+          <div className="routeResults wrapper">
             <div className="pedestrianResult">
               <div className="mapContainer">
 
-                <img src={this.state.mapImagePedestrian} alt="Travel route map from start to end" />
+                <img src={this.state.mapImagePedestrian} className="map" alt="Travel route map from start to end" />
 
               </div>
               {this.state.travelHourPedestrian !== "00" ? <p>It's going to take {this.state.travelHourPedestrian} hrs {this.state.travelMinutesPedestrian} minutes to walk.</p> : <p>It's going to take {this.state.travelMinutesPedestrian} minutes to walk.</p>}
@@ -130,12 +130,13 @@ class Map extends Component {
             </div>
 
             <div className="bicycleResult">
-              <div className="mapContainer">
+              {/* <div className="mapContainer">
+				
+                <img src={this.state.mapImageBicycle} className="map" alt="Travel route map from start to end" />
+				
 
-                <img src={this.state.mapImageBicycle} alt="Travel route map from start to end" />
-
-              </div>
-              {this.state.travelHourBicycle !== "00" ? <p>It's going to take {this.state.travelHourBicycle} hrs {this.state.travelMinutesBicycle} minutes to bike.</p> : <p>It's going to take {this.state.travelMinutesBicycle} minutes to bike.</p>}
+              </div> */}
+              {this.state.travelHourBicycle !== "00" ? <h3>It's going to take {this.state.travelHourBicycle} hrs {this.state.travelMinutesBicycle} minutes to bike.</h3> : <h3>It's going to take {this.state.travelMinutesBicycle} minutes to bike.</h3>}
               <button onClick={this.chooseBike} alt='' >Bike</button>
             </div>
 
