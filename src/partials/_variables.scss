@@ -11,6 +11,17 @@ $tertiary-color: #f4e6e8;
 $heading-font: 'Maitree', serif;
 $body-font: 'Montserrat', sans-serif;
 
+// MIXINS // 
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`,
+
+
 
 
 

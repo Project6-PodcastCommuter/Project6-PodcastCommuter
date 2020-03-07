@@ -1,40 +1,43 @@
+@import "partials/setup";
 @import "partials/variables";
 
-.App {
+
+// GLOBAL STYLES //
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $body-font;
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+// responsive map Test
+
+.mapContainer {
+  width: 100%;
+  // box-shadow: $tertiary-color 20px -20px;
+  border-radius: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: $primary-color;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.map {
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 20px;
 }
