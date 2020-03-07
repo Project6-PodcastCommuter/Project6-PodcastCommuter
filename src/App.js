@@ -1,157 +1,38 @@
 import React, { Component } from 'react';
 import './App.scss';
 import axios from 'axios';
-import Podcast from './Podcast.js'
+import Map from './Map.js'
+import Podcast from './Podcast';
 
 
-class Map extends Component {
-  constructor() {
-    super()
+class App extends Component {
+  constructor(props){
+    super(props);
+
     this.state = {
-      from: '283 dundas st. west, toronto, ON',
-      to: '485 Queen St. West, Toronto, ON',
-      routeType: '',
-      travelHourPedestrian: "",
-      travelMinutesPedestrian: "",
-      mapImagePedestrian: "",
-      travelHourBicycle: "",
-      travelMinutesBicycle: "",
-      mapImageBicycle: "",
-	  commuteTime: 0,
-	  isLoading: false,
+      appTime: 0,
     }
   }
+  
 
-  // onChange function
-  handleChange = (e) => {
+  grabCommunteTime = (time) => {
     this.setState({
-      [e.target.name]: e.target.value
+      appTime: time
+    }, () => {
+      console.log('from app', this.state.appTime)
     })
   }
 
-  mapSubmit = (e) => {
-    //5 St Joseph Street, Toronto
-    //485 Queen St W, Toronto
-    e.preventDefault()
-
-    //axios for PEDESTRIAN ROUTETYPE
-    axios({
-      url: 'http://www.mapquestapi.com/directions/v2/route',
-      params: {
-        key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
-        from: this.state.from,
-        to: this.state.to,
-        routeType: 'pedestrian',
-      }
-    }).then(response => {
-      // console.log(response)
-      // userRouteTime is a string
-      const userRouteTime = response.data.route.legs[0].formattedTime;
-      const hour = userRouteTime.slice(0, 2);
-      const minutes = userRouteTime.slice(3, 5);
-
-      this.setState({
-        travelHourPedestrian: hour,
-        travelMinutesPedestrian: minutes,
-        mapImagePedestrian: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`,
-        isLoading: false
-      });
-    })
-
-    //AXIOS CALL FOR BICYCLE ROUTE TYPE
-    axios({
-      url: 'http://www.mapquestapi.com/directions/v2/route',
-      params: {
-        key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
-        from: this.state.from,
-        to: this.state.to,
-        routeType: 'bicycle',
-      }
-    }).then(response => {
-      // console.log(response)
-      // userRouteTime is a string
-      const userRouteTime = response.data.route.legs[0].formattedTime;
-      const hour = userRouteTime.slice(0, 2);
-      const minutes = userRouteTime.slice(3, 5);
-
-      this.setState({
-        travelHourBicycle: hour,
-        travelMinutesBicycle: minutes,
-		// mapImageBicycle: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,300@2x&start=${this.state.from}&end=${this.state.to}`,
-		isLoading: false,
-      })
-    })
-  }
-
-  chooseBike = () => {
-    const time = Number(this.state.travelHourBicycle) * 60 + Number(this.state.travelMinutesBicycle)
-    console.log(time)
-
-    this.setState({
-      commuteTime: time,
-    })
-  }
-
-  chooseWalk = () => {
-    const time = Number(this.state.travelHourPedestrian) * 60 + Number(this.state.travelMinutesPedestrian)
-    console.log(time)
-
-    this.setState({
-      commuteTime: time,
-    })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Podcast
-          commuteTime={this.state.commuteTime}
-          
-        />
-        <form action="" onSubmit={this.mapUserInput} className="mapForm">
-          <label htmlFor="from">Start</label>
-          <input type="text" id="from" name="from" value={this.state.from} onChange={this.handleChange} />
-          <label htmlFor="end">End</label>
-          <input type="text" id="to" name="to" value={this.state.to} onChange={this.handleChange} />
-          <button className="mapSubmitButton" onClick={this.mapSubmit}>Submit</button>
-        </form>
-
-        {!this.state.mapImagePedestrian ? null : (
-
-          <div className="routeResults wrapper">
-            <div className="pedestrianResult">
-              <div className="mapContainer">
-
-                <img src={this.state.mapImagePedestrian} className="map" alt="Travel route map from start to end" />
-
-              </div>
-              {this.state.travelHourPedestrian !== "00" ? <p>It's going to take {this.state.travelHourPedestrian} hrs {this.state.travelMinutesPedestrian} minutes to walk.</p> : <p>It's going to take {this.state.travelMinutesPedestrian} minutes to walk.</p>}
-              <button onClick={this.chooseWalk} alt='' >Walk</button>
-            </div>
-
-            <div className="bicycleResult">
-              {/* <div className="mapContainer">
-				
-                <img src={this.state.mapImageBicycle} className="map" alt="Travel route map from start to end" />
-				
-
-              </div> */}
-              {this.state.travelHourBicycle !== "00" ? <h3>It's going to take {this.state.travelHourBicycle} hrs {this.state.travelMinutesBicycle} minutes to bike.</h3> : <h3>It's going to take {this.state.travelMinutesBicycle} minutes to bike.</h3>}
-              <button onClick={this.chooseBike} alt='' >Bike</button>
-            </div>
-
-              
-          </div>
-        )}
-
-        
-       
+  render(){
+    return(
+      <div>
+        <Map grabCommunteTime={this.grabCommunteTime}/>
+        <Podcast time={this.state.appTime} />
       </div>
-    );
+    )
   }
 }
 
-
-export default Map;
+export default App;
 
 
