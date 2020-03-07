@@ -17,7 +17,8 @@ class Map extends Component {
       travelHourBicycle: "",
       travelMinutesBicycle: "",
       mapImageBicycle: "",
-      commuteTime: 0,
+	  commuteTime: 0,
+	  isLoading: false,
     }
   }
 
@@ -52,7 +53,8 @@ class Map extends Component {
       this.setState({
         travelHourPedestrian: hour,
         travelMinutesPedestrian: minutes,
-        mapImagePedestrian: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+		mapImagePedestrian: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+		isLoading: false,
       })
     })
 
@@ -75,7 +77,8 @@ class Map extends Component {
       this.setState({
         travelHourBicycle: hour,
         travelMinutesBicycle: minutes,
-        mapImageBicycle: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+		mapImageBicycle: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`,
+		isLoading: false,
       })
     })
   }
