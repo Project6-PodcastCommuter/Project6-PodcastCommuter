@@ -50,10 +50,10 @@ class Map extends Component {
             const minutes = userRouteTime.slice(3, 5);
 
             this.setState({
-              travelHourPedestrian: hour,
-              travelMinutesPedestrian: minutes,
-              mapImagePedestrian: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`,
-              isLoading: false
+                travelHourPedestrian: hour,
+                travelMinutesPedestrian: minutes,
+                mapImagePedestrian: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`,
+                isLoading: false
             });
         })
 
@@ -74,10 +74,10 @@ class Map extends Component {
             const minutes = userRouteTime.slice(3, 5);
 
             this.setState({
-              travelHourBicycle: hour,
-              travelMinutesBicycle: minutes,
-              mapImageBicycle: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`,
-              isLoading: false
+                travelHourBicycle: hour,
+                travelMinutesBicycle: minutes,
+                mapImageBicycle: `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`,
+                isLoading: false
             });
         })
     }

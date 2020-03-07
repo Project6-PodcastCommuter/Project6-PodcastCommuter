@@ -28,7 +28,6 @@ class Podcast extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault(); 
-        console.log(this.props.time)
         axios({
             url: `https://listen-api.listennotes.com/api/v2/search`,
             method: `GET`,
@@ -43,7 +42,6 @@ class Podcast extends Component {
                 len_max: this.props.time + 5,
             }
         }).then((response) => {
-            
             const newState = [];
             response.data.results.map(function (podcast) {
                 // console.log(podcast);
@@ -54,14 +52,11 @@ class Podcast extends Component {
                     podDescription: podcast.description_original,
                     podImage: podcast.image,
                     podUrl: podcast.podcast_listennotes_url,
+                    podTime: podcast.audio_length_sec,
                 })
-
                 return podcast;
-
             })
-
             console.log(newState);
-
             this.setState({
                 podData: newState,
             })
@@ -72,7 +67,6 @@ class Podcast extends Component {
 
 
     render() {
-        console.log(this.props.time)
         return (
             <div className="podcastContent">
                 <h1>Testing</h1>
@@ -95,6 +89,7 @@ class Podcast extends Component {
                                 <p>{response.podDescription}</p>
                                 <p>{response.podUrl}</p>
                                 <img src={response.podImage} alt={this.state.podTitle}></img>
+                                    <p>{Math.floor(response.podTime / 60)} minutes</p>
                             </div>
                         )
                     })}
