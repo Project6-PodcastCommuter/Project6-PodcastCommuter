@@ -3,7 +3,7 @@ import './App.scss';
 import axios from 'axios';
 
 
-class App extends Component {
+class Podcast extends Component {
     constructor() {
         super();
         
@@ -28,7 +28,7 @@ class App extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault(); 
-
+        console.log(this.props.time)
         axios({
             url: `https://listen-api.listennotes.com/api/v2/search`,
             method: `GET`,
@@ -39,11 +39,11 @@ class App extends Component {
                 type: "episode",
                 language: 'English',
                 // these will have to be dynamic, based on user's duration of commute
-                len_min: this.props.commuteTime,
-                len_max: this.props.commuteTime + 5,
+                len_min: this.props.time,
+                len_max: this.props.time + 5,
             }
         }).then((response) => {
-
+            
             const newState = [];
             response.data.results.map(function (podcast) {
                 // console.log(podcast);
@@ -72,6 +72,7 @@ class App extends Component {
 
 
     render() {
+        console.log(this.props.time)
         return (
             <div className="podcastContent">
                 <h1>Testing</h1>
@@ -107,4 +108,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default Podcast;
