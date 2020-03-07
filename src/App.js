@@ -12,6 +12,7 @@ class Map extends Component {
       to: '485 Queen St. West, Toronto, ON',
       routeType: '',
       routeResult: {},
+      commuteTime: 0,
     }
   }
 
@@ -31,9 +32,8 @@ class Map extends Component {
     const routeType = ['pedestrian', 'bicycle']
 
     //axios for route
-    routeType.forEach((type) => {
-      const routeDetail = {}
-      axios({
+    const promises = routeType.map((type) => {
+      return axios({
         url: 'http://www.mapquestapi.com/directions/v2/route',
         params: {
           key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
@@ -41,26 +41,30 @@ class Map extends Component {
           to: this.state.to,
           routeType: type,
         }
-      }).then(response => {
-        // console.log(response)
-        // userRouteTime is a string
+      })
+    })
+    console.log('promises', promises)
+    Promise.all(promises).then((responseArray) => {
+      console.log('response 1', responseArray)
+      const transformedResponse = responseArray.reduce((acc, response, i) => {
         const userRouteTime = response.data.route.legs[0].formattedTime;
         const hour = userRouteTime.slice(0, 2);
         const minutes = userRouteTime.slice(3, 5);
         const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&start=${this.state.from}&end=${this.state.to}`
+  
+        return {
+          ...acc ,
+          [routeType[i]]: {
+            travelHour: hour,
+            travelMinute: minutes,
+            mapImage: mapImage,
+          }
+        }
 
-        
-        routeDetail['travelHour'] = hour;
-        routeDetail['travelMinute'] = minutes;
-        routeDetail['mapImage'] = mapImage;
+      }, {})
 
-        stateToBeSet[type] = routeDetail
-        console.log('state to be set',stateToBeSet)
-        this.setState({
-          routeResult: stateToBeSet,
-        }, () => {
-          console.log('after set state',this.state)
-        })
+      this.setState({
+        routeResult: transformedResponse
       })
     })
   }
@@ -101,7 +105,7 @@ class Map extends Component {
           <button className="mapSubmitButton" onClick={this.mapSubmit}>Submit</button>
         </form>
 
-        {(this.state.routeResult['bicycle'] == undefined & this.state.routeResult['pedestrian'] == undefined) ? <p>HI</p> : (
+        {(this.state.routeResult['bicycle'] == undefined & this.state.routeResult['pedestrian'] == undefined) ? null : (
 
           <div className="routeResults">
             <div className="pedestrianResult">
@@ -117,19 +121,16 @@ class Map extends Component {
             <div className="bicycleResult">
               <div className="mapContainer">
 
-                <img src={this.state.mapImageBicycle} alt="Travel route map from start to end" />
+                <img src={this.state.routeResult['bicycle']['mapImage']} alt="Travel route map from start to end" />
 
               </div>
-              {this.state.travelHourBicycle !== "00" ? <p>It's going to take {this.state.travelHourBicycle} hrs {this.state.travelMinutesBicycle} minutes to bike.</p> : <p>It's going to take {this.state.travelMinutesBicycle} minutes to bike.</p>}
+              {this.state.routeResult['bicycle']['travelHour'] !== "00" ? <p>It's going to take {this.state.routeResult['bicycle']['travelHour']} hrs {this.state.routeResult['bicycle']['travelMinute']} minutes to bike.</p> : <p>It's going to take {this.state.routeResult['bicycle']['travelMinute']} minutes to bike.</p>}
               <button onClick={this.chooseBike} alt='' >Bike</button>
             </div>
 
               
           </div>
         )}
-
-        
-       
       </div>
     );
   }
