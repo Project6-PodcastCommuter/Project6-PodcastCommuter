@@ -16,6 +16,7 @@ class App extends Component {
       appTime: 0,
       podResponse: [],
       flag: false,
+      userEntry: '',
     }
   }
   
@@ -41,13 +42,14 @@ class App extends Component {
     e.preventDefault();
     this.setState({
       flag: true,
+      userInput: this.state.userEntry,
     })
   }
 
   // Saving podcast search keyword
   handleChange = (e) => {
     this.setState({
-      userInput: e.target.value,
+      userEntry: e.target.value,
     }, () => {
     })
   }
@@ -63,7 +65,7 @@ class App extends Component {
             className="podcastSearch"
             placeholder='Search'
             onChange={this.handleChange}
-            value={this.state.userInput}>
+            value={this.state.userEntry}>
           </input>
           <button type="submit" value='submit'>Search</button>
         </form>

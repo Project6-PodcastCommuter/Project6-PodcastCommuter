@@ -37,7 +37,7 @@ class Map extends Component {
             return axios({
                 url: 'http://www.mapquestapi.com/directions/v2/route',
                 params: {
-                    key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
+                    key: 'GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl',
                     from: this.state.from,
                     to: this.state.to,
                     routeType: type,
@@ -53,7 +53,7 @@ class Map extends Component {
                 const userRouteTime = response.data.route.legs[0].formattedTime;
                 const hour = userRouteTime.slice(0, 2);
                 const minutes = userRouteTime.slice(3, 5);
-                const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`
+                const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`
 
                 //separating bike and pedestrain so that they are their own object
                 return {

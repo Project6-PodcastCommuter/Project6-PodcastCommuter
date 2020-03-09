@@ -28,8 +28,8 @@ class Podcast extends Component {
 
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.flag !== this.props.flag) {
-                if (this.props.flag !== false){
+        if (prevProps.userInput !== this.props.userInput) {
+                if (this.props.userInput !== ''){
                     axios({
                         url: `https://listen-api.listennotes.com/api/v2/search`,
                         method: `GET`,
