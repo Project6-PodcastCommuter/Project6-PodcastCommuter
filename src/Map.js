@@ -9,28 +9,12 @@ class Map extends Component {
         // routeType takes strings of pedestrian or bike 
         // routeResult is an object that holds two objects (bicycle and pedestrian results)
         this.state = {
-            // from: this.props.from,
-            // to: this.props.to,
             routeType: '',
             routeResult: {},
             commuteTime: 0,
             isLoading: false,
         }
     }
-
-    // // onChange function
-    // handleChange = (e) => {
-    //     this.setState({
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-
-    // when you click the submit button, do the axios calls and push all the informaiton to state
-    // mapSubmit = (e) => {
-        // e.preventDefault()
-        
-        // const stateToBeSet = {}
-    // }
 
     componentDidUpdate(prevProps, prevState){
         if(prevProps.from != this.props.from){
@@ -99,7 +83,8 @@ class Map extends Component {
             const {
                 grabCommunteTime
             } = this.props;
-
+            
+            console.log(time);
             grabCommunteTime(time)
         })
     }
@@ -139,12 +124,18 @@ class Map extends Component {
                         <div className="pedestrianResult">
                             {/* Do not display hours when time is under 60 minutes */}
                             {this.state.routeResult['pedestrian']['travelHour'] !== "00" ? <p>It's going to take {this.state.routeResult['pedestrian']['travelHour']} hrs {this.state.routeResult['pedestrian']['travelMinute']} minutes to walk.</p> : <p>It's going to take {this.state.routeResult['pedestrian']['travelMinute']} minutes to walk.</p>}
-                            <button onClick={this.chooseWalk} alt='' >Walk</button>
+                            <button type='submit' 
+                            onClick={this.chooseWalk}
+        
+                             alt='' >Walk</button>
                         </div>
+
 
                         <div className="bicycleResult">
                             {this.state.routeResult['bicycle']['travelHour'] !== "00" ? <p>It's going to take {this.state.routeResult['bicycle']['travelHour']} hrs {this.state.routeResult['bicycle']['travelMinute']} minutes to bike.</p> : <p>It's going to take {this.state.routeResult['bicycle']['travelMinute']} minutes to bike.</p>}
-                            <button onClick={this.chooseBike} alt='' >Bike</button>
+                            <button type='submit' 
+                            onClick={this.chooseBike}
+                             alt='' >Bike</button>
                         </div>
                     </div>
                 )}
