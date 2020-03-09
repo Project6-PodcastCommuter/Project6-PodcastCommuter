@@ -9,8 +9,8 @@ class Map extends Component {
         // routeType takes strings of pedestrian or bike 
         // routeResult is an object that holds two objects (bicycle and pedestrian results)
         this.state = {
-            from: '283 dundas st. west, toronto, ON',
-            to: '485 Queen St. West, Toronto, ON',
+            // from: this.props.from,
+            // to: this.props.to,
             routeType: '',
             routeResult: {},
             commuteTime: 0,
@@ -18,61 +18,70 @@ class Map extends Component {
         }
     }
 
-    // onChange function
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+    // // onChange function
+    // handleChange = (e) => {
+    //     this.setState({
+    //         [e.target.name]: e.target.value
+    //     })
+    // }
 
     // when you click the submit button, do the axios calls and push all the informaiton to state
-    mapSubmit = (e) => {
-        e.preventDefault()
+    // mapSubmit = (e) => {
+        // e.preventDefault()
         
         // const stateToBeSet = {}
-        const routeType = ['pedestrian', 'bicycle']
+    // }
 
-        //mapping over the routeType and do axios calls 
-        const promises = routeType.map((type) => {
-            return axios({
-                url: 'http://www.mapquestapi.com/directions/v2/route',
-                params: {
-                    key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
-                    from: this.state.from,
-                    to: this.state.to,
-                    routeType: type,
-                }
-            })
-        })
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.from != this.props.from){
 
-        //catch the axios calls and put them in to the response array
-        Promise.all(promises).then((responseArray) => {
-            //get time from the axios call
-            //taking the first element in the response array (pedestrain for now) and add the next one to create an object
-            const transformedResponse = responseArray.reduce((acc, response, i) => {
-                const userRouteTime = response.data.route.legs[0].formattedTime;
-                const hour = userRouteTime.slice(0, 2);
-                const minutes = userRouteTime.slice(3, 5);
-                const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.state.from}&end=${this.state.to}`
-
-                //separating bike and pedestrain so that they are their own object
-                return {
-                    ...acc,
-                    //once they are in their own object, add key value pairs to each object
-                    [routeType[i]]: {
-                        travelHour: hour,
-                        travelMinute: minutes,
-                        mapImage: mapImage,
-                    }
-                }
-                // reduce syntax 
-            }, {})
-
-            // assigning objects to route result
-            this.setState({
-                routeResult: transformedResponse
-            })
-        })
+            if (this.props.from !== '' && this.props.to !== '') {
+                const routeType = ['pedestrian', 'bicycle']
+    
+                //mapping over the routeType and do axios calls 
+                const promises = routeType.map((type) => {
+                    return axios({
+                        url: 'http://www.mapquestapi.com/directions/v2/route',
+                        params: {
+                            key: 'PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb',
+                            from: this.props.from,
+                            to: this.props.to,
+                            routeType: type,
+                        }
+                    })
+                })
+    
+                //catch the axios calls and put them in to the response array
+                Promise.all(promises).then((responseArray) => {
+                    //get time from the axios call
+                    //taking the first element in the response array (pedestrain for now) and add the next one to create an object
+                    console.log(responseArray)
+                    const transformedResponse = responseArray.reduce((acc, response, i) => {
+                        const userRouteTime = response.data.route.legs[0].formattedTime;
+                        const hour = userRouteTime.slice(0, 2);
+                        const minutes = userRouteTime.slice(3, 5);
+                        const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=PgwvbKwVwtViQRmH4Rju1Xri2DmysmKb&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.props.from}&end=${this.props.to}`
+    
+                        //separating bike and pedestrain so that they are their own object
+                        return {
+                            ...acc,
+                            //once they are in their own object, add key value pairs to each object
+                            [routeType[i]]: {
+                                travelHour: hour,
+                                travelMinute: minutes,
+                                mapImage: mapImage,
+                            }
+                        }
+                        // reduce syntax 
+                    }, {})
+    
+                    // assigning objects to route result
+                    this.setState({
+                        routeResult: transformedResponse
+                    })
+                })
+            }
+        }
     }
 
     // If user chooses bike
@@ -111,16 +120,11 @@ class Map extends Component {
     }
 
     render() {
+
+        
+
         return (
             <div className="App">
-                {/* Get user input */}
-                <form action="" onSubmit={this.mapUserInput} className="mapForm">
-                    <label htmlFor="from">Start</label>
-                    <input type="text" id="from" name="from" value={this.state.from} onChange={this.handleChange} />
-                    <label htmlFor="end">End</label>
-                    <input type="text" id="to" name="to" value={this.state.to} onChange={this.handleChange} />
-                    <button className="mapSubmitButton" onClick={this.mapSubmit}>Submit</button>
-                </form>
 
                 {/* when there is nothing in the routeResult, show nothing */}
                 {/* otherwise, show results */}
