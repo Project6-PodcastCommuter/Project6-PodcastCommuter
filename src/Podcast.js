@@ -17,7 +17,8 @@ class Podcast extends Component {
             podDescription: '',
             podImage: '',
             podUrl: '',
-            podTime: ''
+            podTime: '',
+            podAudio: '',
         }
         
     }
@@ -51,6 +52,7 @@ class Podcast extends Component {
             }
         }).then((response) => {
             // creating new array with stuff from listenNotes API call
+            console.log(response);
             const newState = [];
             response.data.results.map(function (podcast) {
                 newState.push({
@@ -60,6 +62,8 @@ class Podcast extends Component {
                     podImage: podcast.image,
                     podUrl: podcast.podcast_listennotes_url,
                     podTime: podcast.audio_length_sec,
+                    podAudio: podcast.audio,
+                    
                 })
                 return podcast;
             })
@@ -96,7 +100,11 @@ class Podcast extends Component {
                                 <p>{response.podDescription}</p>
                                 <p>{response.podUrl}</p>
                                 <img src={response.podImage} alt={this.state.podTitle}></img>
-                                    <p>{Math.floor(response.podTime / 60)} minutes</p>
+                                <p>{Math.floor(response.podTime / 60)} minutes</p>
+                                <audio 
+                                    controls
+                                    src={response.podAudio}>
+                                </audio>
                             </div>
                         )
                     })}
