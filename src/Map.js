@@ -90,7 +90,8 @@ class Map extends Component {
             const {
                 grabCommunteTime
             } = this.props;
-
+            
+            console.log(time);
             grabCommunteTime(time)
         })
     }
