@@ -98,6 +98,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    e.target.reset();
     const from = `${this.state.fromStreet.trim()}, ${this.state.fromCity.trim()}, ${this.state.fromProvince}`
     const to = `${this.state.toStreet.trim()}, ${this.state.toCity.trim()}, ${this.state.toProvince}`
 
@@ -108,6 +109,7 @@ class App extends Component {
     })
   }
 
+
   // Importing components and vital information for app to run
   render(){
     return(
@@ -115,42 +117,42 @@ class App extends Component {
         {/* Get user input */}
         <form action="" onSubmit={this.handleSubmit} className="mapForm">
           <label htmlFor="from">Start</label>
-          <input type="text" id="fromStreet" name="fromStreet" placeholder="enter street name" value={this.state.fromStreet} onChange={this.handleMapChange} />
-          <input type="text" id="fromCity" name="fromCity" placeholder="enter city" value={this.state.fromCity} onChange={this.handleMapChange} />
-          <select name="fromProvince" id="fromProvince" onChange={this.handleMapChange}>
+          <input type="text" id="fromStreet" name="fromStreet" placeholder="enter street name" value={this.state.fromStreet} onChange={this.handleMapChange} required/>
+          <input type="text" id="fromCity" name="fromCity" placeholder="enter city" value={this.state.fromCity} onChange={this.handleMapChange} required/>
+          <select name="fromProvince" id="fromProvince" onChange={this.handleMapChange} required>
             <option value="">Choose Province/Territory</option>
-            <option value="ON">Ontario</option>
-            <option value="BC">British Columbia</option>
-            <option value="QC">Quebec</option>
-            <option value="NS">Nova Scotia</option>
-            <option value="NB">New Brunswick</option>
-            <option value="AB">Alberta</option>
-            <option value="PE">Prince Edward Island</option>
-            <option value="SK">Saskatchewan</option>
-            <option value="NL">Newfoundland and Labrador</option>
-            <option value="MB">Manitoba</option>
-            <option value="NT">Northwest Territories</option>
-            <option value="YT">Yukon</option>
-            <option value="NU">Nunavut</option>
+            <option value="ON">ON</option>
+            <option value="BC">BC</option>
+            <option value="QC">QC</option>
+            <option value="NS">NS</option>
+            <option value="NB">NB</option>
+            <option value="AB">AB</option>
+            <option value="PE">PE</option>
+            <option value="SK">SK</option>
+            <option value="NL">NL</option>
+            <option value="MB">MB</option>
+            <option value="NT">NT</option>
+            <option value="YT">YT</option>
+            <option value="NU">NU</option>
           </select>
           <label htmlFor="end">End</label>
-          <input type="text" id="toStreet" name="toStreet" placeholder="enter street name" value={this.state.toStreet} onChange={this.handleMapChange} />
-          <input type="text" id="toCity" name="toCity" placeholder="enter city" value={this.state.toCity} onChange={this.handleMapChange} />
-          <select name="toProvince" id="toProvince" onChange={this.handleMapChange}>
+          <input type="text" id="toStreet" name="toStreet" placeholder="enter street name" value={this.state.toStreet} onChange={this.handleMapChange} required/>
+          <input type="text" id="toCity" name="toCity" placeholder="enter city" value={this.state.toCity} onChange={this.handleMapChange} required/>
+          <select name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
             <option value="">Choose Province/Territory</option>
-            <option value="ON">Ontario</option>
-            <option value="BC">British Columbia</option>
-            <option value="QC">Quebec</option>
-            <option value="NS">Nova Scotia</option>
-            <option value="NB">New Brunswick</option>
-            <option value="AB">Alberta</option>
-            <option value="PE">Prince Edward Island</option>
-            <option value="SK">Saskatchewan</option>
-            <option value="NL">Newfoundland and Labrador</option>
-            <option value="MB">Manitoba</option>
-            <option value="NT">Northwest Territories</option>
-            <option value="YT">Yukon</option>
-            <option value="NU">Nunavut</option>
+            <option value="ON">ON</option>
+            <option value="BC">BC</option>
+            <option value="QC">QC</option>
+            <option value="NS">NS</option>
+            <option value="NB">NB</option>
+            <option value="AB">AB</option>
+            <option value="PE">PE</option>
+            <option value="SK">SK</option>
+            <option value="NL">NL</option>
+            <option value="MB">MB</option>
+            <option value="NT">NT</option>
+            <option value="YT">YT</option>
+            <option value="NU">NU</option>
           </select>
           <input
             type="text"
