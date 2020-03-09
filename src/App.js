@@ -22,9 +22,62 @@ class App extends Component {
       toProvince: '',
       from: '',
       to: '',
-      podResponse: [],
       userEntry: '',
+      podData: [],
     }
+  }
+
+  // Function to grab commute time from Map.js
+  // Function is called in Map.js
+  grabCommunteTime = (time) => {
+    console.log(time)
+    this.setState({
+      appTime: time,
+    }, () => {
+      console.log('app time', this.state.appTime)
+    })
+  }
+
+    routeSelected = () => {
+    console.log('axios', this.state.appTime)
+    axios({
+      url: `https://listen-api.listennotes.com/api/v2/search`,
+      method: `GET`,
+      headers: { 'X-ListenAPI-Key': 'efedd950b2d84805a5c9ede9b4543e23' },
+      dataResponse: `jsonp`,
+      params: {
+        q: this.state.userInput,
+        type: "episode",
+        language: 'English',
+        // Taking commute time from Map.js, passing it to App.js and running it through grabCommuteTime function
+        len_min: this.state.appTime,
+        len_max: this.state.appTime + 5,
+      }
+    }).then((response) => {
+      // creating new array with stuff from listenNotes API call
+      console.log(response)
+
+
+      const newState = [];
+      response.data.results.map(function (podcast) {
+        newState.push({
+          podData: podcast,
+          podTitle: podcast.title_original,
+          podDescription: podcast.description_original,
+          podImage: podcast.image,
+          podUrl: podcast.podcast_listennotes_url,
+          podTime: podcast.audio_length_sec,
+          podAudio: podcast.audio,
+
+        })
+        return podcast;
+      })
+
+      // Use podData to display podcast information on the page
+      this.setState({
+        podData: newState,
+      })
+    });
   }
   
 
@@ -42,14 +95,7 @@ class App extends Component {
     })
   }
 
-// Function to grab commute time from Map.js
-// Function is called in Map.js
-  grabCommunteTime = (time) => {
-    this.setState({
-      appTime: time,
-    }, () => {
-    })
-  }
+
   
 
   handleSubmit = (e) => {
@@ -118,11 +164,16 @@ class App extends Component {
           <button className="mapSubmitButton">Submit</button>
         </form>
 
-        <Map grabCommunteTime={this.grabCommunteTime} from={this.state.from} to={this.state.to}/>
+        <Map 
+        grabCommunteTime={this.grabCommunteTime} 
+        from={this.state.from} 
+        to={this.state.to}
+        routeSelected={this.routeSelected}
+        />
         <Podcast 
         time={this.state.appTime} 
         userInput={this.state.userInput}
-        
+        podData={this.state.podData}
         />
       </div>
     )

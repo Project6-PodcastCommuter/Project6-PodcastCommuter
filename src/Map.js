@@ -84,12 +84,17 @@ class Map extends Component {
                 grabCommunteTime
             } = this.props;
             
-            console.log(time);
+            // console.log(time);
             grabCommunteTime(time)
+            const {
+                routeSelected
+            } = this.props;
+
+            routeSelected()
         })
     }
 
-    chooseWalk = () => {
+    chooseWalk =  () => {
         const time = Number(this.state.routeResult['pedestrian']['travelHour']) * 60 + Number(this.state.routeResult['pedestrian']['travelMinute'])
         console.log(time)
 
@@ -101,6 +106,13 @@ class Map extends Component {
             } = this.props;
 
             grabCommunteTime(time)
+        
+            setTimeout(() => {
+                const {
+                    routeSelected
+                } = this.props;
+                routeSelected() 
+            }, 100)
         })
     }
 
