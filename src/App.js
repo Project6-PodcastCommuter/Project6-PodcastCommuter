@@ -14,43 +14,99 @@ class App extends Component {
     this.state = {
       userInput: '',
       appTime: 0,
-      podResponse: [],
-      flag: false,
+      fromStreet: '',
+      fromCity:'',
+      fromProvince: '',
+      toStreet: '',
+      toCity: '',
+      toProvince: '',
+      from: '',
+      to: '',
       userEntry: '',
+      podData: [],
     }
+  }
+
+  // Function to grab commute time from Map.js
+  // Function is called in Map.js
+  grabCommunteTime = (time) => {
+    console.log(time)
+    this.setState({
+      appTime: time,
+    }, () => {
+      console.log('app time', this.state.appTime)
+    })
+  }
+
+    routeSelected = () => {
+    console.log('axios', this.state.appTime)
+    axios({
+      url: `https://listen-api.listennotes.com/api/v2/search`,
+      method: `GET`,
+      headers: { 'X-ListenAPI-Key': 'efedd950b2d84805a5c9ede9b4543e23' },
+      dataResponse: `jsonp`,
+      params: {
+        q: this.state.userInput,
+        type: "episode",
+        language: 'English',
+        // Taking commute time from Map.js, passing it to App.js and running it through grabCommuteTime function
+        len_min: this.state.appTime,
+        len_max: this.state.appTime + 5,
+      }
+    }).then((response) => {
+      // creating new array with stuff from listenNotes API call
+      console.log(response)
+
+
+      const newState = [];
+      response.data.results.map(function (podcast) {
+        newState.push({
+          podData: podcast,
+          podTitle: podcast.title_original,
+          podDescription: podcast.description_original,
+          podImage: podcast.image,
+          podUrl: podcast.podcast_listennotes_url,
+          podTime: podcast.audio_length_sec,
+          podAudio: podcast.audio,
+
+        })
+        return podcast;
+      })
+
+      // Use podData to display podcast information on the page
+      this.setState({
+        podData: newState,
+      })
+    });
   }
   
 
-// Function to grab commute time from Map.js
-// Function is called in Map.js
-  grabCommunteTime = (time) => {
+  // onChange function
+  handleMapChange = (e) => {
     this.setState({
-      appTime: time
-    }, () => {
+      [e.target.name]: e.target.value
     })
   }
 
-  // // Fun Function to grab podcast axios response on form submit
-  // grabPodcastAxios = (data) => {
-  //   this.setState({
-  //     podResponse: data,
-  //   }, () => {
-  //   })
-  // }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.setState({
-      flag: true,
-      userInput: this.state.userEntry,
-    })
-  }
-
-  // Saving podcast search keyword
-  handleChange = (e) => {
+  handlePodcastChange = (e) => {
     this.setState({
       userEntry: e.target.value,
     }, () => {
+    })
+  }
+
+
+  
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const from = `${this.state.fromStreet.trim()}, ${this.state.fromCity.trim()}, ${this.state.fromProvince}`
+    const to = `${this.state.toStreet.trim()}, ${this.state.toCity.trim()}, ${this.state.toProvince}`
+
+    this.setState({
+      from: from,
+      to: to,
+      userInput: this.state.userEntry,
     })
   }
 
@@ -58,22 +114,66 @@ class App extends Component {
   render(){
     return(
       <div>
-        {/* <form onSubmit={this.handleSubmit}> */}
-        <form onSubmit={this.handleSubmit}>
+        {/* Get user input */}
+        <form action="" onSubmit={this.handleSubmit} className="mapForm">
+          <label htmlFor="from">Start</label>
+          <input type="text" id="fromStreet" name="fromStreet" placeholder="enter street name" value={this.state.fromStreet} onChange={this.handleMapChange} />
+          <input type="text" id="fromCity" name="fromCity" placeholder="enter city" value={this.state.fromCity} onChange={this.handleMapChange} />
+          <select name="fromProvince" id="fromProvince" onChange={this.handleMapChange}>
+            <option value="">Choose Province/Territory</option>
+            <option value="ON">Ontario</option>
+            <option value="BC">British Columbia</option>
+            <option value="QC">Quebec</option>
+            <option value="NS">Nova Scotia</option>
+            <option value="NB">New Brunswick</option>
+            <option value="AB">Alberta</option>
+            <option value="PE">Prince Edward Island</option>
+            <option value="SK">Saskatchewan</option>
+            <option value="NL">Newfoundland and Labrador</option>
+            <option value="MB">Manitoba</option>
+            <option value="NT">Northwest Territories</option>
+            <option value="YT">Yukon</option>
+            <option value="NU">Nunavut</option>
+          </select>
+          <label htmlFor="end">End</label>
+          <input type="text" id="toStreet" name="toStreet" placeholder="enter street name" value={this.state.toStreet} onChange={this.handleMapChange} />
+          <input type="text" id="toCity" name="toCity" placeholder="enter city" value={this.state.toCity} onChange={this.handleMapChange} />
+          <select name="toProvince" id="toProvince" onChange={this.handleMapChange}>
+            <option value="">Choose Province/Territory</option>
+            <option value="ON">Ontario</option>
+            <option value="BC">British Columbia</option>
+            <option value="QC">Quebec</option>
+            <option value="NS">Nova Scotia</option>
+            <option value="NB">New Brunswick</option>
+            <option value="AB">Alberta</option>
+            <option value="PE">Prince Edward Island</option>
+            <option value="SK">Saskatchewan</option>
+            <option value="NL">Newfoundland and Labrador</option>
+            <option value="MB">Manitoba</option>
+            <option value="NT">Northwest Territories</option>
+            <option value="YT">Yukon</option>
+            <option value="NU">Nunavut</option>
+          </select>
           <input
             type="text"
             className="podcastSearch"
             placeholder='Search'
-            onChange={this.handleChange}
+            onChange={this.handlePodcastChange}
             value={this.state.userEntry}>
           </input>
-          <button type="submit" value='submit'>Search</button>
+          <button className="mapSubmitButton">Submit</button>
         </form>
-        <Map grabCommunteTime={this.grabCommunteTime}/>
+
+        <Map 
+        grabCommunteTime={this.grabCommunteTime} 
+        from={this.state.from} 
+        to={this.state.to}
+        routeSelected={this.routeSelected}
+        />
         <Podcast 
         time={this.state.appTime} 
         userInput={this.state.userInput}
-        flag={this.state.flag}
+        podData={this.state.podData}
         />
       </div>
     )
