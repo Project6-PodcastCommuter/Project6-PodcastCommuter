@@ -12,7 +12,11 @@ class App extends Component {
     super(props);
 // Setting state for user selected commute time from Map.js to pass to Podcast.js
     this.state = {
+      userInput: '',
       appTime: 0,
+      podResponse: [],
+      flag: false,
+      userEntry: '',
     }
   }
   
@@ -26,12 +30,51 @@ class App extends Component {
     })
   }
 
+  // // Fun Function to grab podcast axios response on form submit
+  // grabPodcastAxios = (data) => {
+  //   this.setState({
+  //     podResponse: data,
+  //   }, () => {
+  //   })
+  // }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      flag: true,
+      userInput: this.state.userEntry,
+    })
+  }
+
+  // Saving podcast search keyword
+  handleChange = (e) => {
+    this.setState({
+      userEntry: e.target.value,
+    }, () => {
+    })
+  }
+
   // Importing components and vital information for app to run
   render(){
     return(
       <div>
+        {/* <form onSubmit={this.handleSubmit}> */}
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            className="podcastSearch"
+            placeholder='Search'
+            onChange={this.handleChange}
+            value={this.state.userEntry}>
+          </input>
+          <button type="submit" value='submit'>Search</button>
+        </form>
         <Map grabCommunteTime={this.grabCommunteTime}/>
-        <Podcast time={this.state.appTime} />
+        <Podcast 
+        time={this.state.appTime} 
+        userInput={this.state.userInput}
+        flag={this.state.flag}
+        />
       </div>
     )
   }
