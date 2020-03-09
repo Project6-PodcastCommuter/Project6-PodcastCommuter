@@ -75,22 +75,18 @@ class Map extends Component {
         const time = Number(this.state.routeResult['bicycle']['travelHour']) * 60 + Number(this.state.routeResult['bicycle']['travelMinute'])
 
         // Setting commuteTime to "time"
-        // Referring to grabCommuteTime function in App.js, and assigning it to be a prop
-        // Call grabCommuteTime function with value of "time"
+        // Referring to grabCommunteuteTime function in App.js, and assigning it to be a prop
+        // Call grabCommunteuteTime function with value of "time"
         this.setState({
             commuteTime: time,
         }, () => {
             const {
-                grabCommunteTime
+                grabCommuteTime,
+                routeSelected
             } = this.props;
             
             // console.log(time);
-            grabCommunteTime(time)
-            const {
-                routeSelected
-            } = this.props;
-
-            routeSelected()
+            grabCommuteTime(time, routeSelected)
         })
     }
 
@@ -102,17 +98,18 @@ class Map extends Component {
             commuteTime: time,
         }, () => {
             const {
-                grabCommunteTime
+                grabCommuteTime,
+                routeSelected
             } = this.props;
 
-            grabCommunteTime(time)
+            grabCommuteTime(time, routeSelected)
         
-            setTimeout(() => {
-                const {
-                    routeSelected
-                } = this.props;
-                routeSelected() 
-            }, 100)
+            // setTimeout(() => {
+            //     const {
+            //         routeSelected
+            //     } = this.props;
+            //     routeSelected() 
+            // }, 100)
         })
     }
 
@@ -125,7 +122,7 @@ class Map extends Component {
 
                 {/* when there is nothing in the routeResult, show nothing */}
                 {/* otherwise, show results */}
-                {(this.state.routeResult['bicycle'] == undefined & this.state.routeResult['pedestrian'] == undefined) ? null : (
+                {(this.state.routeResult['bicycle'] === undefined & this.state.routeResult['pedestrian'] === undefined) ? null : (
 
                     <div className="routeResults">
                         {/* grab map url from the routeResult and display it */}

@@ -29,13 +29,11 @@ class App extends Component {
 
   // Function to grab commute time from Map.js
   // Function is called in Map.js
-  grabCommunteTime = (time) => {
+  grabCommuteTime = (time, callback) => {
     console.log(time)
     this.setState({
       appTime: time,
-    }, () => {
-      console.log('app time', this.state.appTime)
-    })
+    }, callback)
   }
 
     routeSelected = () => {
@@ -165,7 +163,7 @@ class App extends Component {
         </form>
 
         <Map 
-        grabCommunteTime={this.grabCommunteTime} 
+        grabCommuteTime={this.grabCommuteTime} 
         from={this.state.from} 
         to={this.state.to}
         routeSelected={this.routeSelected}
