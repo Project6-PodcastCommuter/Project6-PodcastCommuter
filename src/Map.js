@@ -25,7 +25,7 @@ class Map extends Component {
                 //mapping over the routeType and do axios calls 
                 const promises = routeType.map((type) => {
                     return axios({
-                        url: 'http://www.mapquestapi.com/directions/v2/route',
+                        url: 'https://www.mapquestapi.com/directions/v2/route',
                         params: {
                             key: 'GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl',
                             from: this.props.from,
