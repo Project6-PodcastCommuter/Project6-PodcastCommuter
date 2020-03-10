@@ -41,18 +41,18 @@ class Podcast extends Component {
                         {/* Dynamically printing podcast information on the page */}
                         {this.props.podData.map((response) => {
                             return (
-                                <div className='podcastCard'>
+                                <div className='podcastCard podcast'>
                                     <div>
-                                            <img src={response.podImage} alt={this.state.podTitle}></img>
+                                            <img className="podcastImg" src={response.podImage} alt={this.state.podTitle}></img>
                                         <div>
                                             <h4>{response.podTitle}</h4>
-                                            <p>{Math.floor(response.podTime / 60)} minutes</p>
+                                            <p className="podcastTime">{Math.floor(response.podTime / 60)} minutes</p>
                                         </div>
                                             <p>{response.podDescription}</p>
                                             <a className="readMore">Read More</a>
                                     </div>
                                     <div>
-                                        <button className="choosePodcastButton" onClick={this.selectedPodcast} value={response.podUrl}>Choose</button>
+                                        <button className="choosePodcastButton podcastButton" onClick={this.selectedPodcast} value={response.podUrl}>Choose</button>
                                     </div>
                                 </div>
                             )
@@ -61,29 +61,31 @@ class Podcast extends Component {
                 </section>
             }     
                 
-                <section className='wrapper'>
                     { this.state.selectedPodcast.length === 0 ? null : 
+                <section className='wrapper'>
                     <div>
-                        <h3>Have a listen and enjoy your commute</h3>
+                        <h3 className="finalPodcastTag">Have a listen and enjoy your commute</h3>
                         <div className="selectedAudio">
                             <div className="finalPodcastContent">
+                            {/* <div className="selectedAudio finalPodcastContent"> */}
                                 <div className="finalPodcastImage">
-                                    <img src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
+                                    <img className="finalPodcastImg" src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
                                 </div>
                                 <div className="finalPodcastInfo">
                                     <h3>{this.state.selectedPodcast.podTitle}</h3>
                                     <p>{this.state.selectedPodcast.podDescription}</p>
+                                    <a className="readMore">Read More</a>
                                 </div>
                             </div>
-                            <audio 
-                                className="finalPodcastAudio"
-                                controls
-                                src={this.state.selectedPodcast.podAudio}>
-                            </audio>
                         </div>
+                        <audio 
+                            className="finalPodcastAudio"
+                            controls
+                            src={this.state.selectedPodcast.podAudio}>
+                        </audio>
                     </div>
-                    } 
                 </section>
+                } 
             </div>
         )
     }

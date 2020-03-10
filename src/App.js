@@ -53,29 +53,31 @@ class App extends Component {
       }
     }).then((response) => {
       // creating new array with stuff from listenNotes API call
-      console.log(response)
+      console.log('podcast',response.data.count)
+      if (response.data.count === 0){
+        alert('there is no podcast that meets our requirement')
+      }else{
+        const newState = [];
+        response.data.results.map(function (podcast) {
+          newState.push({
+            podData: podcast,
+            podTitle: podcast.title_original,
+            podDescription: podcast.description_original,
+            podImage: podcast.image,
+            podUrl: podcast.podcast_listennotes_url,
+            podTime: podcast.audio_length_sec,
+            podAudio: podcast.audio,
 
-
-      const newState = [];
-      response.data.results.map(function (podcast) {
-        newState.push({
-          podData: podcast,
-          podTitle: podcast.title_original,
-          podDescription: podcast.description_original,
-          podImage: podcast.image,
-          podUrl: podcast.podcast_listennotes_url,
-          podTime: podcast.audio_length_sec,
-          podAudio: podcast.audio,
-
+          })
+          return podcast;
         })
-        return podcast;
-      })
 
-      // Use podData to display podcast information on the page
-      this.setState({
-        podData: newState,
-      })
-    });
+        // Use podData to display podcast information on the page
+        this.setState({
+          podData: newState,
+        })
+      }
+    })
   }
   
 
@@ -123,7 +125,7 @@ class App extends Component {
         <header>
           <nav className="wrapper">
             <img className="logo" src={require('./assets/logo.png')}></img>
-            <ul>
+            <ul className="mainNav">
               <li><a href="">Search</a></li>
               <li><a href="">Results</a></li>
               <li><a href="">Recommendations</a></li>
@@ -133,7 +135,7 @@ class App extends Component {
           <div className="headerContent wrapper">
             <div className="headerInfo">
               <h1>Podcast Commuter</h1>
-              <h2>Find podcasts that suit your length of commute</h2>
+              <h2 className="headerDescriptionMobile">Find podcasts that suit your length of commute</h2>
               <button>Start</button>
             </div>
             <div className="headerImage">
@@ -145,7 +147,7 @@ class App extends Component {
 
 
         {/* Get user input */}
-        <section className="wrapper"> 
+        <section className="wrapper mobileMap"> 
           <div className="formInfo">
             <h3>Let's find some podcasts.</h3>
             <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
@@ -196,9 +198,10 @@ class App extends Component {
             <input
               type="text"
               className="podcastSearch"
+              id="podcastSearch"
               placeholder='What type of podcast would you like to listen to?'
               onChange={this.handlePodcastChange}
-              value={this.state.userEntry}>
+              value={this.state.userEntry} required>
             </input>
             <div>
             <button className="mapSubmitButton">Search</button>

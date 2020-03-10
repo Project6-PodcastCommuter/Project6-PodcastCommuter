@@ -21,6 +21,9 @@ class Map extends Component {
 
             if (this.props.from !== '' && this.props.to !== '') {
                 const routeType = ['pedestrian', 'bicycle']
+                // setttimeout 2s 
+                // if gives result, cleartimeout
+                // otherwise .then()
     
                 //mapping over the routeType and do axios calls 
                 const promises = routeType.map((type) => {
@@ -34,36 +37,46 @@ class Map extends Component {
                         }
                     })
                 })
-    
+                // console.log(promises)
+
                 //catch the axios calls and put them in to the response array
                 Promise.all(promises).then((responseArray) => {
-                    //get time from the axios call
-                    //taking the first element in the response array (pedestrain for now) and add the next one to create an object
                     console.log(responseArray)
-                    const transformedResponse = responseArray.reduce((acc, response, i) => {
-                        const userRouteTime = response.data.route.legs[0].formattedTime;
-                        const hour = userRouteTime.slice(0, 2);
-                        const minutes = userRouteTime.slice(3, 5);
-                        const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.props.from}&end=${this.props.to}`
-    
-                        //separating bike and pedestrain so that they are their own object
-                        return {
-                            ...acc,
-                            //once they are in their own object, add key value pairs to each object
-                            [routeType[i]]: {
-                                travelHour: hour,
-                                travelMinute: minutes,
-                                mapImage: mapImage,
+                    if (responseArray[0].data.route.legs[0].formattedTime === "00:00:00" || responseArray[1].data.route.legs[0].formattedTime === "00:00:00" ){
+                        alert("The address you put is not valid, please reenter the addresses.")
+                    }
+                    else{
+                        //get time from the axios call
+                        //taking the first element in the response array (pedestrain for now) and add the next one to create an object
+                        const transformedResponse = responseArray.reduce((acc, response, i) => {
+                            const userRouteTime = response.data.route.legs[0].formattedTime;
+                            const hour = userRouteTime.slice(0, 2);
+                            const minutes = userRouteTime.slice(3, 5);
+                            const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.props.from}&end=${this.props.to}`
+        
+                            //separating bike and pedestrain so that they are their own object
+                            return {
+                                ...acc,
+                                //once they are in their own object, add key value pairs to each object
+                                [routeType[i]]: {
+                                    travelHour: hour,
+                                    travelMinute: minutes,
+                                    mapImage: mapImage,
+                                }
                             }
-                        }
-                        // reduce syntax 
-                    }, {})
-    
-                    // assigning objects to route result
-                    this.setState({
-                        routeResult: transformedResponse
-                    })
+                            // reduce syntax 
+                        }, {})
+        
+                        // assigning objects to route result
+                        this.setState({
+                            routeResult: transformedResponse
+                        })
+                    }
+
                 })
+                // .catch((error) => {
+                //     alert(error.messages)
+                // })
             }
         }
     }
@@ -103,13 +116,6 @@ class Map extends Component {
             } = this.props;
 
             grabCommuteTime(time, routeSelected)
-        
-            // setTimeout(() => {
-            //     const {
-            //         routeSelected
-            //     } = this.props;
-            //     routeSelected() 
-            // }, 100)
         })
     }
 
@@ -133,14 +139,14 @@ class Map extends Component {
                         </div>
 
                         <div className="commuteOptions">
-                            <div className="commuteResult">
-                                <img src={require('./assets/walk.svg')}></img>
+                            <div className="commuteResult pedestrianResult">
+                                <img className="mobileRouteTypeImg" src={require('./assets/walk.svg')}></img>
                                 {/* Do not display hours when time is under 60 minutes */}
                                 
                                 <button 
                                     type='submit'
                                     onClick={this.chooseWalk}
-                                    alt='' >
+                                    className="routeTypeButton" >
                                         {this.state.routeResult['pedestrian']['travelHour'] !== "00"
                                         ?
                                         <p>{this.state.routeResult['pedestrian']['travelHour']} hrs {this.state.routeResult['pedestrian']['travelMinute']} min</p>
@@ -150,12 +156,12 @@ class Map extends Component {
                                 <p className='recommendation'>Walking is a great way to improve or maintain your overall health. Just 30 minutes every day can increase cardiovascular fitness, strengthen bones, reduce excess body fat, and boost muscle power and endurance</p>
                             </div>
 
-                            <div className="commuteResult">
-                                <img src={require('./assets/bike.svg')}></img>
+                            <div className="commuteResult bicycleResult">
+                                <img className="mobileRouteTypeImg" src={require('./assets/bike.svg')}></img>
                                 
                                 <button type='submit'
                                     onClick={this.chooseBike}
-                                    alt='' >
+                                    className="routeTypeButton" >
                                     {this.state.routeResult['bicycle']['travelHour'] !== "00"
                                         ?
                                         <p>{this.state.routeResult['bicycle']['travelHour']} hrs {this.state.routeResult['bicycle']['travelMinute']} min</p>
