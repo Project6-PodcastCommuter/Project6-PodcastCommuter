@@ -12,8 +12,6 @@ class Podcast extends Component {
         // podData - pushing details into array
         this.state = {
             selectedPodcast: [],
-
-
         }
 
     }
@@ -30,10 +28,12 @@ class Podcast extends Component {
 
 
     render() {
+        console.log(this.props.podData)
         return (
-            <div className="podcastContent">        
-                <section>
-                    <div>
+            <div className="podcastContent">   
+            {this.props.podData.length === 0 ? null :
+                <section className='wrapper'>
+                    <div className='pickPodcast'>
                         <h3>Pick a Podcast</h3>
                         <p>Here are some podcasts that match your commute time.</p>
                     </div>
@@ -41,25 +41,30 @@ class Podcast extends Component {
                         {/* Dynamically printing podcast information on the page */}
                         {this.props.podData.map((response) => {
                             return (
-                                <div>
-                                    <img src={response.podImage} alt={this.state.podTitle}></img>
+                                <div className='podcastCard'>
                                     <div>
-                                        <h4>{response.podTitle}</h4>
-                                        <p>{Math.floor(response.podTime / 60)} minutes</p>
+                                            <img src={response.podImage} alt={this.state.podTitle}></img>
+                                        <div>
+                                            <h4>{response.podTitle}</h4>
+                                            <p>{Math.floor(response.podTime / 60)} minutes</p>
+                                        </div>
+                                            <p>{response.podDescription}</p>
+                                            <a className="readMore">Read More</a>
                                     </div>
-                                    <p>{response.podDescription}</p>
-                                    <a>Read More</a>
-                                    <button onClick={this.selectedPodcast} value={response.podUrl}>Choose Podcast
-                                    </button>
+                                    <div>
+                                        <button className="choosePodcastButton" onClick={this.selectedPodcast} value={response.podUrl}>Choose</button>
+                                    </div>
                                 </div>
                             )
                         })}
                     </div>
                 </section>
+            }     
                 
-                <section>
-                    <h3>Have a listen and enjoy your commute</h3>
+                <section className='wrapper'>
                     { this.state.selectedPodcast.length === 0 ? null : 
+                    <div>
+                        <h3>Have a listen and enjoy your commute</h3>
                         <div className="selectedAudio">
                             <div className="finalPodcastContent">
                                 <div className="finalPodcastImage">
@@ -76,6 +81,7 @@ class Podcast extends Component {
                                 src={this.state.selectedPodcast.podAudio}>
                             </audio>
                         </div>
+                    </div>
                     } 
                 </section>
             </div>

@@ -18,3 +18,65 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 .skip-link:focus {
   left: 0;
 }
+
+html {
+    font-size: 62.5%; /* 10px */
+}
+
+body {
+    font-size: 1.6rem;
+    position: relative;
+    color: #707070;
+}
+
+
+/* STRIPPING STYLES */
+body, 
+h1,
+h2,
+h3,
+h4,
+ul,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    background-color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 15px 60px;
+    border-radius: 50px;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+}
+
+h3 {
+    font-size: 4.5rem;
+    font-weight: 600;
+}
+
+.wrapper {
+    max-width: 1300px;
+    width: 80%;
+    margin: 0 auto;
+}
