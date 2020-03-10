@@ -11,14 +11,25 @@ class Podcast extends Component {
         // userInput - keyword for podcast
         // podData - pushing details into array
         this.state = {
-            podData: [],
+            selectedPodcast: [],
+
+
         }
 
     }
 
+    selectedPodcast = (e) => {
+        const selectedTitle = e.target.value
+        const selectedPodcastData = this.props.podData.filter((podcast) => {
+            return podcast.podUrl === selectedTitle;
+        })
+        this.setState({
+            selectedPodcast: selectedPodcastData[0],
+        })
+    }
+
 
     render() {
-
         return (
             <div className="podcastContent">        
                 <div>
@@ -31,15 +42,26 @@ class Podcast extends Component {
                                 <p>{response.podUrl}</p>
                                 <img src={response.podImage} alt={this.state.podTitle}></img>
                                 <p>{Math.floor(response.podTime / 60)} minutes</p>
-                                <audio
-                                    controls
-                                    src={response.podAudio}>
-                                </audio>
+                                <button onClick={this.selectedPodcast} value={response.podUrl}>Choose Podcast
+                                </button>
                             </div>
                         )
                     })}
                 </div>
-                
+                { this.state.selectedPodcast.length === 0 ? null : 
+                    <div className="selectedAudio">
+                        <h3>Have a listen and enjoy your commute</h3>
+                        <h3>{this.state.selectedPodcast.podTitle}</h3>
+                        <p>{this.state.selectedPodcast.podDescription}</p>
+                        <p>{this.state.selectedPodcast.podUrl}</p>
+                        <img src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
+                        <p>{Math.floor(this.state.selectedPodcast.podTime / 60)} minutes</p>
+                        <audio
+                            controls
+                            src={this.state.selectedPodcast.podAudio}>
+                        </audio>
+                    </div>
+                } 
             </div>
         )
     }
