@@ -31,7 +31,7 @@ class Podcast extends Component {
 
     render() {
         return (
-            <div className="podcastContent">        
+            <div className="podcastContent wrapper">        
                 <section>
                     <div>
                         <h3>Pick a Podcast</h3>
@@ -41,7 +41,7 @@ class Podcast extends Component {
                         {/* Dynamically printing podcast information on the page */}
                         {this.props.podData.map((response) => {
                             return (
-                                <div>
+                                <div className="podcast">
                                     <img src={response.podImage} alt={this.state.podTitle}></img>
                                     <div>
                                         <h4>{response.podTitle}</h4>
