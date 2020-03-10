@@ -136,8 +136,9 @@ class App extends Component {
               <h2>Find podcasts that suit your length of commute</h2>
               <button>Start</button>
             </div>
-            <div>
-              <img src={require('./assets/headerDeskop.svg')}></img>
+            <div className="headerImage">
+              <img className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
+              <img className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
             </div>
           </div>
         </header>
