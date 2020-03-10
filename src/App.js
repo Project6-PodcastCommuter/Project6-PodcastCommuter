@@ -120,55 +120,92 @@ class App extends Component {
   render(){
     return(
       <div>
+        <header>
+          <nav className="wrapper">
+            <img className="logo" src={require('./assets/logo.png')}></img>
+            <ul>
+              <li><a href="">Search</a></li>
+              <li><a href="">Results</a></li>
+              <li><a href="">Recommendations</a></li>
+              <li><a href="">Listen</a></li>
+            </ul>
+          </nav>
+          <div className="headerContent">
+            <div>
+              <h1>Podcast Commuter</h1>
+              <h2>Find podcasts that suit your length of commute</h2>
+              <button>Start</button>
+            </div>
+            <div className="headerImage">
+              <img className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
+              <img className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
+            </div>
+          </div>
+        </header>
+
+
         {/* Get user input */}
-        <form action="" onSubmit={this.handleSubmit} className="mapForm">
-          <label htmlFor="from">Start</label>
-          <input type="text" id="fromStreet" name="fromStreet" placeholder="enter street name" value={this.state.fromStreet} onChange={this.handleMapChange} required/>
-          <input type="text" id="fromCity" name="fromCity" placeholder="enter city" value={this.state.fromCity} onChange={this.handleMapChange} required/>
-          <select name="fromProvince" id="fromProvince" onChange={this.handleMapChange} required>
-            <option value="">Choose Province/Territory</option>
-            <option value="ON">ON</option>
-            <option value="BC">BC</option>
-            <option value="QC">QC</option>
-            <option value="NS">NS</option>
-            <option value="NB">NB</option>
-            <option value="AB">AB</option>
-            <option value="PE">PE</option>
-            <option value="SK">SK</option>
-            <option value="NL">NL</option>
-            <option value="MB">MB</option>
-            <option value="NT">NT</option>
-            <option value="YT">YT</option>
-            <option value="NU">NU</option>
-          </select>
-          <label htmlFor="end">End</label>
-          <input type="text" id="toStreet" name="toStreet" placeholder="enter street name" value={this.state.toStreet} onChange={this.handleMapChange} required/>
-          <input type="text" id="toCity" name="toCity" placeholder="enter city" value={this.state.toCity} onChange={this.handleMapChange} required/>
-          <select name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
-            <option value="">Choose Province/Territory</option>
-            <option value="ON">ON</option>
-            <option value="BC">BC</option>
-            <option value="QC">QC</option>
-            <option value="NS">NS</option>
-            <option value="NB">NB</option>
-            <option value="AB">AB</option>
-            <option value="PE">PE</option>
-            <option value="SK">SK</option>
-            <option value="NL">NL</option>
-            <option value="MB">MB</option>
-            <option value="NT">NT</option>
-            <option value="YT">YT</option>
-            <option value="NU">NU</option>
-          </select>
-          <input
-            type="text"
-            className="podcastSearch"
-            placeholder='Search'
-            onChange={this.handlePodcastChange}
-            value={this.state.userEntry}>
-          </input>
-          <button className="mapSubmitButton">Submit</button>
-        </form>
+        <section> 
+          <div>
+            <h3>Let's find some podcasts.</h3>
+            <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
+            your commute time, and ask your to select your preferred mode of transportation. Based on the time of your trip,
+            we will give you some podcast recommendations.</p>
+          </div>
+          <form action="" onSubmit={this.handleSubmit} className="mapForm">
+            <div>
+              <input type="text" id="fromStreet" name="fromStreet" placeholder="Starting address" value={this.state.fromStreet} onChange={this.handleMapChange} required />
+              <input type="text" id="fromCity" name="fromCity" placeholder="Starting city" value={this.state.fromCity} onChange={this.handleMapChange} required />
+              <select name="fromProvince" id="fromProvince" onChange={this.handleMapChange} required>
+                <option value="">Province</option>
+                <option value="ON">ON</option>
+                <option value="BC">BC</option>
+                <option value="QC">QC</option>
+                <option value="NS">NS</option>
+                <option value="NB">NB</option>
+                <option value="AB">AB</option>
+                <option value="PE">PE</option>
+                <option value="SK">SK</option>
+                <option value="NL">NL</option>
+                <option value="MB">MB</option>
+                <option value="NT">NT</option>
+                <option value="YT">YT</option>
+                <option value="NU">NU</option>
+              </select>
+            </div>
+            <div>
+              <input type="text" id="toStreet" name="toStreet" placeholder="Ending address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
+              <input type="text" id="toCity" name="toCity" placeholder="Ending city" value={this.state.toCity} onChange={this.handleMapChange} required/>
+              <select name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
+                <option value="">Province</option>
+                <option value="ON">ON</option>
+                <option value="BC">BC</option>
+                <option value="QC">QC</option>
+                <option value="NS">NS</option>
+                <option value="NB">NB</option>
+                <option value="AB">AB</option>
+                <option value="PE">PE</option>
+                <option value="SK">SK</option>
+                <option value="NL">NL</option>
+                <option value="MB">MB</option>
+                <option value="NT">NT</option>
+                <option value="YT">YT</option>
+                <option value="NU">NU</option>
+              </select>
+            </div>
+            <input
+              type="text"
+              className="podcastSearch"
+              placeholder='What type of podcast would you like to listen to?'
+              onChange={this.handlePodcastChange}
+              value={this.state.userEntry}>
+            </input>
+            <div>
+            <button className="mapSubmitButton">Search</button>
+            </div>
+          </form>
+        </section>
+
 
         <Map 
         grabCommuteTime={this.grabCommuteTime} 

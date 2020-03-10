@@ -1,0 +1,33 @@
+.wrapper {
+    max-width: 1300px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+header {
+    background-image: url('../assets/headerBackground.svg');
+    height: 100vh;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.mobileImg {
+    display: none;
+}
+
+nav {
+    display: flex;
+}
+
+nav ul {
+    display: flex;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+}
+
+.headerContent {
+    display: flex;
+}

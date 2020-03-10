@@ -32,36 +32,52 @@ class Podcast extends Component {
     render() {
         return (
             <div className="podcastContent">        
-                <div>
-                    {/* Dynamically printing podcast information on the page */}
-                    {this.props.podData.map((response) => {
-                        return (
-                            <div>
-                                <h3>{response.podTitle}</h3>
-                                <p>{response.podDescription}</p>
-                                <p>{response.podUrl}</p>
-                                <img src={response.podImage} alt={this.state.podTitle}></img>
-                                <p>{Math.floor(response.podTime / 60)} minutes</p>
-                                <button onClick={this.selectedPodcast} value={response.podUrl}>Choose Podcast
-                                </button>
-                            </div>
-                        )
-                    })}
-                </div>
-                { this.state.selectedPodcast.length === 0 ? null : 
-                    <div className="selectedAudio">
-                        <h3>Have a listen and enjoy your commute</h3>
-                        <h3>{this.state.selectedPodcast.podTitle}</h3>
-                        <p>{this.state.selectedPodcast.podDescription}</p>
-                        <p>{this.state.selectedPodcast.podUrl}</p>
-                        <img src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
-                        <p>{Math.floor(this.state.selectedPodcast.podTime / 60)} minutes</p>
-                        <audio
-                            controls
-                            src={this.state.selectedPodcast.podAudio}>
-                        </audio>
+                <section>
+                    <div>
+                        <h3>Pick a Podcast</h3>
+                        <p>Here are some podcasts that match your commute time.</p>
                     </div>
-                } 
+                    <div className="podcastResults">
+                        {/* Dynamically printing podcast information on the page */}
+                        {this.props.podData.map((response) => {
+                            return (
+                                <div>
+                                    <img src={response.podImage} alt={this.state.podTitle}></img>
+                                    <div>
+                                        <h4>{response.podTitle}</h4>
+                                        <p>{Math.floor(response.podTime / 60)} minutes</p>
+                                    </div>
+                                    <p>{response.podDescription}</p>
+                                    <a>Read More</a>
+                                    <button onClick={this.selectedPodcast} value={response.podUrl}>Choose Podcast
+                                    </button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </section>
+                
+                <section>
+                    <h3>Have a listen and enjoy your commute</h3>
+                    { this.state.selectedPodcast.length === 0 ? null : 
+                        <div className="selectedAudio">
+                            <div className="finalPodcastContent">
+                                <div className="finalPodcastImage">
+                                    <img src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
+                                </div>
+                                <div className="finalPodcastInfo">
+                                    <h3>{this.state.selectedPodcast.podTitle}</h3>
+                                    <p>{this.state.selectedPodcast.podDescription}</p>
+                                </div>
+                            </div>
+                            <audio 
+                                className="finalPodcastAudio"
+                                controls
+                                src={this.state.selectedPodcast.podAudio}>
+                            </audio>
+                        </div>
+                    } 
+                </section>
             </div>
         )
     }

@@ -124,29 +124,47 @@ class Map extends Component {
                 {/* otherwise, show results */}
                 {(this.state.routeResult['bicycle'] === undefined & this.state.routeResult['pedestrian'] === undefined) ? null : (
 
-                    <div className="routeResults">
+                    <section className="routeResults">
                         {/* grab map url from the routeResult and display it */}
                         <div className="mapContainer">
                             <img src={this.state.routeResult['pedestrian']['mapImage']} alt="Travel route map from start to end" />
                         </div>
 
-                        <div className="pedestrianResult">
-                            {/* Do not display hours when time is under 60 minutes */}
-                            {this.state.routeResult['pedestrian']['travelHour'] !== "00" ? <p>It's going to take {this.state.routeResult['pedestrian']['travelHour']} hrs {this.state.routeResult['pedestrian']['travelMinute']} minutes to walk.</p> : <p>It's going to take {this.state.routeResult['pedestrian']['travelMinute']} minutes to walk.</p>}
-                            <button type='submit' 
-                            onClick={this.chooseWalk}
-        
-                             alt='' >Walk</button>
-                        </div>
+                        <div className="commuteOptions">
+                            <div className="pedestrianResult">
+                                <img src={require('./assets/walk.svg')}></img>
+                                {/* Do not display hours when time is under 60 minutes */}
+                                
+                                <button 
+                                    type='submit'
+                                    onClick={this.chooseWalk}
+                                    alt='' >
+                                        {this.state.routeResult['pedestrian']['travelHour'] !== "00"
+                                        ?
+                                        <p>{this.state.routeResult['pedestrian']['travelHour']} hrs {this.state.routeResult['pedestrian']['travelMinute']} min</p>
+                                        :
+                                        <p>{this.state.routeResult['pedestrian']['travelMinute']} min</p>}
+                                </button>
+                                <p>Walking is a great way to improve or maintain your overall health. Just 30 minutes every day can increase cardiovascular fitness, strengthen bones, reduce excess body fat, and boost muscle power and endurance</p>
+                            </div>
 
-
-                        <div className="bicycleResult">
-                            {this.state.routeResult['bicycle']['travelHour'] !== "00" ? <p>It's going to take {this.state.routeResult['bicycle']['travelHour']} hrs {this.state.routeResult['bicycle']['travelMinute']} minutes to bike.</p> : <p>It's going to take {this.state.routeResult['bicycle']['travelMinute']} minutes to bike.</p>}
-                            <button type='submit' 
-                            onClick={this.chooseBike}
-                             alt='' >Bike</button>
+                            <div className="bicycleResult">
+                                <img src={require('./assets/bike.svg')}></img>
+                                
+                                <button type='submit'
+                                    onClick={this.chooseBike}
+                                    alt='' >
+                                    {this.state.routeResult['bicycle']['travelHour'] !== "00"
+                                        ?
+                                        <p>{this.state.routeResult['bicycle']['travelHour']} hrs {this.state.routeResult['bicycle']['travelMinute']} min</p>
+                                        :
+                                        <p>{this.state.routeResult['bicycle']['travelMinute']} min</p>}
+                                </button>
+                                <p>Riding to work or the shops is one of the most time-efficient ways to combine regular exercise with your everyday routine. An estimated one billion people ride bicycles every day – for transport, recreation and sport.</p>
+                            </div>
                         </div>
-                    </div>
+                        
+                    </section>
                 )}
             </div>
         );
