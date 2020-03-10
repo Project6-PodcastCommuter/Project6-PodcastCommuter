@@ -21,24 +21,29 @@ class Podcast extends Component {
 
         return (
             <div className="podcastContent">        
-                <div>
-                    {/* Dynamically printing podcast information on the page */}
-                    {this.props.podData.map((response) => {
-                        return (
-                            <div>
-                                <h3>{response.podTitle}</h3>
-                                <p>{response.podDescription}</p>
-                                <p>{response.podUrl}</p>
-                                <img src={response.podImage} alt={this.state.podTitle}></img>
-                                <p>{Math.floor(response.podTime / 60)} minutes</p>
-                                <audio
-                                    controls
-                                    src={response.podAudio}>
-                                </audio>
-                            </div>
-                        )
-                    })}
-                </div>
+                <section>
+                    <div>
+                        <h3>Pick a Podcast</h3>
+                        <p>Here are some podcasts that match your commute time.</p>
+                    </div>
+                    <div className="podcastResults">
+                        {/* Dynamically printing podcast information on the page */}
+                        {this.props.podData.map((response) => {
+                            return (
+                                <div>
+                                    <img src={response.podImage} alt={this.state.podTitle}></img>
+                                    <div>
+                                        <h4>{response.podTitle}</h4>
+                                        <p>{Math.floor(response.podTime / 60)} minutes</p>
+                                    </div>
+                                    <p>{response.podDescription}</p>
+                                    <a>Read More</a>
+                                    <button>Choose</button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </section>
                 
             </div>
         )
