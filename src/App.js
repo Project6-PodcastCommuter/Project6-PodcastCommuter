@@ -53,30 +53,30 @@ class App extends Component {
       }
     }).then((response) => {
       // creating new array with stuff from listenNotes API call
-      console.log(response)
+      console.log('podcast',response.data.count)
+      if (response.data.count === 0){
+        alert('there is no podcast that meets our requirement')
+      }else{
+        const newState = [];
+        response.data.results.map(function (podcast) {
+          newState.push({
+            podData: podcast,
+            podTitle: podcast.title_original,
+            podDescription: podcast.description_original,
+            podImage: podcast.image,
+            podUrl: podcast.podcast_listennotes_url,
+            podTime: podcast.audio_length_sec,
+            podAudio: podcast.audio,
 
-
-      const newState = [];
-      response.data.results.map(function (podcast) {
-        newState.push({
-          podData: podcast,
-          podTitle: podcast.title_original,
-          podDescription: podcast.description_original,
-          podImage: podcast.image,
-          podUrl: podcast.podcast_listennotes_url,
-          podTime: podcast.audio_length_sec,
-          podAudio: podcast.audio,
-
+          })
+          return podcast;
         })
-        return podcast;
-      })
 
-      // Use podData to display podcast information on the page
-      this.setState({
-        podData: newState,
-      })
-    }).catch(error => {
-      console.log(error)
+        // Use podData to display podcast information on the page
+        this.setState({
+          podData: newState,
+        })
+      }
     })
   }
   
