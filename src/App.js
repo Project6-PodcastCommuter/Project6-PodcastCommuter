@@ -101,11 +101,17 @@ class App extends Component {
     e.target.reset();
     const from = `${this.state.fromStreet.trim()}, ${this.state.fromCity.trim()}, ${this.state.fromProvince}`
     const to = `${this.state.toStreet.trim()}, ${this.state.toCity.trim()}, ${this.state.toProvince}`
-
     this.setState({
+      fromCity: '',
+      fromStreet: '',
+      fromProvince: '',
+      toCity: '',
+      toProvince: '',
+      toStreet: '',
       from: from,
       to: to,
       userInput: this.state.userEntry,
+      userEntry: ''
     })
   }
 

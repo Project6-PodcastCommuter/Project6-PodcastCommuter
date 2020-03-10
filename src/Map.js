@@ -17,7 +17,7 @@ class Map extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(prevProps.from != this.props.from){
+        if(prevProps.from != this.props.from || prevProps.to != this.props.to){
 
             if (this.props.from !== '' && this.props.to !== '') {
                 const routeType = ['pedestrian', 'bicycle']
@@ -25,7 +25,7 @@ class Map extends Component {
                 //mapping over the routeType and do axios calls 
                 const promises = routeType.map((type) => {
                     return axios({
-                        url: 'http://www.mapquestapi.com/directions/v2/route',
+                        url: 'https://www.mapquestapi.com/directions/v2/route',
                         params: {
                             key: 'GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl',
                             from: this.props.from,
