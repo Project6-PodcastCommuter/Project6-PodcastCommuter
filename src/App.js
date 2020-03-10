@@ -75,7 +75,9 @@ class App extends Component {
       this.setState({
         podData: newState,
       })
-    });
+    }).catch(error => {
+      console.log(error)
+    })
   }
   
 
@@ -198,7 +200,7 @@ class App extends Component {
               className="podcastSearch"
               placeholder='What type of podcast would you like to listen to?'
               onChange={this.handlePodcastChange}
-              value={this.state.userEntry}>
+              value={this.state.userEntry} required>
             </input>
             <div>
             <button className="mapSubmitButton">Search</button>

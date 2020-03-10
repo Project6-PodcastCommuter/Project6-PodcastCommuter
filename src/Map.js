@@ -21,6 +21,9 @@ class Map extends Component {
 
             if (this.props.from !== '' && this.props.to !== '') {
                 const routeType = ['pedestrian', 'bicycle']
+                // setttimeout 2s 
+                // if gives result, cleartimeout
+                // otherwise .then()
     
                 //mapping over the routeType and do axios calls 
                 const promises = routeType.map((type) => {
@@ -37,33 +40,42 @@ class Map extends Component {
     
                 //catch the axios calls and put them in to the response array
                 Promise.all(promises).then((responseArray) => {
-                    //get time from the axios call
-                    //taking the first element in the response array (pedestrain for now) and add the next one to create an object
                     console.log(responseArray)
-                    const transformedResponse = responseArray.reduce((acc, response, i) => {
-                        const userRouteTime = response.data.route.legs[0].formattedTime;
-                        const hour = userRouteTime.slice(0, 2);
-                        const minutes = userRouteTime.slice(3, 5);
-                        const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.props.from}&end=${this.props.to}`
-    
-                        //separating bike and pedestrain so that they are their own object
-                        return {
-                            ...acc,
-                            //once they are in their own object, add key value pairs to each object
-                            [routeType[i]]: {
-                                travelHour: hour,
-                                travelMinute: minutes,
-                                mapImage: mapImage,
-                            }
-                        }
-                        // reduce syntax 
-                    }, {})
-    
-                    // assigning objects to route result
-                    this.setState({
-                        routeResult: transformedResponse
-                    })
+                //     if (responseArray[0].data.route.legs[0].formattedTime === "00:00:00" || responseArray[1].data.route.legs[0].formattedTime === "00:00:00" ){
+                //         alert("The address you put is not valid, please reenter the addresses.")
+                //     }
+                //     else{
+                //         //get time from the axios call
+                //         //taking the first element in the response array (pedestrain for now) and add the next one to create an object
+                //         const transformedResponse = responseArray.reduce((acc, response, i) => {
+                //             const userRouteTime = response.data.route.legs[0].formattedTime;
+                //             const hour = userRouteTime.slice(0, 2);
+                //             const minutes = userRouteTime.slice(3, 5);
+                //             const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.props.from}&end=${this.props.to}`
+        
+                //             //separating bike and pedestrain so that they are their own object
+                //             return {
+                //                 ...acc,
+                //                 //once they are in their own object, add key value pairs to each object
+                //                 [routeType[i]]: {
+                //                     travelHour: hour,
+                //                     travelMinute: minutes,
+                //                     mapImage: mapImage,
+                //                 }
+                //             }
+                //             // reduce syntax 
+                //         }, {})
+        
+                //         // assigning objects to route result
+                //         this.setState({
+                //             routeResult: transformedResponse
+                //         })
+                //     }
+
                 })
+                // .catch((error) => {
+                //     alert(error.messages)
+                // })
             }
         }
     }
