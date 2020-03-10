@@ -125,7 +125,7 @@ class App extends Component {
         <header>
           <nav className="wrapper">
             <img className="logo" src={require('./assets/logo.png')}></img>
-            <ul>
+            <ul className="mainNav">
               <li><a href="">Search</a></li>
               <li><a href="">Results</a></li>
               <li><a href="">Recommendations</a></li>
@@ -135,7 +135,7 @@ class App extends Component {
           <div className="headerContent">
             <div>
               <h1>Podcast Commuter</h1>
-              <h2>Find podcasts that suit your length of commute</h2>
+              <h2 className="headerDescriptionMobile">Find podcasts that suit your length of commute</h2>
               <button>Start</button>
             </div>
             <div className="headerImage">
@@ -147,14 +147,14 @@ class App extends Component {
 
 
         {/* Get user input */}
-        <section> 
-          <div>
+        <section className="mobileMap"> 
+          <div className="wrapper">
             <h3>Let's find some podcasts.</h3>
             <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
             your commute time, and ask your to select your preferred mode of transportation. Based on the time of your trip,
             we will give you some podcast recommendations.</p>
           </div>
-          <form action="" onSubmit={this.handleSubmit} className="mapForm">
+          <form action="" className="wrapper" onSubmit={this.handleSubmit} className="mapForm">
             <div>
               <input type="text" id="fromStreet" name="fromStreet" placeholder="Starting address" value={this.state.fromStreet} onChange={this.handleMapChange} required />
               <input type="text" id="fromCity" name="fromCity" placeholder="Starting city" value={this.state.fromCity} onChange={this.handleMapChange} required />
@@ -198,6 +198,7 @@ class App extends Component {
             <input
               type="text"
               className="podcastSearch"
+              id="podcastSearch"
               placeholder='What type of podcast would you like to listen to?'
               onChange={this.handlePodcastChange}
               value={this.state.userEntry} required>

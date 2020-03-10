@@ -138,13 +138,13 @@ class Map extends Component {
 
                         <div className="commuteOptions">
                             <div className="pedestrianResult">
-                                <img src={require('./assets/walk.svg')}></img>
+                                <img src={require('./assets/walk.svg')} className="mobileRouteTypeImg"></img>
                                 {/* Do not display hours when time is under 60 minutes */}
                                 
                                 <button 
                                     type='submit'
                                     onClick={this.chooseWalk}
-                                    alt='' >
+                                    className="routeTypeButton" >
                                         {this.state.routeResult['pedestrian']['travelHour'] !== "00"
                                         ?
                                         <p>{this.state.routeResult['pedestrian']['travelHour']} hrs {this.state.routeResult['pedestrian']['travelMinute']} min</p>
@@ -155,11 +155,11 @@ class Map extends Component {
                             </div>
 
                             <div className="bicycleResult">
-                                <img src={require('./assets/bike.svg')}></img>
+                                <img src={require('./assets/bike.svg')} className="mobileRouteTypeImg"></img>
                                 
                                 <button type='submit'
                                     onClick={this.chooseBike}
-                                    alt='' >
+                                    className="routeTypeButton" >
                                     {this.state.routeResult['bicycle']['travelHour'] !== "00"
                                         ?
                                         <p>{this.state.routeResult['bicycle']['travelHour']} hrs {this.state.routeResult['bicycle']['travelMinute']} min</p>
