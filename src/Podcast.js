@@ -12,8 +12,6 @@ class Podcast extends Component {
         // podData - pushing details into array
         this.state = {
             selectedPodcast: [],
-
-
         }
 
     }
