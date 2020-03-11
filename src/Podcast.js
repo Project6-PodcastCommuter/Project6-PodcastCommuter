@@ -48,7 +48,7 @@ class Podcast extends Component {
                                             <p className="podcastTime">{Math.floor(response.podTime / 60)} minutes</p>
                                         </div>
                                             <p>{response.podDescription}</p>
-                                            <a className="readMore">Read More</a>
+                                            <a href={response.podUrl} className="readMore">More Details</a>
                                     </div>
                                     <div>
                                         <button className="choosePodcastButton podcastButton" onClick={this.selectedPodcast} value={response.podUrl}>Choose</button>
@@ -73,7 +73,7 @@ class Podcast extends Component {
                                 <div className="finalPodcastInfo">
                                     <h3>{this.state.selectedPodcast.podTitle}</h3>
                                     <p>{this.state.selectedPodcast.podDescription}</p>
-                                    <a className="readMore">Read More</a>
+                                    <a href={this.state.selectedPodcast.podUrl} className="readMore">Read More</a>
                                 </div>
                             </div>
                             <div class="audioDiv">

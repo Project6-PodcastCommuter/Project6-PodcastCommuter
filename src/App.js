@@ -52,6 +52,7 @@ class App extends Component {
         len_max: this.state.appTime + 5,
       }
     }).then((response) => {
+      console.log(response)
       // creating new array with stuff from listenNotes API call
       console.log('podcast',response.data.count)
       if (response.data.count === 0){
@@ -61,10 +62,10 @@ class App extends Component {
         response.data.results.map(function (podcast) {
           newState.push({
             podData: podcast,
-            podTitle: podcast.title_original,
-            podDescription: podcast.description_original,
+            podTitle: podcast.podcast_title_original,
+            podDescription: podcast.title_original,
             podImage: podcast.image,
-            podUrl: podcast.podcast_listennotes_url,
+            podUrl: podcast.listennotes_url,
             podTime: podcast.audio_length_sec,
             podAudio: podcast.audio,
 
