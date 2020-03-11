@@ -1,3 +1,43 @@
 .commuteOptions {
     display: flex;
+    margin-top: 75px;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+
+.routeResults {
+    padding-top: 100px;
+}
+
+.routeResults h3 {
+    font-family: $heading-font;
+}
+
+.commuteText {
+    padding: 30px;
+}
+
+.mapImage {
+    width: 100%;
+}
+
+.commuteResult {
+    min-width: 400px;
+    width: 45%;
+    background-color: $tertiary-color;
+    border-radius: 50px;
+    background: #f4e6e8;
+    box-shadow:  10px 10px 30px #cfc4c5, 
+             -10px -10px 30px #ffffff;
+}
+
+.commuteResult img {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.recommendation {
+    padding: 30px;
+    text-align: left;
+    font-size: 1.8rem;
 }

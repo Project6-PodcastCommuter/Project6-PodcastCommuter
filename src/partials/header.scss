@@ -1,7 +1,6 @@
-.wrapper {
-    max-width: 1300px;
-    width: 90%;
-    margin: 0 auto;
+button {
+    font-family: $body-font;
+    color: $secondary-color;
 }
 
 header {
@@ -28,11 +27,28 @@ button {
 }
 
 nav {
+    padding-top: 20px;
     display: flex;
+    justify-content: space-between;
 }
 
 nav ul {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul li  {
+    padding: 0 30px;
+    text-transform: uppercase;
+    font-family: $body-font;
+    font-weight: bold;
+    color: $primary-color;
+    font-size: 2rem;
+}
+
+nav ul li:last-child {
+    padding-right: 0;
 }
 
 .logo {
@@ -41,5 +57,29 @@ nav ul {
 }
 
 .headerContent {
+    padding-top: 60px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerInfo {
+    text-align: left;
+}
+
+.headerInfo h1 {
+    font-family: $heading-font;
+    font-size: 6rem;
+    font-weight: 700;
+}
+
+.headerInfo h2 {
+    font-size: 2.2rem;
+    font-weight: 100;
+    padding: 34px 0;
+}
+
+.headerImage {
+    min-width: 400px;
+    width: 600px;
 }

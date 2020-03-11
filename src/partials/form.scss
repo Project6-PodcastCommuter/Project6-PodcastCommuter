@@ -1,0 +1,70 @@
+.formInfo {
+    padding-top: 100px;
+    text-align: left;
+}
+
+.formInfo h3 {
+    font-family: $heading-font;
+}
+
+.formInfo p {
+    font-size: 1.8rem;
+    padding: 30px 0;
+}
+
+.mapInput {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    
+}
+
+.mapForm input {
+    background-color: $tertiary-color;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50px;  
+    margin: 18px 0; 
+    margin-right: 20px;
+}
+
+.mapForm select {
+    height: 50px;
+    width: 200px;
+    border-radius: 50px;
+    background-color: $tertiary-color;
+    border: none;
+    appearance: none;
+    padding: 0 15px;
+    color: #707070;
+    margin-top: 18px;
+}
+
+.podcastSearch {
+    width: 90%;
+    // margin-right: 0 !important;
+    margin: 0 auto;
+}
+
+.podcastSearch input {
+    width: 100%;
+}
+
+.mapSubmitButton {
+    background-color: $primary-color;
+    color: white;
+    margin: 30px auto;
+}
+
+.address {
+    width: 60%;
+}
+
+.city {
+    width: 30%;
+}
+
+.province {
+    width: 10%;
+}
