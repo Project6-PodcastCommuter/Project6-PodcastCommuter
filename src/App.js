@@ -3,6 +3,8 @@ import './App.scss';
 import axios from 'axios';
 import Map from './Map.js'
 import Podcast from './Podcast';
+import Preloader from './components/Preloader';
+
 
 
 // App holds all components and elements vital to structure of the page
@@ -23,6 +25,7 @@ class App extends Component {
       to: '',
       userEntry: '',
       podData: [],
+      isLoading: false,
     }
   }
 
@@ -33,6 +36,13 @@ class App extends Component {
     this.setState({
       appTime: time,
     }, callback)
+  }
+
+  grabMapUrl = () => {
+    console.log( 'loading')
+    this.setState({
+      isLoading: false,
+    })
   }
 
     routeSelected = () => {
@@ -113,7 +123,8 @@ class App extends Component {
       from: from,
       to: to,
       userInput: this.state.userEntry,
-      userEntry: ''
+      userEntry: '',
+      isLoading: true,
     })
   }
 
@@ -214,9 +225,11 @@ class App extends Component {
           </form>
         </section>
 
-
+        {this.state.isLoading ? <Preloader /> : null}
+        
         <Map 
         grabCommuteTime={this.grabCommuteTime} 
+        grabMapUrl={this.grabMapUrl}
         from={this.state.from} 
         to={this.state.to}
         routeSelected={this.routeSelected}
