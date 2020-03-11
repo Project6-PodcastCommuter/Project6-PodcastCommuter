@@ -129,7 +129,7 @@ class App extends Component {
 
     setTimeout(() => {
       scroller.scrollTo('mapResults', { 
-        offset: 80,
+        offset: 150,
         smooth: true,
         duration: 500,
       });
@@ -171,10 +171,7 @@ class App extends Component {
               <img alt="Person walking listening to podcast" className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
             </div>
           </div>
-          {/* <a href="#header" className="refreshButton">
-              <i class="fas fa-arrow-up"></i>
-              <label className="visuallyHidden">Back to top</label>
-          </a> */}
+
         </header>
 
 
@@ -255,6 +252,45 @@ class App extends Component {
         userInput={this.state.userInput}
         podData={this.state.podData}
         />
+
+        <footer>
+        <nav className="wrapper" id="header">
+            <img className="logo" alt="Logo for Podcast Commuter"src={require('./assets/logo.png')}></img>
+            <ul className="mainNav">
+              <li>
+              <p href="#formInfo">Julia</p>
+              <div className="contactUs">
+                <a href="https://www.linkedin.com/in/juliadufresne/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/juliadufresne"><i class="fab fa-github-square"></i></a>
+              </div>
+              </li>
+
+              <li>
+              <p href="#mapResults">Ken</p>
+              <div className="contactUs">
+                <a href="https://www.linkedin.com/in/ken-taylor-a433221a1/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/kentaylor92"><i class="fab fa-github-square"></i></a>
+              </div>
+              </li>
+              
+              <li>
+              <p href="#podcastResults">Brandon</p>
+              <div className="contactUs">
+                <a href="https://www.linkedin.com/in/brandonerictang/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/btangsup"><i class="fab fa-github-square"></i></a>
+              </div>
+              </li>
+
+              <li>
+              <p href="#finalPodcast">Alice</p>
+              <div className="contactUs">
+                <a href="https://www.linkedin.com/in/zhuyingsong-619212158/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Aliceeeee825"><i class="fab fa-github-square"></i></a>
+              </div>
+              </li>
+            </ul>
+          </nav>
+        </footer>
       </div>
     )
   }

@@ -123,7 +123,7 @@ class Map extends Component {
 
         setTimeout(() => {
             scroller.scrollTo('podcastResults', {
-                offset: 50,
+                offset: 150,
                 smooth: true,
                 duration: 500,
             });
@@ -148,7 +148,7 @@ class Map extends Component {
 
         setTimeout(() => {
             scroller.scrollTo('podcastResults', {
-                offset: 50,
+                offset: 150,
                 smooth: true,
                 duration: 500,
             });

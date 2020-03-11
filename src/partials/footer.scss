@@ -1,0 +1,26 @@
+footer {
+    background-color: $tertiary-color;
+    height: 100%;
+    padding: 40px 0;
+    margin-top: 100px;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer nav ul li:hover {
+    color: $primary-color;  
+}
+
+.contactUs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer i {
+    padding: 2px;
+}

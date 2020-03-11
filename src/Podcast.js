@@ -28,7 +28,7 @@ class Podcast extends Component {
 
         setTimeout(() => {
             scroller.scrollTo('finalPodcast', {
-                offset: 50,
+                offset: 150,
                 smooth: true,
                 duration: 500,
             });
@@ -90,7 +90,7 @@ class Podcast extends Component {
                         </div>
                     </div>
                     : 
-                <section className='wrapper' id="finalPodcast">
+                <section className='wrapper podcastDivFinal' id="finalPodcast">
                     <div>
                         <h3 className="finalPodcastTag">Have a listen and enjoy your commute</h3>
                         <div className="selectedAudio">
