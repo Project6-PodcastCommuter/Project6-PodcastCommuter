@@ -5,6 +5,7 @@ import Map from './Map.js'
 import Podcast from './Podcast';
 import { scroller } from 'react-scroll';
 import Preloader from './components/Preloader';
+import swal from 'sweetalert';
 
 
 
@@ -66,7 +67,13 @@ class App extends Component {
       // creating new array with stuff from listenNotes API call
       console.log('podcast',response.data.count)
       if (response.data.count === 0){
-        alert('there is no podcast that meets our requirement')
+        swal({
+          title: "Oops!",
+          text: "There are no podcasts that meets your search!",
+          type: "error",
+        }).then((click) => {
+          this.scrollToTop();
+        });
       }else{
         const newState = [];
         response.data.results.map(function (podcast) {
@@ -138,6 +145,13 @@ class App extends Component {
 
   scrollToForm = () => {
     scroller.scrollTo('formInfo', {
+      smooth: true,
+      duration: 700,
+    });
+  }
+
+  scrollToTop = () => {
+    scroller.scrollTo('header', {
       smooth: true,
       duration: 700,
     });
