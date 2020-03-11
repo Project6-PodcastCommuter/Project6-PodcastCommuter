@@ -125,7 +125,6 @@ class App extends Component {
       to: to,
       userInput: this.state.userEntry,
       userEntry: '',
-      isLoading: true,
     })
 
     setTimeout(() => {

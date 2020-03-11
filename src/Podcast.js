@@ -36,7 +36,7 @@ class Podcast extends Component {
     }
 
     render() {
-        console.log(this.props.podData)
+        // console.log(this.props.podData)
         return (
             <div className="podcastContent">   
             {this.props.podData.length === 0 

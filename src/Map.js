@@ -66,26 +66,30 @@ class Map extends Component {
                                     travelMinute: minutes,
                                     mapImage: mapImage,
                                 }
-
-                            
-
                             }
                             // reduce syntax 
                         }, {})
-        
-                        // assigning objects to route result
-                        this.setState({
-                            routeResult: transformedResponse,
-                            
-                        }, () => {
-                            const {
-                                grabMapUrl,
-                                
-                            } = this.props;
 
-                            // console.log(time);
-                            grabMapUrl()
-                        })
+                        console.log('transformed response',transformedResponse)
+
+                        console.log(Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute']))
+                        if (Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute'] == 0) && Number(transformedResponse['pedestrian']['travelHour'] + transformedResponse['pedestrian']['travelHour'] == 0)){
+                            alert('time is 0')
+                        }else{
+                            // assigning objects to route result
+                            this.setState({
+                                routeResult: transformedResponse,
+                            }, () => {
+                                const {
+                                    grabMapUrl,
+
+                                } = this.props;
+
+                                // console.log(time);
+                                grabMapUrl()
+                            })
+                        }
+                        
                     }
 
                 })
