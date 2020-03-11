@@ -132,6 +132,7 @@ class App extends Component {
               <li><a href="">Recommendations</a></li>
               <li><a href="">Listen</a></li>
             </ul>
+            <i class="fas fa-bars"></i>
           </nav>
           <div className="headerContent wrapper">
             <div className="headerInfo">
@@ -160,7 +161,7 @@ class App extends Component {
               <input className="address" type="text" id="fromStreet" name="fromStreet" placeholder="Starting address" value={this.state.fromStreet} onChange={this.handleMapChange} required />
               <input className="city" type="text" id="fromCity" name="fromCity" placeholder="Starting city" value={this.state.fromCity} onChange={this.handleMapChange} required />
               <select className="province" name="fromProvince" id="fromProvince" onChange={this.handleMapChange} required>
-                <option value="">Province</option>
+                <option value="">Prov</option>
                 <option value="ON">ON</option>
                 <option value="BC">BC</option>
                 <option value="QC">QC</option>
@@ -180,7 +181,7 @@ class App extends Component {
               <input className="address" type="text" id="toStreet" name="toStreet" placeholder="Ending address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
               <input className="city" type="text" id="toCity" name="toCity" placeholder="Ending city" value={this.state.toCity} onChange={this.handleMapChange} required/>
               <select className="province" name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
-                <option value="">Province</option>
+                <option value="">Prov</option>
                 <option value="ON">ON</option>
                 <option value="BC">BC</option>
                 <option value="QC">QC</option>
@@ -199,7 +200,7 @@ class App extends Component {
             <div className="podcastSearch">
               <input
                 type="text"
-                placeholder='What type of podcast would you like to listen to?'
+                placeholder='Search for a Podcast'
                 onChange={this.handlePodcastChange}
                 value={this.state.userEntry} required>
               </input>
