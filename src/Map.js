@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Preloader from "./components/Preloader";
 import './App.scss';
 import axios from 'axios';
 import { scroller } from 'react-scroll';
@@ -14,6 +15,7 @@ class Map extends Component {
             routeType: '',
             routeResult: {},
             commuteTime: 0,
+            isLoading: false,
         }
     }
 
@@ -104,6 +106,7 @@ class Map extends Component {
         // Call grabCommunteuteTime function with value of "time"
         this.setState({
             commuteTime: time,
+            isLoading: true,
         }, () => {
             const {
                 grabCommuteTime,
@@ -129,6 +132,7 @@ class Map extends Component {
 
         this.setState({
             commuteTime: time,
+            isLoading: true,
         }, () => {
             const {
                 grabCommuteTime,
@@ -150,66 +154,104 @@ class Map extends Component {
     render() {
         return (
             <div className="App">
-
                 {/* when there is nothing in the routeResult, show nothing */}
                 {/* otherwise, show results */}
-                {(this.state.routeResult['bicycle'] === undefined & this.state.routeResult['pedestrian'] === undefined) 
-                ? 
-                
+                {(this.state.routeResult["bicycle"] === undefined) &
+                (this.state.routeResult["pedestrian"] === undefined) ? (
                 <div className="placeholderMap" id="mapResults">
                     <div className="emptyDiv wrapper">
-                        <h3>Pick a mode of transportation</h3>
-                        <div>
-                            <p className="scrollUp">Scroll up to make a search!</p>
-                        </div>
+                    <h3>Pick a mode of transportation</h3>
+                    <div>
+                        <p className="scrollUp">Scroll up to make a search!</p>
+                    </div>
                     </div>
                 </div>
+                ) : (
+                <section className="routeResults wrapper" id="mapResults">
+                    {/* grab map url from the routeResult and display it */}
+                    <h3>Pick a mode of transportation</h3>
+                    <p className="commuteText">
+                    Based off your commute, pick a mode of transportation
+                    </p>
+                    <div className="mapContainer">
+                    <img
+                        className="mapImage"
+                        src={this.state.routeResult["pedestrian"]["mapImage"]}
+                        alt="Travel route map from start to end"
+                    />
+                    </div>
 
-                
-                : (
-                    <section className="routeResults wrapper" id="mapResults">
-                        {/* grab map url from the routeResult and display it */}
-                        <h3>Pick a mode of transportation</h3>
-                        <p className="commuteText">Based off your commute, pick a mode of transportation</p>
-                        <div className="mapContainer">
-                            <img className="mapImage" src={this.state.routeResult['pedestrian']['mapImage']} alt="Travel route map from start to end" />
-                        </div>
+                    <div className="commuteOptions">
+                    <div className="commuteResult pedestrianResult">
+                        <img
+                        className="mobileRouteTypeImg"
+                        src={require("./assets/walk.svg")}
+                        ></img>
+                        {/* Do not display hours when time is under 60 minutes */}
 
-                        <div className="commuteOptions">
-                            <div className="commuteResult pedestrianResult">
-                                <img className="mobileRouteTypeImg" src={require('./assets/walk.svg')}></img>
-                                {/* Do not display hours when time is under 60 minutes */}
-                                
-                                <button 
-                                    type='submit'
-                                    onClick={this.chooseWalk}
-                                    className="routeTypeButton" >
-                                        {this.state.routeResult['pedestrian']['travelHour'] !== "00"
-                                        ?
-                                        <p>{this.state.routeResult['pedestrian']['travelHour']} hrs {this.state.routeResult['pedestrian']['travelMinute']} min</p>
-                                        :
-                                        <p>{this.state.routeResult['pedestrian']['travelMinute']} min</p>}
-                                </button>
-                                <p className='recommendation'>Walking is a great way to improve or maintain your overall health. Just 30 minutes every day can increase cardiovascular fitness, strengthen bones, reduce excess body fat, and boost muscle power and endurance</p>
-                            </div>
+                        <button
+                        type="submit"
+                        onClick={this.chooseWalk}
+                        className="routeTypeButton"
+                        >
+                        {this.state.routeResult["pedestrian"]["travelHour"] !==
+                        "00" ? (
+                            <p>
+                            {this.state.routeResult["pedestrian"]["travelHour"]}{" "}
+                            hrs{" "}
+                            {this.state.routeResult["pedestrian"]["travelMinute"]}{" "}
+                            min
+                            </p>
+                        ) : (
+                            <p>
+                            {this.state.routeResult["pedestrian"]["travelMinute"]}{" "}
+                            min
+                            </p>
+                        )}
+                        </button>
+                        <p className="recommendation">
+                        Walking is a great way to improve or maintain your overall
+                        health. Just 30 minutes every day can increase
+                        cardiovascular fitness, strengthen bones, reduce excess
+                        body fat, and boost muscle power and endurance
+                        </p>
+                    </div>
 
-                            <div className="commuteResult bicycleResult">
-                                <img className="mobileRouteTypeImg" src={require('./assets/bike.svg')}></img>
-                                
-                                <button type='submit'
-                                    onClick={this.chooseBike}
-                                    className="routeTypeButton" >
-                                    {this.state.routeResult['bicycle']['travelHour'] !== "00"
-                                        ?
-                                        <p>{this.state.routeResult['bicycle']['travelHour']} hrs {this.state.routeResult['bicycle']['travelMinute']} min</p>
-                                        :
-                                        <p>{this.state.routeResult['bicycle']['travelMinute']} min</p>}
-                                </button>
-                                <p className="recommendation">Riding to work or the shops is one of the most time-efficient ways to combine regular exercise with your everyday routine. An estimated one billion people ride bicycles every day – for transport, recreation and sport.</p>
-                            </div>
-                        </div>
-                        
-                    </section>
+                    <div className="commuteResult bicycleResult">
+                        <img
+                        className="mobileRouteTypeImg"
+                        src={require("./assets/bike.svg")}
+                        ></img>
+
+                        <button
+                        type="submit"
+                        onClick={this.chooseBike}
+                        className="routeTypeButton"
+                        >
+                        {this.state.routeResult["bicycle"]["travelHour"] !==
+                        "00" ? (
+                            <p>
+                            {this.state.routeResult["bicycle"]["travelHour"]} hrs{" "}
+                            {this.state.routeResult["bicycle"]["travelMinute"]}{" "}
+                            min
+                            </p>
+                        ) : (
+                            <p>
+                            {this.state.routeResult["bicycle"]["travelMinute"]}{" "}
+                            min
+                            </p>
+                        )}
+                        </button>
+                        <p className="recommendation">
+                        Riding to work or the shops is one of the most
+                        time-efficient ways to combine regular exercise with your
+                        everyday routine. An estimated one billion people ride
+                        bicycles every day – for transport, recreation and sport.
+                        </p>
+                    </div>
+                    </div>
+                    {this.state.isLoading ? <Preloader /> : null}
+                </section>
                 )}
             </div>
         );
