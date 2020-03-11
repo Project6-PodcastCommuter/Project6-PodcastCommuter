@@ -28,10 +28,10 @@ class App extends Component {
     this.state = {
       userInput: 'h3h3',
       appTime: 0,
-      fromStreet: '5 st.joseph street',
-      fromCity: 'toronto',
-      fromProvince: 'ON',
-      toStreet: '832 bay street',
+      fromStreet: '823 dundas st w',
+      fromCity:'toronto',
+      fromProvince: 'on',
+      toStreet: '485 queen st w',
       toCity: 'toronto',
       toProvince: 'ON',
       from: '',
@@ -66,6 +66,7 @@ class App extends Component {
         len_max: this.state.appTime + 5,
       }
     }).then((response) => {
+      console.log(response)
       // creating new array with stuff from listenNotes API call
       console.log('podcast',response.data.count)
       if (response.data.count === 0){
@@ -75,10 +76,10 @@ class App extends Component {
         response.data.results.map(function (podcast) {
           newState.push({
             podData: podcast,
-            podTitle: podcast.title_original,
-            podDescription: podcast.description_original,
+            podTitle: podcast.podcast_title_original,
+            podDescription: podcast.title_original,
             podImage: podcast.image,
-            podUrl: podcast.podcast_listennotes_url,
+            podUrl: podcast.listennotes_url,
             podTime: podcast.audio_length_sec,
             podAudio: podcast.audio,
 
@@ -145,9 +146,10 @@ class App extends Component {
               <li><a href="">Recommendations</a></li>
               <li><a href="">Listen</a></li>
             </ul>
+            <i class="fas fa-bars"></i>
           </nav>
-          <div className="headerContent">
-            <div>
+          <div className="headerContent wrapper">
+            <div className="headerInfo">
               <h1>Podcast Commuter</h1>
               <h2 className="headerDescriptionMobile">Find podcasts that suit your length of commute</h2>
               <button>Start</button>
@@ -161,19 +163,19 @@ class App extends Component {
 
 
         {/* Get user input */}
-        <section className="mobileMap"> 
-          <div className="wrapper">
+        <section className="wrapper mobileMap"> 
+          <div className="formInfo">
             <h3>Let's find some podcasts.</h3>
             <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
             your commute time, and ask your to select your preferred mode of transportation. Based on the time of your trip,
             we will give you some podcast recommendations.</p>
           </div>
-          <form action="" className="wrapper" onSubmit={this.handleSubmit} className="mapForm">
-            <div>
-              <input type="text" id="fromStreet" name="fromStreet" placeholder="Starting address" value={this.state.fromStreet} onChange={this.handleMapChange} required />
-              <input type="text" id="fromCity" name="fromCity" placeholder="Starting city" value={this.state.fromCity} onChange={this.handleMapChange} required />
-              <select name="fromProvince" id="fromProvince" onChange={this.handleMapChange} required>
-                <option value="">Province</option>
+          <form action="" onSubmit={this.handleSubmit} className="mapForm">
+            <div className="mapInput">
+              <input className="address" type="text" id="fromStreet" name="fromStreet" placeholder="Starting address" value={this.state.fromStreet} onChange={this.handleMapChange} required />
+              <input className="city" type="text" id="fromCity" name="fromCity" placeholder="Starting city" value={this.state.fromCity} onChange={this.handleMapChange} required />
+              <select className="province" name="fromProvince" id="fromProvince" onChange={this.handleMapChange} required>
+                <option value="">Prov</option>
                 <option value="ON">ON</option>
                 <option value="BC">BC</option>
                 <option value="QC">QC</option>
@@ -189,11 +191,11 @@ class App extends Component {
                 <option value="NU">NU</option>
               </select>
             </div>
-            <div>
-              <input type="text" id="toStreet" name="toStreet" placeholder="Ending address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
-              <input type="text" id="toCity" name="toCity" placeholder="Ending city" value={this.state.toCity} onChange={this.handleMapChange} required/>
-              <select name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
-                <option value="">Province</option>
+            <div class="mapInput">
+              <input className="address" type="text" id="toStreet" name="toStreet" placeholder="Ending address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
+              <input className="city" type="text" id="toCity" name="toCity" placeholder="Ending city" value={this.state.toCity} onChange={this.handleMapChange} required/>
+              <select className="province" name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
+                <option value="">Prov</option>
                 <option value="ON">ON</option>
                 <option value="BC">BC</option>
                 <option value="QC">QC</option>
@@ -209,14 +211,14 @@ class App extends Component {
                 <option value="NU">NU</option>
               </select>
             </div>
-            <input
-              type="text"
-              className="podcastSearch"
-              id="podcastSearch"
-              placeholder='What type of podcast would you like to listen to?'
-              onChange={this.handlePodcastChange}
-              value={this.state.userEntry} required>
-            </input>
+            <div className="podcastSearch">
+              <input
+                type="text"
+                placeholder='Search for a Podcast'
+                onChange={this.handlePodcastChange}
+                value={this.state.userEntry} required>
+              </input>
+            </div>
             <div>
             <button className="mapSubmitButton">Search</button>
             </div>

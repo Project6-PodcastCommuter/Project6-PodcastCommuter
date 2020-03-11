@@ -127,15 +127,17 @@ class Map extends Component {
                 {/* otherwise, show results */}
                 {(this.state.routeResult['bicycle'] === undefined & this.state.routeResult['pedestrian'] === undefined) ? null : (
 
-                    <section className="routeResults">
+                    <section className="routeResults wrapper">
                         {/* grab map url from the routeResult and display it */}
+                        <h3>Pick a mode of transportation</h3>
+                        <p className="commuteText">Based off your commute, pick a mode of transportation</p>
                         <div className="mapContainer">
-                            <img src={this.state.routeResult['pedestrian']['mapImage']} alt="Travel route map from start to end" />
+                            <img className="mapImage" src={this.state.routeResult['pedestrian']['mapImage']} alt="Travel route map from start to end" />
                         </div>
 
                         <div className="commuteOptions">
-                            <div className="pedestrianResult">
-                                <img src={require('./assets/walk.svg')} className="mobileRouteTypeImg"></img>
+                            <div className="commuteResult pedestrianResult">
+                                <img className="mobileRouteTypeImg" src={require('./assets/walk.svg')}></img>
                                 {/* Do not display hours when time is under 60 minutes */}
                                 
                                 <button 
@@ -148,11 +150,11 @@ class Map extends Component {
                                         :
                                         <p>{this.state.routeResult['pedestrian']['travelMinute']} min</p>}
                                 </button>
-                                <p>Walking is a great way to improve or maintain your overall health. Just 30 minutes every day can increase cardiovascular fitness, strengthen bones, reduce excess body fat, and boost muscle power and endurance</p>
+                                <p className='recommendation'>Walking is a great way to improve or maintain your overall health. Just 30 minutes every day can increase cardiovascular fitness, strengthen bones, reduce excess body fat, and boost muscle power and endurance</p>
                             </div>
 
-                            <div className="bicycleResult">
-                                <img src={require('./assets/bike.svg')} className="mobileRouteTypeImg"></img>
+                            <div className="commuteResult bicycleResult">
+                                <img className="mobileRouteTypeImg" src={require('./assets/bike.svg')}></img>
                                 
                                 <button type='submit'
                                     onClick={this.chooseBike}
@@ -163,7 +165,7 @@ class Map extends Component {
                                         :
                                         <p>{this.state.routeResult['bicycle']['travelMinute']} min</p>}
                                 </button>
-                                <p>Riding to work or the shops is one of the most time-efficient ways to combine regular exercise with your everyday routine. An estimated one billion people ride bicycles every day – for transport, recreation and sport.</p>
+                                <p className="recommendation">Riding to work or the shops is one of the most time-efficient ways to combine regular exercise with your everyday routine. An estimated one billion people ride bicycles every day – for transport, recreation and sport.</p>
                             </div>
                         </div>
                         

@@ -3,6 +3,7 @@
 @import "partials/header";
 @import "partials/map";
 @import "partials/podcast";
+@import "partials/form";
 
 
 // GLOBAL STYLES //
@@ -25,12 +26,9 @@ img {
   height: auto;
 }
 
-
 // responsive map Test
-
 .mapContainer {
   width: 100%;
-  // box-shadow: $tertiary-color 20px -20px;
   border-radius: 20px;
 }
 
@@ -43,7 +41,6 @@ img {
 @media (max-width: 450px) {
 
     //GLOBAL MOBILE STYLES //
-
     h1 {
         font-family: $heading-font;
         color: $font-color;
@@ -73,176 +70,6 @@ img {
         border-radius: 50px;
         border: none;
         font-size: 2rem;
-}
-
-
-
-  //HEADER MOBILE QUERY // 
-
-    .desktopImg {
-        display: none;
-    }
-
-    header {
-        background-image: none;
-        background-color: $tertiary-color;
-        padding: 20px;
-    }
-
-    .headerContent {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-
-    .mobileImg {
-        display: block;
-        width: 275px;
-    }
-
-    .headerDescriptionMobile {
-        color: $font-color;
-        font-size: 1.4rem;
-    }
-
-    .mainNav {
-        display: none;
-    }
-
-    // FORM MOBILE STYLES //
-
-    .mobileMap {
-        padding: 40px 0;
-    }
-
-    form {
-        text-align: left;
-        padding: 0 20px;
-    }
-
-    input,
-    option,
-    select {
-        background-color: $tertiary-color;
-        border: none;
-        border-radius: 25px;
-        padding: 8px;
-        margin: 10px 5px;
-    }
-
-    input[id="fromStreet"],
-    input[id="toStreet"],
-    input[id="podcastSearch"] {
-        width: 90%;
-    }
-
-    input[id="fromCity"],
-    input[id="toCity"] {
-      width: 50%;
-    }
-
-    input[type="text"] {
-        padding: 10px 30px;
-    }
-
-    .mapSubmitButton {
-        background-color: $primary-color;
-        border: none;
-        color: #fff;
-        font-weight: bolder;
-        display: block;
-        margin: 0 auto;
-    }
-
-    // ROUTE RESULT MOBILE STYLES //
-
-    .commuteOptions {
-      flex-direction: column-reverse;
-    }
-    .mobileRouteTypeImg {
-        width: 150px;
-        margin: 0 auto;
-    }
-
-    .routeTypeButton {
-      display: block;
-      padding: 0px 75px;
-      margin: 0 auto;
-    }
-
-    .pedestrianResult,
-    .bicycleResult {
-      width: 80%;
-      margin: 30px auto;
-      padding: 0px 30px;
-      background-color: $tertiary-color;
-      border-radius: 5px;
-      box-shadow: 10px 10px 10px 10px $tertiary-color;
-    }
-
-    // PODCAST RESULTS MOBILE STYLES //
-    .podcastContent {
-      padding: 50px 0 0 0;
-      flex-direction: column;
-    }
-
-    .podcastResults {
-      grid-template-columns: 1fr;
-      padding: 50px 0;
-    }
-
-    .podcast {
-      width: 100%;
-      border: 4px solid red;
-      padding: 20px 15px;
-      margin: 20px 0;
-      border-radius: 50px;
-    }
-
-    .podcastTime {
-      text-transform: uppercase;
-      color: $secondary-color;
-    }
-
-    .podcastImg {
-      border-radius: 50px;
-      margin: 0 auto;
-      width: 200px;
-    }
-
-    .readMore {
-      text-transform: uppercase;
-      color: $secondary-color;
-    }
-
-    .podcastButton {
-      background-color: $tertiary-color;
-      color: $primary-color;
-      display: block;
-      border: none;
-      margin: 0 auto;
-    }
-
-    // FINAL PODCAST MOBILE STYLES //
-
-    .finalPodcastTag {
-      padding: 40px;
-    }
-
-    .finalPodcastContent {
-      background-color: $tertiary-color;
-      padding: 75px 40px;
-    }
-
-    .finalPodcastImg {
-      border-radius: 50px;
-      margin: 0 auto;
-      width: 400px;
-    }
-
-    .finalPodcastAudio {
-      padding: 50px 0;
-    }
-
+  }
 }
 
