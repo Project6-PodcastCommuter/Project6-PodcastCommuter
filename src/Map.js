@@ -72,7 +72,7 @@ class Map extends Component {
                         console.log('transformed response',transformedResponse)
 
                         console.log(Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute']))
-                        if (Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute'] == 0) &&  Number(transformedResponse['pedestrian']['travelHour'] + transformedResponse['pedestrian']['travelHour'] == 0)){
+                        if (Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute'] == 0) && Number(transformedResponse['pedestrian']['travelHour'] + transformedResponse['pedestrian']['travelHour'] == 0)){
                             alert('time is 0')
                         }else{
                             // assigning objects to route result
