@@ -8,6 +8,7 @@ header {
     height: 100vh;
     background-position: bottom;
     background-size: cover;
+    
 }
 
 header button {
@@ -21,6 +22,10 @@ header button {
     border-radius: 50px;
     font-size: 2rem;
     margin: 0;
+}
+
+.desktopImg {
+    padding-left: 20px;
 }
 
 .mobileImg {
@@ -50,6 +55,10 @@ nav ul li  {
 
 nav ul li:last-child {
     padding-right: 0;
+}
+
+.fa-bars {
+    display: none;
 }
 
 .logo {
@@ -85,28 +94,108 @@ nav ul li:last-child {
     width: 600px;
 }
 
-@media (max-width: 450px) {
-    //HEADER MOBILE QUERY // 
+@media (max-width: 1300px) {
+    .headerInfo h1 {
+        line-height: 5rem;
+    }
 
-    .desktopImg {
+    .headerInfo {
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 850px) {
+    .headerInfo h1 {
+        font-size: 5rem;
+    }
+
+    nav ul li  {
+    padding: 0 20px;
+    font-size: 1.8rem;
+    }
+
+}
+
+@media (max-width: 768px) {
+    nav ul li {
         display: none;
     }
 
+    .fa-bars {
+        display: inline-block;
+        font-size: 4rem;
+        color: $primary-color;
+    }
+
+    .headerContent {
+        flex-direction: column-reverse;
+    }
+
+    .desktopImg {
+        width: 60vw;
+        min-width: 400px;
+        margin: 0 auto;
+    }
+
+    // .mobileImg {
+    //     display: block;
+    //     width: 275px;
+    //     margin: 0 auto;
+    // }
+}
+
+@media (max-width: 600px) {
+
+    .headerInfo h1 {
+        line-height: 4rem;
+    }
+
+    .headerInfo h2 {
+        font-size: 1.8rem;
+    }
     header {
         background-image: none;
         background-color: $tertiary-color;
         padding: 20px;
     }
 
+    .headerInfo {
+        padding-top: 10px;
+    }
+
+    .headerInfo h2 {
+        padding: 12px 0;
+    }
+
+
+}
+
+@media (max-width: 450px) {
+    //HEADER MOBILE QUERY // 
+
+    .mobileImg {
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .desktopImg {
+        display: none;
+    }
+
+    header button {
+        margin: 0 auto;
+    }
+
     .headerContent {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
+        padding-top: 0px;
+
     }
 
-    .mobileImg {
-        display: block;
-        width: 275px;
+    .headerInfo {
+        padding-top: 20px;
     }
 
     .headerDescriptionMobile {
