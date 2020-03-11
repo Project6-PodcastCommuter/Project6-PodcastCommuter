@@ -91,6 +91,13 @@ nav ul li:last-child {
     width: 600px;
 }
 
+.refreshButton{
+    position: fixed;
+    right: 5%;
+    bottom: 6%;
+    font-size: 3rem;
+}
+
 @media (max-width: 1300px) {
     .headerInfo h1 {
         line-height: 5rem;
