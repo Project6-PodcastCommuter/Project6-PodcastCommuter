@@ -125,6 +125,7 @@ class App extends Component {
       to: to,
       userInput: this.state.userEntry,
       userEntry: '',
+      isLoading: true,
     })
 
     setTimeout(() => {
@@ -158,7 +159,7 @@ class App extends Component {
               <li><a href="#podcastResults">Recommendations</a></li>
               <li><a href="#finalPodcast">Listen</a></li>
             </ul>
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </nav>
           <div className="headerContent wrapper">
             <div className="headerInfo">
@@ -207,7 +208,7 @@ class App extends Component {
                 <option value="NU">NU</option>
               </select>
             </div>
-            <div class="mapInput">
+            <div className="mapInput">
               <input className="address" type="text" id="toStreet" name="toStreet" placeholder="Destination address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
               <input className="city" type="text" id="toCity" name="toCity" placeholder="Destination city" value={this.state.toCity} onChange={this.handleMapChange} required/>
               <select className="province" name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
