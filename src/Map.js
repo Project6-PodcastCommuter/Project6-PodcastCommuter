@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 // Functionality involving MapQuest API
 class Map extends Component {
@@ -42,7 +43,9 @@ class Map extends Component {
                 Promise.all(promises).then((responseArray) => {
                     console.log(responseArray)
                     if (flag === true) {
-                        alert("Wrong!!!!!!!!!!!!!!!!!!!!! Mother Fucker")
+                        // || responseArray[0].data.route.realTime === 0 || responseArray[1].data.route.realTime === 0
+                        // console.log(responseArray[0].data.route.legs[0].time);
+                        swal("Oops!", "Invalid location, please try again!", "error");
                     }
                     if(flag===false){
                         //get time from the axios call
@@ -52,6 +55,7 @@ class Map extends Component {
                             const hour = userRouteTime.slice(0, 2);
                             const minutes = userRouteTime.slice(3, 5);
                             const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.props.from}&end=${this.props.to}`
+
         
                             //separating bike and pedestrain so that they are their own object
                             return {
