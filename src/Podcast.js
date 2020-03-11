@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.scss';
-import axios from 'axios';
 
 
 // Functionality involving Podcast API
@@ -69,7 +68,7 @@ class Podcast extends Component {
                             <div className="finalPodcastContent">
                             {/* <div className="selectedAudio finalPodcastContent"> */}
                                 <div className="finalPodcastImage">
-                                    <img className="finalPodcastImg" src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
+                                    <img src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
                                 </div>
                                 <div className="finalPodcastInfo">
                                     <h3>{this.state.selectedPodcast.podTitle}</h3>
@@ -77,12 +76,14 @@ class Podcast extends Component {
                                     <a className="readMore">Read More</a>
                                 </div>
                             </div>
+                            <div class="audioDiv">
+                            <audio 
+                                className="finalPodcastAudio"
+                                controls
+                                src={this.state.selectedPodcast.podAudio}>
+                            </audio>
+                            </div>
                         </div>
-                        <audio 
-                            className="finalPodcastAudio"
-                            controls
-                            src={this.state.selectedPodcast.podAudio}>
-                        </audio>
                     </div>
                 </section>
                 } 

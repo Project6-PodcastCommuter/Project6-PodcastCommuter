@@ -195,14 +195,14 @@ class App extends Component {
                 <option value="NU">NU</option>
               </select>
             </div>
-            <input
-              type="text"
-              className="podcastSearch"
-              id="podcastSearch"
-              placeholder='What type of podcast would you like to listen to?'
-              onChange={this.handlePodcastChange}
-              value={this.state.userEntry} required>
-            </input>
+            <div className="podcastSearch">
+              <input
+                type="text"
+                placeholder='What type of podcast would you like to listen to?'
+                onChange={this.handlePodcastChange}
+                value={this.state.userEntry} required>
+              </input>
+            </div>
             <div>
             <button className="mapSubmitButton">Search</button>
             </div>
