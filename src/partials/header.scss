@@ -5,10 +5,9 @@ button {
 
 header {
     background-image: url('../assets/headerBackground.svg');
-    height: 100vh;
     background-position: bottom;
     background-size: cover;
-    
+    padding-bottom: 180px;
 }
 
 header button {
@@ -53,6 +52,13 @@ nav ul li:last-child {
     padding-right: 0;
 }
 
+nav ul li:hover,
+nav ul li:focus,
+nav ul li:active {
+    color: $secondary-color;
+    outline: none;
+}
+
 .fa-bars {
     display: none;
 }
@@ -78,6 +84,7 @@ nav ul li:last-child {
     font-family: $heading-font;
     font-size: 6rem;
     font-weight: 700;
+    line-height: 6.2rem;
 }
 
 .headerInfo h2 {
@@ -88,7 +95,14 @@ nav ul li:last-child {
 
 .headerImage {
     min-width: 400px;
-    width: 600px;
+    width: 50%;
+}
+
+.refreshButton{
+    position: fixed;
+    right: 5%;
+    bottom: 6%;
+    font-size: 3rem;
 }
 
 @media (max-width: 1300px) {
@@ -128,9 +142,8 @@ nav ul li:last-child {
         flex-direction: column-reverse;
     }
 
-    .desktopImg {
-        width: 60vw;
-        min-width: 400px;
+    .headerImage {  
+        // min-width: 350px;
         margin: 0 auto;
     }
 
@@ -151,32 +164,16 @@ nav ul li:last-child {
 
 }
 
-@media (max-width: 600px) {
-
-    // .headerInfo h1 {
-    //     line-height: 4rem;
-    // }
-
-    // .headerInfo h2 {
-    //     font-size: 1.8rem;
-    // }
-
-    // .headerInfo {
-    //     padding-top: 10px;
-    // }
-
-    // .headerInfo h2 {
-    //     padding: 12px 0;
-    // }
-
-
-}
-
 @media (max-width: 450px) {
     //HEADER MOBILE QUERY // 
 
     .mobileImg {
         display: block;
+        margin: 0 auto;
+    }
+
+    .headerImage {  
+        min-width: 300px;
         margin: 0 auto;
     }
     

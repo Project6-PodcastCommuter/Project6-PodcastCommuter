@@ -54,8 +54,7 @@ class Map extends Component {
                             const userRouteTime = response.data.route.legs[0].formattedTime;
                             const hour = userRouteTime.slice(0, 2);
                             const minutes = userRouteTime.slice(3, 5);
-                            const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&type=map&start=${this.props.from}&end=${this.props.to}`
-
+                            const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&size=600,250@2x&defaultMarker=marker-sm-81003c-81003c&routeColor=ff7600&margin=60&type=map&start=${this.props.from}&end=${this.props.to}`
         
                             //separating bike and pedestrain so that they are their own object
                             return {
@@ -132,17 +131,26 @@ class Map extends Component {
     }
 
     render() {
-
-        
-
         return (
             <div className="App">
 
                 {/* when there is nothing in the routeResult, show nothing */}
                 {/* otherwise, show results */}
-                {(this.state.routeResult['bicycle'] === undefined & this.state.routeResult['pedestrian'] === undefined) ? null : (
+                {(this.state.routeResult['bicycle'] === undefined & this.state.routeResult['pedestrian'] === undefined) 
+                ? 
+                
+                <div className="placeholderMap" id="mapResults">
+                    <div className="emptyDiv wrapper">
+                        <h3>Pick a mode of transportation</h3>
+                        <div>
+                            <p className="scrollUp">Scroll up to make a search!</p>
+                        </div>
+                    </div>
+                </div>
 
-                    <section className="routeResults wrapper">
+                
+                : (
+                    <section className="routeResults wrapper" id="mapResults">
                         {/* grab map url from the routeResult and display it */}
                         <h3>Pick a mode of transportation</h3>
                         <p className="commuteText">Based off your commute, pick a mode of transportation</p>
