@@ -10,7 +10,7 @@ header {
     background-size: cover;
 }
 
-button {
+header button {
     background-color: white;
     font-family: $body-font;
     color: $secondary-color;
@@ -20,6 +20,7 @@ button {
     padding: 15px 60px;
     border-radius: 50px;
     font-size: 2rem;
+    margin: 0;
 }
 
 .mobileImg {
@@ -82,4 +83,38 @@ nav ul li:last-child {
 .headerImage {
     min-width: 400px;
     width: 600px;
+}
+
+@media (max-width: 450px) {
+    //HEADER MOBILE QUERY // 
+
+    .desktopImg {
+        display: none;
+    }
+
+    header {
+        background-image: none;
+        background-color: $tertiary-color;
+        padding: 20px;
+    }
+
+    .headerContent {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .mobileImg {
+        display: block;
+        width: 275px;
+    }
+
+    .headerDescriptionMobile {
+        color: $font-color;
+        font-size: 1.4rem;
+    }
+
+    .mainNav {
+        display: none;
+    }
 }

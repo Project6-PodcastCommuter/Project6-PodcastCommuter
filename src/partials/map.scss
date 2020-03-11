@@ -27,8 +27,7 @@
     background-color: $tertiary-color;
     border-radius: 50px;
     background: #f4e6e8;
-    box-shadow:  10px 10px 30px #cfc4c5, 
-             -10px -10px 30px #ffffff;
+    box-shadow:  10px 10px 30px #cfc4c5, -10px -10px 30px #ffffff;
 }
 
 .commuteResult img {
@@ -40,4 +39,32 @@
     padding: 30px;
     text-align: left;
     font-size: 1.8rem;
+}
+
+@media (max-width: 450px) {
+    // ROUTE RESULT MOBILE STYLES //
+
+    .commuteOptions {
+        flex-direction: column-reverse;
+    }
+    .mobileRouteTypeImg {
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    .routeTypeButton {
+        display: block;
+        padding: 0px 75px;
+        margin: 0 auto;
+    }
+
+    .pedestrianResult,
+    .bicycleResult {
+        width: 80%;
+        margin: 30px auto;
+        padding: 0px 30px;
+        background-color: $tertiary-color;
+        border-radius: 5px;
+        box-shadow: 10px 10px 10px 10px $tertiary-color;
+    }
 }

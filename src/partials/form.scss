@@ -68,3 +68,50 @@
 .province {
     width: 10%;
 }
+
+@media (max-width: 450px) {
+    // FORM MOBILE STYLES //
+
+    .mobileMap {
+        padding: 40px 0;
+    }
+
+    form {
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    input,
+    option,
+    select {
+        background-color: $tertiary-color;
+        border: none;
+        border-radius: 25px;
+        padding: 8px;
+        margin: 10px 5px;
+    }
+
+    input[id="fromStreet"],
+    input[id="toStreet"],
+    input[id="podcastSearch"] {
+        width: 90%;
+    }
+
+    input[id="fromCity"],
+    input[id="toCity"] {
+      width: 50%;
+    }
+
+    input[type="text"] {
+        padding: 10px 30px;
+    }
+
+    .mapSubmitButton {
+        background-color: $primary-color;
+        border: none;
+        color: #fff;
+        font-weight: bolder;
+        display: block;
+        margin: 0 auto;
+    }
+}
