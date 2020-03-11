@@ -120,7 +120,7 @@ class Map extends Component {
                 smooth: true,
                 duration: 500,
             });
-        }, 50);
+        }, 1000);
     }
 
     chooseWalk =  () => {
@@ -144,7 +144,7 @@ class Map extends Component {
                 smooth: true,
                 duration: 500,
             });
-        }, 50);
+        }, 1000);
     }
 
     render() {
