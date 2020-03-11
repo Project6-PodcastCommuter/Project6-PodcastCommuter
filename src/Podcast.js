@@ -14,7 +14,6 @@ class Podcast extends Component {
             selectedPodcast: [],
             podDescriptionSecond: '',
         }
-
     }
 
     selectedPodcast = (e) => {
@@ -36,7 +35,6 @@ class Podcast extends Component {
     }
 
     render() {
-        // console.log(this.props.podData)
         return (
             <div className="podcastContent">   
             {this.props.podData.length === 0 
@@ -67,7 +65,7 @@ class Podcast extends Component {
                                             <p className="podcastTime">{Math.floor(response.podTime / 60)} minutes</p>
                                         </div>
                                             <p>{response.podDescription}</p>
-                                            <a href={response.podUrl} target="_blank" className="readMore">More Details</a>
+                                        <a href={response.podUrl} target="_blank" rel="noopener noreferrer" className="readMore">More Details</a>
                                     </div>
                                     <div>
                                         <button className="choosePodcastButton podcastButton" onClick={this.selectedPodcast} value={response.podUrl}>Choose</button>
@@ -95,14 +93,13 @@ class Podcast extends Component {
                         <h3 className="finalPodcastTag">Have a listen and enjoy your commute</h3>
                         <div className="selectedAudio">
                             <div className="finalPodcastContent">
-                            {/* <div className="selectedAudio finalPodcastContent"> */}
                                 <div className="finalPodcastImage">
                                     <img src={this.state.selectedPodcast.podImage} alt={this.state.selectedPodcast.podTitle}></img>
                                 </div>
                                 <div className="finalPodcastInfo">
                                     <h3>{this.state.selectedPodcast.podTitle}</h3>
                                     <p>{this.state.selectedPodcast.podDescription}</p>
-                                    <a href={this.state.selectedPodcast.podUrl} target="_blank" className="readMore">Read More</a>
+                                        <a href={this.state.selectedPodcast.podUrl} target="_blank" rel="noopener noreferrer" className="readMore">Read More</a>
                                 </div>
                             </div>
                             <div class="audioDiv">
