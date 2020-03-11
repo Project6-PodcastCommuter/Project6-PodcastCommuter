@@ -18,15 +18,15 @@
     padding: 30px 0;
 }
 
-// .mapImage {
-//     width: 100%;
-// }
+.mapImage {
+    width: 100%;
+}
 
 .commuteResult {
     min-width: 400px;
     width: 45%;
     background-color: $tertiary-color;
-    border-radius: 10px;
+    border-radius: 50px;
     background: #f4e6e8;
     box-shadow:  10px 10px 30px #cfc4c5, -10px -10px 30px #ffffff;
 }
@@ -42,11 +42,8 @@
     font-size: 1.8rem;
 }
 
-@media (max-width: 950px) {
 
-    .wrapper {
-        width: 100%;
-    }
+@media (max-width: 950px) {
 
     .routeResults h3 {
         line-height: 3.5rem;
@@ -58,7 +55,7 @@
     }
 
     .commuteResult {
-        width: 90%;
+        width: 70%;
         margin: 40px 0;
         padding: 20px 0;
     }

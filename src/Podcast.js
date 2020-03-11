@@ -30,8 +30,18 @@ class Podcast extends Component {
         console.log(this.props.podData)
         return (
             <div className="podcastContent">   
-            {this.props.podData.length === 0 ? null :
-                <section className='wrapper'>
+            {this.props.podData.length === 0 
+            ? 
+            <div className="placeholderPodcast" id="podcastResults">
+                <div className="emptyDiv wrapper">
+                    <h3>Pick a Podcast</h3>
+                    <div>
+                        <p className="scrollUp">Scroll up to make a search!</p>
+                    </div>
+                </div>
+            </div>
+            :
+                <section className='wrapper' id="podcastResults">
                     <div className='pickPodcast'>
                         <h3>Pick a Podcast</h3>
                         <p>Here are some podcasts that match your commute time.</p>
@@ -60,8 +70,18 @@ class Podcast extends Component {
                 </section>
             }     
                 
-                    { this.state.selectedPodcast.length === 0 ? null : 
-                <section className='wrapper'>
+                    { this.state.selectedPodcast.length === 0 
+                    ?
+                    <div className="placeholderPodcast" id="finalPodcast">
+                        <div className="emptyDiv wrapper">
+                            <h3>Have a listen and enjoy your commute</h3>
+                            <div>
+                                <p className="scrollUp">Scroll up to make a search!</p>
+                            </div>
+                        </div>
+                    </div>
+                    : 
+                <section className='wrapper' id="finalPodcast">
                     <div>
                         <h3 className="finalPodcastTag">Have a listen and enjoy your commute</h3>
                         <div className="selectedAudio">
