@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Project6-PodcastCommuter/static/css/main.ae46dec2.chunk.css",
-    "main.js": "/Project6-PodcastCommuter/static/js/main.7587a59a.chunk.js",
-    "main.js.map": "/Project6-PodcastCommuter/static/js/main.7587a59a.chunk.js.map",
+    "main.css": "/Project6-PodcastCommuter/static/css/main.ecff88d9.chunk.css",
+    "main.js": "/Project6-PodcastCommuter/static/js/main.98613625.chunk.js",
+    "main.js.map": "/Project6-PodcastCommuter/static/js/main.98613625.chunk.js.map",
     "runtime-main.js": "/Project6-PodcastCommuter/static/js/runtime-main.546b7159.js",
     "runtime-main.js.map": "/Project6-PodcastCommuter/static/js/runtime-main.546b7159.js.map",
-    "static/js/2.7f94a3ad.chunk.js": "/Project6-PodcastCommuter/static/js/2.7f94a3ad.chunk.js",
-    "static/js/2.7f94a3ad.chunk.js.map": "/Project6-PodcastCommuter/static/js/2.7f94a3ad.chunk.js.map",
+    "static/js/2.1101f8de.chunk.js": "/Project6-PodcastCommuter/static/js/2.1101f8de.chunk.js",
+    "static/js/2.1101f8de.chunk.js.map": "/Project6-PodcastCommuter/static/js/2.1101f8de.chunk.js.map",
     "index.html": "/Project6-PodcastCommuter/index.html",
-    "precache-manifest.536f19c7a8aa598de5decfb0c3d1457f.js": "/Project6-PodcastCommuter/precache-manifest.536f19c7a8aa598de5decfb0c3d1457f.js",
+    "precache-manifest.17f9d494e611587e79b8bc95532da410.js": "/Project6-PodcastCommuter/precache-manifest.17f9d494e611587e79b8bc95532da410.js",
     "service-worker.js": "/Project6-PodcastCommuter/service-worker.js",
-    "static/css/main.ae46dec2.chunk.css.map": "/Project6-PodcastCommuter/static/css/main.ae46dec2.chunk.css.map",
-    "static/js/2.7f94a3ad.chunk.js.LICENSE.txt": "/Project6-PodcastCommuter/static/js/2.7f94a3ad.chunk.js.LICENSE.txt",
+    "static/css/main.ecff88d9.chunk.css.map": "/Project6-PodcastCommuter/static/css/main.ecff88d9.chunk.css.map",
+    "static/js/2.1101f8de.chunk.js.LICENSE.txt": "/Project6-PodcastCommuter/static/js/2.1101f8de.chunk.js.LICENSE.txt",
     "static/media/bike.svg": "/Project6-PodcastCommuter/static/media/bike.b805667a.svg",
     "static/media/App.scss": "/Project6-PodcastCommuter/static/media/headerBackground.0dc8dd78.svg",
     "static/media/headerDeskop.svg": "/Project6-PodcastCommuter/static/media/headerDeskop.4f7ee2b2.svg",
@@ -21,8 +21,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.546b7159.js",
-    "static/js/2.7f94a3ad.chunk.js",
-    "static/css/main.ae46dec2.chunk.css",
-    "static/js/main.7587a59a.chunk.js"
+    "static/js/2.1101f8de.chunk.js",
+    "static/css/main.ecff88d9.chunk.css",
+    "static/js/main.98613625.chunk.js"
   ]
 }
