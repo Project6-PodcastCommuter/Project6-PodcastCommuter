@@ -28,6 +28,7 @@ class App extends Component {
       userEntry: '',
       podData: [],
       isLoading: false,
+      isLoadingPodcast: false,
     }
   }
 
@@ -38,6 +39,12 @@ class App extends Component {
     this.setState({
       appTime: time,
     }, callback)
+  }
+
+  grabLoading = () => {
+    this.setState({
+      isLoadingPodcast: true,
+    })
   }
 
   grabMapUrl = () => {
@@ -93,6 +100,7 @@ class App extends Component {
         // Use podData to display podcast information on the page
         this.setState({
           podData: newState,
+          isLoadingPodcast: false,
         })
       }
     })
@@ -132,6 +140,7 @@ class App extends Component {
       to: to,
       userInput: this.state.userEntry,
       userEntry: '',
+      isLoading: true,
     })
 
     setTimeout(() => {
@@ -172,7 +181,7 @@ class App extends Component {
               <li><a href="#podcastResults">Recommendations</a></li>
               <li><a href="#finalPodcast">Listen</a></li>
             </ul>
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </nav>
           <div className="headerContent wrapper">
             <div className="headerInfo">
@@ -221,7 +230,7 @@ class App extends Component {
                 <option value="NU">NU</option>
               </select>
             </div>
-            <div class="mapInput">
+            <div className="mapInput">
               <input className="address" type="text" id="toStreet" name="toStreet" placeholder="Destination address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
               <input className="city" type="text" id="toCity" name="toCity" placeholder="Destination city" value={this.state.toCity} onChange={this.handleMapChange} required/>
               <select className="province" name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
@@ -263,6 +272,8 @@ class App extends Component {
         from={this.state.from} 
         to={this.state.to}
         routeSelected={this.routeSelected}
+        isLoadingPodcast={this.state.isLoadingPodcast}
+        grabLoading = {this.grabLoading}
         />
         <Podcast 
         time={this.state.appTime} 

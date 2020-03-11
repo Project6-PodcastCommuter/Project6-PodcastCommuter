@@ -15,7 +15,6 @@ class Map extends Component {
             routeType: '',
             routeResult: {},
             commuteTime: 0,
-            isLoading: false,
         }
     }
 
@@ -122,15 +121,16 @@ class Map extends Component {
         // Call grabCommunteuteTime function with value of "time"
         this.setState({
             commuteTime: time,
-            isLoading: true,
         }, () => {
             const {
                 grabCommuteTime,
-                routeSelected
+                routeSelected,
+                grabLoading,
             } = this.props;
             
             // console.log(time);
             grabCommuteTime(time, routeSelected)
+            grabLoading();
         })
 
         setTimeout(() => {
@@ -148,14 +148,15 @@ class Map extends Component {
 
         this.setState({
             commuteTime: time,
-            isLoading: true,
         }, () => {
             const {
                 grabCommuteTime,
-                routeSelected
+                routeSelected,
+                grabLoading,
             } = this.props;
 
             grabCommuteTime(time, routeSelected)
+            grabLoading();
         })
 
         setTimeout(() => {
@@ -273,7 +274,7 @@ class Map extends Component {
                         </p>
                     </div>
                     </div>
-                    {this.state.isLoading ? <Preloader /> : null}
+                    {this.props.isLoadingPodcast ? <Preloader /> : null}
                 </section>
                 )}
             </div>

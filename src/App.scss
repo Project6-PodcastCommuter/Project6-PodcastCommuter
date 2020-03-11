@@ -1,31 +1,11 @@
-@import "partials/setup";
 @import "partials/variables";
+@import "partials/setup";
 @import "partials/header";
 @import "partials/map";
 @import "partials/podcast";
 @import "partials/form";
 @import "partials/preloader";
 
-
-// GLOBAL STYLES //
-
-html {
-  scroll-behavior: smooth;
-  font-size: 62.5%;
-}
-
-body {
-  font-family: $body-font;
-  font-size: 1.6rem;
-  line-height: 2.5rem;
-  color: $font-color;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  height: auto;
-}
 
 // responsive map Test
 .mapContainer {
