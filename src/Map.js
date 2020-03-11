@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import axios from 'axios';
+import { scroller } from 'react-scroll';
 import swal from 'sweetalert';
 
 // Functionality involving MapQuest API
@@ -112,6 +113,14 @@ class Map extends Component {
             // console.log(time);
             grabCommuteTime(time, routeSelected)
         })
+
+        setTimeout(() => {
+            scroller.scrollTo('podcastResults', {
+                offset: 50,
+                smooth: true,
+                duration: 500,
+            });
+        }, 50);
     }
 
     chooseWalk =  () => {
@@ -128,6 +137,14 @@ class Map extends Component {
 
             grabCommuteTime(time, routeSelected)
         })
+
+        setTimeout(() => {
+            scroller.scrollTo('podcastResults', {
+                offset: 50,
+                smooth: true,
+                duration: 500,
+            });
+        }, 50);
     }
 
     render() {

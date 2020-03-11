@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
+import { scroller } from 'react-scroll';
 
 
 // Functionality involving Podcast API
@@ -24,6 +25,14 @@ class Podcast extends Component {
         this.setState({
             selectedPodcast: selectedPodcastData[0],
         })
+
+        setTimeout(() => {
+            scroller.scrollTo('finalPodcast', {
+                offset: 50,
+                smooth: true,
+                duration: 500,
+            });
+        }, 50);
     }
 
     render() {
