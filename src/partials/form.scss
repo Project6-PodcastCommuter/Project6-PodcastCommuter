@@ -51,6 +51,14 @@
     width: 100%;
 }
 
+.address:focus,
+.city:focus,
+.province:focus,
+.podcastSearch input:focus {
+    border: 2px solid $secondary-color;
+}
+
+
 .mapSubmitButton {
     background-color: $primary-color;
     color: white;
