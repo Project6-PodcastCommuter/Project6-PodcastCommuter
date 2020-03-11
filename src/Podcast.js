@@ -59,7 +59,7 @@ class Podcast extends Component {
                         {/* Dynamically printing podcast information on the page */}
                         {this.props.podData.map((response, index) => {
                             return (
-                                <div className='podcastCard podcast'>
+                                <div key={index} className='podcastCard podcast'>
                                     <div>
                                             <img className="podcastImg" src={response.podImage} alt={this.state.podTitle}></img>
                                         <div>

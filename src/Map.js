@@ -15,7 +15,6 @@ class Map extends Component {
             routeType: '',
             routeResult: {},
             commuteTime: 0,
-            isLoading: false,
         }
     }
 
@@ -48,7 +47,13 @@ class Map extends Component {
                     if (flag === true) {
                         // || responseArray[0].data.route.realTime === 0 || responseArray[1].data.route.realTime === 0
                         // console.log(responseArray[0].data.route.legs[0].time);
-                        swal("Oops!", "Invalid location, please try again!", "error");
+                        swal({
+                            title: "Oops!",
+                            text: "Invalid location, please try again!",
+                            type: "error",
+                        }).then((click) => {
+                            this.scrollToTop();
+                        });
                     }
                     if(flag===false){
                         //get time from the axios call
@@ -76,7 +81,13 @@ class Map extends Component {
 
                         console.log(Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute']))
                         if (Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute'] == 0) && Number(transformedResponse['pedestrian']['travelHour'] + transformedResponse['pedestrian']['travelHour'] == 0)){
-                            alert('time is 0')
+                            swal({
+                                title: "Oops!",
+                                text: "Invalid location, please try again!",
+                                type: "error",
+                            }).then((click) => {
+                                this.scrollToTop();
+                            });
                         }else{
                             // assigning objects to route result
                             this.setState({
@@ -110,15 +121,16 @@ class Map extends Component {
         // Call grabCommunteuteTime function with value of "time"
         this.setState({
             commuteTime: time,
-            isLoading: true,
         }, () => {
             const {
                 grabCommuteTime,
-                routeSelected
+                routeSelected,
+                grabLoading,
             } = this.props;
             
             // console.log(time);
             grabCommuteTime(time, routeSelected)
+            grabLoading();
         })
 
         setTimeout(() => {
@@ -136,14 +148,15 @@ class Map extends Component {
 
         this.setState({
             commuteTime: time,
-            isLoading: true,
         }, () => {
             const {
                 grabCommuteTime,
-                routeSelected
+                routeSelected,
+                grabLoading,
             } = this.props;
 
             grabCommuteTime(time, routeSelected)
+            grabLoading();
         })
 
         setTimeout(() => {
@@ -153,6 +166,13 @@ class Map extends Component {
                 duration: 500,
             });
         }, 1000);
+    }
+
+    scrollToTop = () => {
+        scroller.scrollTo('header', {
+            smooth: true,
+            duration: 700,
+        });
     }
 
     render() {
@@ -254,7 +274,7 @@ class Map extends Component {
                         </p>
                     </div>
                     </div>
-                    {this.state.isLoading ? <Preloader /> : null}
+                    {this.props.isLoadingPodcast ? <Preloader /> : null}
                 </section>
                 )}
             </div>

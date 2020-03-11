@@ -21,12 +21,15 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 html {
     font-size: 62.5%; /* 10px */
+    scroll-behavior: smooth;
 }
 
 body {
     font-size: 1.6rem;
     position: relative;
-    color: #707070;
+    color: $font-color;
+    line-height: 2.5rem;
+    font-family: $body-font;
 }
 
 
