@@ -12,7 +12,6 @@ class Map extends Component {
             routeType: '',
             routeResult: {},
             commuteTime: 0,
-            isLoading: false,
         }
     }
 
@@ -63,13 +62,25 @@ class Map extends Component {
                                     travelMinute: minutes,
                                     mapImage: mapImage,
                                 }
+
+                            
+
                             }
                             // reduce syntax 
                         }, {})
         
                         // assigning objects to route result
                         this.setState({
-                            routeResult: transformedResponse
+                            routeResult: transformedResponse,
+                            
+                        }, () => {
+                            const {
+                                grabMapUrl,
+                                
+                            } = this.props;
+
+                            // console.log(time);
+                            grabMapUrl()
                         })
                     }
 
