@@ -17,7 +17,7 @@ class Map extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(prevProps.from != this.props.from || prevProps.to != this.props.to){
+        if(prevProps.from !== this.props.from || prevProps.to !== this.props.to){
 
             if (this.props.from !== '' && this.props.to !== '') {
                 const routeType = ['pedestrian', 'bicycle']
@@ -146,7 +146,7 @@ class Map extends Component {
 
                         <div className="commuteOptions">
                             <div className="commuteResult pedestrianResult">
-                                <img className="mobileRouteTypeImg" src={require('./assets/walk.svg')}></img>
+                                <img alt="Feet walking to show pedestrian option" className="mobileRouteTypeImg" src={require('./assets/walk.svg')}></img>
                                 {/* Do not display hours when time is under 60 minutes */}
                                 
                                 <button 
@@ -163,7 +163,7 @@ class Map extends Component {
                             </div>
 
                             <div className="commuteResult bicycleResult">
-                                <img className="mobileRouteTypeImg" src={require('./assets/bike.svg')}></img>
+                                <img alt="Bicycle to show bike option" className="mobileRouteTypeImg" src={require('./assets/bike.svg')}></img>
                                 
                                 <button type='submit'
                                     onClick={this.chooseBike}

@@ -124,9 +124,9 @@ class App extends Component {
       <div>
         <header>
           <nav className="wrapper" id="header">
-            <img className="logo" src={require('./assets/logo.png')}></img>
+            <img className="logo" alt="Logo for Podcast Commuter"src={require('./assets/logo.png')}></img>
             <ul className="mainNav">
-              <li><a href="">Search</a></li>
+              <li><a href="#search">Search</a></li>
               <li><a href="#mapResults">Results</a></li>
               <li><a href="#podcastResults">Recommendations</a></li>
               <li><a href="#finalPodcast">Listen</a></li>
@@ -140,20 +140,20 @@ class App extends Component {
               <button>Start</button>
             </div>
             <div className="headerImage">
-              <img className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
-              <img className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
+              <img alt="Person walking through park listening to podcast" className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
+              <img alt="Person walking listening to podcast" className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
             </div>
           </div>
           <a href="#header" className="refreshButton">
-            <i class="fas fa-arrow-up"></i>
-            <label className="visuallyHidden">Back to top</label>
+              <i class="fas fa-arrow-up"></i>
+              <label className="visuallyHidden">Back to top</label>
           </a>
         </header>
 
 
         {/* Get user input */}
         <section className="wrapper mobileMap"> 
-          <div className="formInfo">
+          <div className="formInfo" id="search">
             <h3>Let's find some podcasts.</h3>
             <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
             your commute time, and ask your to select your preferred mode of transportation. Based on the time of your trip,
