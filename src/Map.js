@@ -20,7 +20,7 @@ class Map extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(prevProps.from != this.props.from || prevProps.to != this.props.to){
+        if(prevProps.from !== this.props.from || prevProps.to !== this.props.to){
 
             if (this.props.from !== '' && this.props.to !== '') {
                 const routeType = ['pedestrian', 'bicycle']
@@ -68,26 +68,30 @@ class Map extends Component {
                                     travelMinute: minutes,
                                     mapImage: mapImage,
                                 }
-
-                            
-
                             }
                             // reduce syntax 
                         }, {})
-        
-                        // assigning objects to route result
-                        this.setState({
-                            routeResult: transformedResponse,
-                            
-                        }, () => {
-                            const {
-                                grabMapUrl,
-                                
-                            } = this.props;
 
-                            // console.log(time);
-                            grabMapUrl()
-                        })
+                        console.log('transformed response',transformedResponse)
+
+                        console.log(Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute']))
+                        if (Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute'] == 0) && Number(transformedResponse['pedestrian']['travelHour'] + transformedResponse['pedestrian']['travelHour'] == 0)){
+                            alert('time is 0')
+                        }else{
+                            // assigning objects to route result
+                            this.setState({
+                                routeResult: transformedResponse,
+                            }, () => {
+                                const {
+                                    grabMapUrl,
+
+                                } = this.props;
+
+                                // console.log(time);
+                                grabMapUrl()
+                            })
+                        }
+                        
                     }
 
                 })
@@ -185,7 +189,7 @@ class Map extends Component {
                     <div className="commuteResult pedestrianResult">
                         <img
                         className="mobileRouteTypeImg"
-                        src={require("./assets/walk.svg")}
+                        src={require("./assets/walk.svg") } alt="Feet walking to show pedestrian option"
                         ></img>
                         {/* Do not display hours when time is under 60 minutes */}
 
@@ -218,7 +222,7 @@ class Map extends Component {
                     </div>
 
                     <div className="commuteResult bicycleResult">
-                        <img
+                        <img alt="Bicycle to show bike option"
                         className="mobileRouteTypeImg"
                         src={require("./assets/bike.svg")}
                         ></img>

@@ -36,7 +36,7 @@ class Podcast extends Component {
     }
 
     render() {
-        console.log(this.props.podData)
+        // console.log(this.props.podData)
         return (
             <div className="podcastContent">   
             {this.props.podData.length === 0 
@@ -81,7 +81,7 @@ class Podcast extends Component {
                 
                     { this.state.selectedPodcast.length === 0 
                     ?
-                    <div className="placeholderPodcast" id="finalPodcast">
+                    <div className="placeholderPodcast finalPodcast" id="finalPodcast">
                         <div className="emptyDiv wrapper">
                             <h3>Have a listen and enjoy your commute</h3>
                             <div>
@@ -114,6 +114,10 @@ class Podcast extends Component {
                             </div>
                         </div>
                     </div>
+                    <a href="#header" className="refreshButton">
+                        <i class="fas fa-arrow-up"></i>
+                        <label className="visuallyHidden">Back to top</label>
+                    </a>
                 </section>
                 } 
             </div>
