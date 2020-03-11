@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import axios from 'axios';
 import { scroller } from 'react-scroll';
+import swal from 'sweetalert';
 
 // Functionality involving MapQuest API
 class Map extends Component {
@@ -13,7 +14,6 @@ class Map extends Component {
             routeType: '',
             routeResult: {},
             commuteTime: 0,
-            isLoading: false,
         }
     }
 
@@ -44,7 +44,9 @@ class Map extends Component {
                 Promise.all(promises).then((responseArray) => {
                     console.log(responseArray)
                     if (flag === true) {
-                        alert("Wrong!!!!!!!!!!!!!!!!!!!!! Mother Fucker")
+                        // || responseArray[0].data.route.realTime === 0 || responseArray[1].data.route.realTime === 0
+                        // console.log(responseArray[0].data.route.legs[0].time);
+                        swal("Oops!", "Invalid location, please try again!", "error");
                     }
                     if(flag===false){
                         //get time from the axios call
@@ -64,13 +66,25 @@ class Map extends Component {
                                     travelMinute: minutes,
                                     mapImage: mapImage,
                                 }
+
+                            
+
                             }
                             // reduce syntax 
                         }, {})
         
                         // assigning objects to route result
                         this.setState({
-                            routeResult: transformedResponse
+                            routeResult: transformedResponse,
+                            
+                        }, () => {
+                            const {
+                                grabMapUrl,
+                                
+                            } = this.props;
+
+                            // console.log(time);
+                            grabMapUrl()
                         })
                     }
 
