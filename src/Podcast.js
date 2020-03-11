@@ -11,6 +11,7 @@ class Podcast extends Component {
         // podData - pushing details into array
         this.state = {
             selectedPodcast: [],
+            podDescriptionSecond: '',
         }
 
     }
@@ -25,7 +26,6 @@ class Podcast extends Component {
         })
     }
 
-
     render() {
         console.log(this.props.podData)
         return (
@@ -38,7 +38,7 @@ class Podcast extends Component {
                     </div>
                     <div className="podcastResults">
                         {/* Dynamically printing podcast information on the page */}
-                        {this.props.podData.map((response) => {
+                        {this.props.podData.map((response, index) => {
                             return (
                                 <div className='podcastCard podcast'>
                                     <div>

@@ -11,8 +11,22 @@ class App extends Component {
   constructor(props){
     super(props);
 // Setting state for user selected commute time from Map.js to pass to Podcast.js
+    // this.state = {
+    //   userInput: '',
+    //   appTime: 0,
+    //   fromStreet: '',
+    //   fromCity:'',
+    //   fromProvince: '',
+    //   toStreet: '',
+    //   toCity: '',
+    //   toProvince: '',
+    //   from: '',
+    //   to: '',
+    //   userEntry: '',
+    //   podData: [],
+    // }
     this.state = {
-      userInput: '',
+      userInput: 'h3h3',
       appTime: 0,
       fromStreet: '823 dundas st w',
       fromCity:'toronto',

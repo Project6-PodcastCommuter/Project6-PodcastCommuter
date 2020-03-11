@@ -21,11 +21,9 @@ class Map extends Component {
 
             if (this.props.from !== '' && this.props.to !== '') {
                 const routeType = ['pedestrian', 'bicycle']
-                // setttimeout 2s 
-                // if gives result, cleartimeout
-                // otherwise .then()
     
                 //mapping over the routeType and do axios calls 
+                let flag = false
                 const promises = routeType.map((type) => {
                     return axios({
                         url: 'https://www.mapquestapi.com/directions/v2/route',
@@ -34,18 +32,20 @@ class Map extends Component {
                             from: this.props.from,
                             to: this.props.to,
                             routeType: type,
-                        }
+                        },
+                        timeout: 2000,
+                    }).catch((e)=>{
+                        flag=true
+                        console.log(flag)
                     })
                 })
-                // console.log(promises)
-
                 //catch the axios calls and put them in to the response array
                 Promise.all(promises).then((responseArray) => {
                     console.log(responseArray)
-                    if (responseArray[0].data.route.legs[0].formattedTime === "00:00:00" || responseArray[1].data.route.legs[0].formattedTime === "00:00:00" ){
-                        alert("The address you put is not valid, please reenter the addresses.")
+                    if (flag === true) {
+                        alert("Wrong!!!!!!!!!!!!!!!!!!!!! Mother Fucker")
                     }
-                    else{
+                    if(flag===false){
                         //get time from the axios call
                         //taking the first element in the response array (pedestrain for now) and add the next one to create an object
                         const transformedResponse = responseArray.reduce((acc, response, i) => {
@@ -74,9 +74,6 @@ class Map extends Component {
                     }
 
                 })
-                // .catch((error) => {
-                //     alert(error.messages)
-                // })
             }
         }
     }
