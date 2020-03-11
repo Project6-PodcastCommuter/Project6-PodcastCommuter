@@ -3,9 +3,10 @@ import React from 'react';
 const Preloader = () => {
     return (
         <div className="preloaderContainer">
-            <p>Loading Route. . .</p>
+            <p>Loading Route</p>
             <span>
-                <i class="fas fa-route"></i>
+                <i className="preloader fas fa-spinner">
+                </i>
             </span>
         </div>
     );

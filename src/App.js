@@ -3,6 +3,9 @@ import './App.scss';
 import axios from 'axios';
 import Map from './Map.js'
 import Podcast from './Podcast';
+import { scroller } from 'react-scroll';
+import Preloader from './components/Preloader';
+
 
 
 // App holds all components and elements vital to structure of the page
@@ -23,6 +26,7 @@ class App extends Component {
       to: '',
       userEntry: '',
       podData: [],
+      isLoading: false,
     }
   }
 
@@ -33,6 +37,13 @@ class App extends Component {
     this.setState({
       appTime: time,
     }, callback)
+  }
+
+  grabMapUrl = () => {
+    console.log( 'loading')
+    this.setState({
+      isLoading: false,
+    })
   }
 
     routeSelected = () => {
@@ -113,8 +124,17 @@ class App extends Component {
       from: from,
       to: to,
       userInput: this.state.userEntry,
-      userEntry: ''
+      userEntry: '',
+      isLoading: true,
     })
+
+    setTimeout(() => {
+      scroller.scrollTo('mapResults', { 
+        offset: 50,
+        smooth: true,
+        duration: 500,
+      });
+    }, 1500);
   }
 
 
@@ -137,7 +157,7 @@ class App extends Component {
             <div className="headerInfo">
               <h1>Podcast Commuter</h1>
               <h2 className="headerDescriptionMobile">Find podcasts that suit your length of commute</h2>
-              <button>Start</button>
+              <button><a href='#formInfo'>Start</a></button>
             </div>
             <div className="headerImage">
               <img alt="Person walking through park listening to podcast" className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
@@ -209,14 +229,16 @@ class App extends Component {
               </input>
             </div>
             <div>
-            <button className="mapSubmitButton">Search</button>
+              <button className="mapSubmitButton">Search</button> 
             </div>
           </form>
         </section>
 
-
+        {this.state.isLoading ? <Preloader /> : null}
+        
         <Map 
         grabCommuteTime={this.grabCommuteTime} 
+        grabMapUrl={this.grabMapUrl}
         from={this.state.from} 
         to={this.state.to}
         routeSelected={this.routeSelected}
