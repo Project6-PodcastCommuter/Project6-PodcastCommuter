@@ -138,7 +138,7 @@ class App extends Component {
     return(
       <div>
         <header>
-          <nav className="wrapper">
+          <nav className="wrapper" id="header">
             <img className="logo" src={require('./assets/logo.png')}></img>
             <ul className="mainNav">
               <li><a href="">Search</a></li>
@@ -159,6 +159,10 @@ class App extends Component {
               <img className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
             </div>
           </div>
+          <a href="#header" className="refreshButton">
+            <i class="fas fa-arrow-up"></i>
+            <label className="visuallyHidden">Back to top</label>
+          </a>
         </header>
 
 
