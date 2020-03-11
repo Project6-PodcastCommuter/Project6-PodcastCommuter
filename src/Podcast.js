@@ -12,7 +12,7 @@ class Podcast extends Component {
         // podData - pushing details into array
         this.state = {
             selectedPodcast: [],
-            podDescriptionSecond: ''
+            podDescriptionSecond: '',
         }
 
     }
@@ -25,10 +25,6 @@ class Podcast extends Component {
         this.setState({
             selectedPodcast: selectedPodcastData[0],
         })
-    }
-
-    readMore = (e) =>{
-        document.querySelector(`.podcastOriginal${e.target.id}`).append(e.target.value)
     }
 
     render() {
@@ -48,10 +44,15 @@ class Podcast extends Component {
                                         <img src={response.podImage} className="podcastImg" alt={this.state.podTitle}></img>
                                         <h4>{response.podTitle}</h4>
                                         <p className="podcastTime">{Math.floor(response.podTime / 60)} min.</p>
-                                        <p>{response.podDescription.slice(0, 250)}</p>
+                                        {/* <p className={`podcastAdditive${index}`}>{this.state["currentContent"+index]}</p> */}
+                                        <p>{response.podDescription.slice(0,250)}</p> 
+                                        <p className="podDescriptionMore">{response.podDescription.slice(250, 2500)}</p>
                                     </div>
                                     {response.podDescription.length > 250 ? 
-                                        <button onClick={this.readMore} id={index} className="readMore" value={response.podDescription.slice(251, 2000)}>Read More</button>
+                                        <div className="expand">
+                                            <span className="dots">...</span>
+                                            <button onClick={this.readMore} id={index} className="readMore" value={response.podDescription.slice(250, 2000)}>Read More</button>
+                                        </div>
                                     : null }
                                     <button onClick={this.selectedPodcast} className="podcastButton" value={response.podUrl}>Choose
                                     </button>
