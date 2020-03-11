@@ -3,7 +3,7 @@ import './App.scss';
 import axios from 'axios';
 import Map from './Map.js'
 import Podcast from './Podcast';
-
+import { scroller } from 'react-scroll';
 
 // App holds all components and elements vital to structure of the page
 
@@ -115,6 +115,14 @@ class App extends Component {
       userInput: this.state.userEntry,
       userEntry: ''
     })
+
+    setTimeout(() => {
+      scroller.scrollTo('mapResults', { 
+        offset: 50,
+        smooth: true,
+        duration: 500,
+      });
+    }, 1500);
   }
 
 
@@ -137,7 +145,7 @@ class App extends Component {
             <div className="headerInfo">
               <h1>Podcast Commuter</h1>
               <h2 className="headerDescriptionMobile">Find podcasts that suit your length of commute</h2>
-              <button>Start</button>
+              <button><a href='#formInfo'>Start</a></button>
             </div>
             <div className="headerImage">
               <img className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
@@ -153,7 +161,7 @@ class App extends Component {
 
         {/* Get user input */}
         <section className="wrapper mobileMap"> 
-          <div className="formInfo">
+          <div className="formInfo" id='formInfo'>
             <h3>Let's find some podcasts.</h3>
             <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
             your commute time, and ask your to select your preferred mode of transportation. Based on the time of your trip,
@@ -209,7 +217,7 @@ class App extends Component {
               </input>
             </div>
             <div>
-            <button className="mapSubmitButton">Search</button>
+              <button className="mapSubmitButton">Search</button> 
             </div>
           </form>
         </section>
