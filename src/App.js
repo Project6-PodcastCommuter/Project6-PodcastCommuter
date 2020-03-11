@@ -27,6 +27,7 @@ class App extends Component {
       userEntry: '',
       podData: [],
       isLoading: false,
+      isLoadingPodcast: false,
     }
   }
 
@@ -37,6 +38,12 @@ class App extends Component {
     this.setState({
       appTime: time,
     }, callback)
+  }
+
+  grabLoading = () => {
+    this.setState({
+      isLoadingPodcast: true,
+    })
   }
 
   grabMapUrl = () => {
@@ -86,6 +93,7 @@ class App extends Component {
         // Use podData to display podcast information on the page
         this.setState({
           podData: newState,
+          isLoadingPodcast: false,
         })
       }
     })
@@ -250,6 +258,8 @@ class App extends Component {
         from={this.state.from} 
         to={this.state.to}
         routeSelected={this.routeSelected}
+        isLoadingPodcast={this.state.isLoadingPodcast}
+        grabLoading = {this.grabLoading}
         />
         <Podcast 
         time={this.state.appTime} 
