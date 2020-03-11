@@ -5,6 +5,7 @@
 
 .formInfo h3 {
     font-family: $heading-font;
+    line-height: 35px;
 }
 
 .formInfo p {
@@ -43,7 +44,6 @@
 
 .podcastSearch {
     width: 90%;
-    // margin-right: 0 !important;
     margin: 0 auto;
 }
 
@@ -55,6 +55,13 @@
     background-color: $primary-color;
     color: white;
     margin: 30px auto;
+}
+
+.mapSubmitButton:hover,
+.mapSubmitButton:active,
+.mapSubmitButton:focus{
+    background-color: $secondary-color;
+    color: white;
 }
 
 .address {
@@ -86,78 +93,5 @@
     .province {
         width: 30% !important;
     }
-
-    
-
-    // ::placeholder
-    //  {
-    //     font-size: 1.4rem;
-    // }
 }
 
-// @media (max-width: 680px) {
-//     .province {
-//         width: 20%;
-//     }
-// }
-
-// @media (max-width: 450px) {
-    // FORM MOBILE STYLES //
-
-
-//     .mobileMap {
-//         padding: 40px 0;
-//     }
-
-//     form {
-//         text-align: left;
-//         padding: 0 20px;
-//     }
-
-//     input,
-//     option,
-//     select {
-//         background-color: $tertiary-color;
-//         border: none;
-//         border-radius: 25px;
-//         padding: 8px;
-//         margin: 10px 5px;
-//         width: 100%;
-//     }
-
-//    .address {
-//     width: 100%;
-//     }
-
-//     .city {
-//         width: 60%;
-//     }
-
-//     .province {
-//         width: 10%;
-//     }
-
-//     // input[id="fromStreet"],
-//     // input[id="toStreet"],
-//     // input[id="podcastSearch"] {
-//     //     width: 90%;
-//     // }
-
-//     // input[id="fromCity"],
-//     // input[id="toCity"] {
-//     //   width: 100%;
-//     // }
-
-//     // input[type="text"] {
-//     //     padding: 10px 30px;
-//     // }
-
-//     .mapSubmitButton {
-//         background-color: $primary-color;
-//         border: none;
-//         color: #fff;
-//         font-weight: bolder;
-//         display: block;
-//         margin: 0 auto;
-//     }
-// }

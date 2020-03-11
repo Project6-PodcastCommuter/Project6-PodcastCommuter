@@ -10,30 +10,15 @@ import Podcast from './Podcast';
 class App extends Component {
   constructor(props){
     super(props);
-// Setting state for user selected commute time from Map.js to pass to Podcast.js
-    // this.state = {
-    //   userInput: '',
-    //   appTime: 0,
-    //   fromStreet: '',
-    //   fromCity:'',
-    //   fromProvince: '',
-    //   toStreet: '',
-    //   toCity: '',
-    //   toProvince: '',
-    //   from: '',
-    //   to: '',
-    //   userEntry: '',
-    //   podData: [],
-    // }
     this.state = {
-      userInput: 'h3h3',
+      userInput: '',
       appTime: 0,
-      fromStreet: '823 dundas st w',
-      fromCity:'toronto',
-      fromProvince: 'on',
-      toStreet: '485 queen st w',
-      toCity: 'toronto',
-      toProvince: 'ON',
+      fromStreet: '',
+      fromCity:'',
+      fromProvince: '',
+      toStreet: '',
+      toCity: '',
+      toProvince: '',
       from: '',
       to: '',
       userEntry: '',
@@ -142,9 +127,9 @@ class App extends Component {
             <img className="logo" src={require('./assets/logo.png')}></img>
             <ul className="mainNav">
               <li><a href="">Search</a></li>
-              <li><a href="">Results</a></li>
-              <li><a href="">Recommendations</a></li>
-              <li><a href="">Listen</a></li>
+              <li><a href="#mapResults">Results</a></li>
+              <li><a href="#podcastResults">Recommendations</a></li>
+              <li><a href="#finalPodcast">Listen</a></li>
             </ul>
             <i class="fas fa-bars"></i>
           </nav>
@@ -196,8 +181,8 @@ class App extends Component {
               </select>
             </div>
             <div class="mapInput">
-              <input className="address" type="text" id="toStreet" name="toStreet" placeholder="Ending address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
-              <input className="city" type="text" id="toCity" name="toCity" placeholder="Ending city" value={this.state.toCity} onChange={this.handleMapChange} required/>
+              <input className="address" type="text" id="toStreet" name="toStreet" placeholder="Destination address" value={this.state.toStreet} onChange={this.handleMapChange} required/>
+              <input className="city" type="text" id="toCity" name="toCity" placeholder="Destination city" value={this.state.toCity} onChange={this.handleMapChange} required/>
               <select className="province" name="toProvince" id="toProvince" onChange={this.handleMapChange} required>
                 <option value="">Prov</option>
                 <option value="ON">ON</option>
