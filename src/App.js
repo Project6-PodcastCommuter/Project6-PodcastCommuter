@@ -146,7 +146,7 @@ class App extends Component {
           <nav className="wrapper" id="header">
             <img className="logo" alt="Logo for Podcast Commuter"src={require('./assets/logo.png')}></img>
             <ul className="mainNav">
-              <li><a href="#search">Search</a></li>
+              <li><a href="#formInfo">Search</a></li>
               <li><a href="#mapResults">Results</a></li>
               <li><a href="#podcastResults">Recommendations</a></li>
               <li><a href="#finalPodcast">Listen</a></li>
@@ -164,16 +164,16 @@ class App extends Component {
               <img alt="Person walking listening to podcast" className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
             </div>
           </div>
-          <a href="#header" className="refreshButton">
+          {/* <a href="#header" className="refreshButton">
               <i class="fas fa-arrow-up"></i>
               <label className="visuallyHidden">Back to top</label>
-          </a>
+          </a> */}
         </header>
 
 
         {/* Get user input */}
         <section className="wrapper mobileMap"> 
-          <div className="formInfo" id="search">
+          <div className="formInfo" id='formInfo'>
             <h3>Let's find some podcasts.</h3>
             <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
             your commute time, and ask your to select your preferred mode of transportation. Based on the time of your trip,
