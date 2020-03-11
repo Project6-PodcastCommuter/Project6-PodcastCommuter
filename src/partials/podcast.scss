@@ -1,5 +1,5 @@
 .podcastContent {
-    margin-top: 80px;
+    // margin-top: 80px;
     // background-image: url('../assets/triangle.svg');
     background-repeat: no-repeat;
 }
@@ -10,11 +10,11 @@
 }
 
 .pickPodcast  {
+    padding-top: 200px;
     text-align: right;
 }
 
 .pickPodcast h3 {
-    padding-top: 80px;
     padding-bottom: 20px;
     font-family: $heading-font;
 }
@@ -78,6 +78,10 @@
     color: $primary-color;
 }
 
+.finalPodcast {
+    padding-top: 140px;
+}
+
 .finalPodcastContent {
     display: flex;
     justify-content: space-around;
@@ -125,7 +129,7 @@
 }
 
 .finalPodcastTag {
-    padding: 80px 0 40px 0;
+    padding-bottom: 40px;
     text-align: center;
     font-family: $heading-font;
 }
@@ -151,11 +155,6 @@
 
 .readMore {
     color: $secondary-color;
-}
-
-.placeholderPodcast,
-.placeholderMap {
-    padding-top: 80px;
 }
 
 @media (max-width: 928px) {

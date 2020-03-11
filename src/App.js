@@ -152,9 +152,9 @@ class App extends Component {
       <div>
         <header>
           <nav className="wrapper" id="header">
-            <img className="logo" src={require('./assets/logo.png')}></img>
+            <img className="logo" alt="Logo for Podcast Commuter"src={require('./assets/logo.png')}></img>
             <ul className="mainNav">
-              <li><a href="">Search</a></li>
+              <li><a href="#formInfo">Search</a></li>
               <li><a href="#mapResults">Results</a></li>
               <li><a href="#podcastResults">Recommendations</a></li>
               <li><a href="#finalPodcast">Listen</a></li>
@@ -168,14 +168,14 @@ class App extends Component {
               <button onClick={this.scrollToForm}>Start</button>
             </div>
             <div className="headerImage">
-              <img className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
-              <img className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
+              <img alt="Person walking through park listening to podcast" className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
+              <img alt="Person walking listening to podcast" className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
             </div>
           </div>
-          <a href="#header" className="refreshButton">
-            <i class="fas fa-arrow-up"></i>
-            <label className="visuallyHidden">Back to top</label>
-          </a>
+          {/* <a href="#header" className="refreshButton">
+              <i class="fas fa-arrow-up"></i>
+              <label className="visuallyHidden">Back to top</label>
+          </a> */}
         </header>
 
 

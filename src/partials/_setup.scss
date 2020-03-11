@@ -96,20 +96,18 @@ select:required {
     outline: none;
 }
 
+.placeholderPodcast,
 .placeholderMap {
-    padding-top: 100px;
+    padding-top: 200px;
 }
 
-.placeholderPodcast {
-    padding-bottom: 100px;
-}
 
 .emptyDiv {
     position: relative;
 }
 
 .emptyDiv div {
-    height: 30vh;
+    height: 400px;
     width: 100%;
     background-color: #f4e6e8;
 }
