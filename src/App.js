@@ -130,12 +130,20 @@ class App extends Component {
 
     setTimeout(() => {
       scroller.scrollTo('mapResults', { 
-        offset: 50,
+        offset: 80,
         smooth: true,
         duration: 500,
       });
-    }, 1500);
+    }, 500);
   }
+
+  scrollToForm = () => {
+    scroller.scrollTo('formInfo', {
+      smooth: true,
+      duration: 700,
+    });
+  }
+
 
 
   // Importing components and vital information for app to run
@@ -157,7 +165,7 @@ class App extends Component {
             <div className="headerInfo">
               <h1>Podcast Commuter</h1>
               <h2 className="headerDescriptionMobile">Find podcasts that suit your length of commute</h2>
-              <button><a href='#formInfo'>Start</a></button>
+              <button onClick={this.scrollToForm}>Start</button>
             </div>
             <div className="headerImage">
               <img className="desktopImg" src={require('./assets/headerDeskop.svg')}></img>
