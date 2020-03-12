@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Preloader from "./components/Preloader";
+import Preloader from "./Preloader";
 import './App.scss';
 import axios from 'axios';
 import { scroller } from 'react-scroll';
@@ -38,15 +38,11 @@ class Map extends Component {
                         timeout: 2000,
                     }).catch((e)=>{
                         flag=true
-                        console.log(flag)
                     })
                 })
                 //catch the axios calls and put them in to the response array
                 Promise.all(promises).then((responseArray) => {
-                    console.log(responseArray)
                     if (flag === true) {
-                        // || responseArray[0].data.route.realTime === 0 || responseArray[1].data.route.realTime === 0
-                        // console.log(responseArray[0].data.route.legs[0].time);
                         swal({
                             title: "Oops!",
                             text: "Invalid location, please try again!",
@@ -77,10 +73,8 @@ class Map extends Component {
                             // reduce syntax 
                         }, {})
 
-                        console.log('transformed response',transformedResponse)
-
-                        console.log(Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute']))
-                        if (Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute'] == 0) && Number(transformedResponse['pedestrian']['travelHour'] + transformedResponse['pedestrian']['travelHour'] == 0)){
+                
+                        if (Number(transformedResponse['bicycle']['travelHour'] + transformedResponse['bicycle']['travelMinute'] === 0) && Number(transformedResponse['pedestrian']['travelHour'] + transformedResponse['pedestrian']['travelHour'] === 0)){
                             swal({
                                 title: "Oops!",
                                 text: "Invalid location, please try again!",
@@ -97,14 +91,11 @@ class Map extends Component {
                                     grabMapUrl,
 
                                 } = this.props;
-
-                                // console.log(time);
+                           
                                 grabMapUrl()
                             })
-                        }
-                        
+                        }        
                     }
-
                 })
             }
         }
@@ -117,8 +108,8 @@ class Map extends Component {
         const time = Number(this.state.routeResult['bicycle']['travelHour']) * 60 + Number(this.state.routeResult['bicycle']['travelMinute'])
 
         // Setting commuteTime to "time"
-        // Referring to grabCommunteuteTime function in App.js, and assigning it to be a prop
-        // Call grabCommunteuteTime function with value of "time"
+        // Referring to grabCommuteTime function in App.js, and assigning it to be a prop
+        // Call grabCommuteTime function with value of "time"
         this.setState({
             commuteTime: time,
         }, () => {
@@ -128,7 +119,6 @@ class Map extends Component {
                 grabLoading,
             } = this.props;
             
-            // console.log(time);
             grabCommuteTime(time, routeSelected)
             grabLoading();
         })
@@ -144,7 +134,6 @@ class Map extends Component {
 
     chooseWalk =  () => {
         const time = Number(this.state.routeResult['pedestrian']['travelHour']) * 60 + Number(this.state.routeResult['pedestrian']['travelMinute'])
-        console.log(time)
 
         this.setState({
             commuteTime: time,

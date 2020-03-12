@@ -4,7 +4,7 @@ import axios from 'axios';
 import Map from './Map.js'
 import Podcast from './Podcast';
 import { scroller } from 'react-scroll';
-import Preloader from './components/Preloader';
+import Preloader from './Preloader';
 import swal from 'sweetalert';
 
 
@@ -37,7 +37,6 @@ class App extends Component {
   // Function to grab commute time from Map.js
   // Function is called in Map.js
   grabCommuteTime = (time, callback) => {
-    console.log(time)
     this.setState({
       appTime: time,
     }, callback)
@@ -50,14 +49,12 @@ class App extends Component {
   }
 
   grabMapUrl = () => {
-    console.log( 'loading')
     this.setState({
       isLoading: false,
     })
   }
 
     routeSelected = () => {
-    console.log('axios', this.state.appTime)
     axios({
       url: `https://listen-api.listennotes.com/api/v2/search`,
       method: `GET`,
@@ -72,9 +69,7 @@ class App extends Component {
         len_max: this.state.appTime + 5,
       }
     }).then((response) => {
-      console.log(response)
       // creating new array with stuff from listenNotes API call
-      console.log('podcast',response.data.count)
       if (response.data.count === 0){
         swal({
           title: "Oops!",
@@ -123,7 +118,6 @@ class App extends Component {
     })
   }
 
-
   handleSubmit = (e) => {
     e.preventDefault();
     const from = `${this.state.fromStreet.trim()}, ${this.state.fromCity.trim()}, ${this.state.fromProvince}`
@@ -159,7 +153,6 @@ class App extends Component {
     });
   }
 
-
   // Importing components and vital information for app to run
   render(){
     return(
@@ -188,9 +181,7 @@ class App extends Component {
               <img alt="Person walking listening to podcast" className="mobileImg" src={require('./assets/headerMobile.svg')}></img>
             </div>
           </div>
-
         </header>
-
 
         {/* Get user input */}
         <section className="wrapper mobileMap"> 
@@ -279,32 +270,32 @@ class App extends Component {
               <li>
               <p href="#formInfo">Julia</p>
               <div className="contactUs">
-                <a href="https://www.linkedin.com/in/juliadufresne/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/juliadufresne"><i class="fab fa-github-square"></i></a>
+                <a href="https://www.linkedin.com/in/juliadufresne/"><i className="fab fa-linkedin"></i></a>
+                <a href="https://github.com/juliadufresne"><i className="fab fa-github-square"></i></a>
               </div>
               </li>
 
               <li>
               <p href="#mapResults">Ken</p>
               <div className="contactUs">
-                <a href="https://www.linkedin.com/in/ken-taylor-a433221a1/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/kentaylor92"><i class="fab fa-github-square"></i></a>
+                <a href="https://www.linkedin.com/in/ken-taylor-a433221a1/"><i className="fab fa-linkedin"></i></a>
+                <a href="https://github.com/kentaylor92"><i className="fab fa-github-square"></i></a>
               </div>
               </li>
               
               <li>
               <p href="#podcastResults">Brandon</p>
               <div className="contactUs">
-                <a href="https://www.linkedin.com/in/brandonerictang/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/btangsup"><i class="fab fa-github-square"></i></a>
+                <a href="https://www.linkedin.com/in/brandonerictang/"><i className="fab fa-linkedin"></i></a>
+                <a href="https://github.com/btangsup"><i className="fab fa-github-square"></i></a>
               </div>
               </li>
 
               <li>
               <p href="#finalPodcast">Alice</p>
               <div className="contactUs">
-                <a href="https://www.linkedin.com/in/zhuyingsong-619212158/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Aliceeeee825"><i class="fab fa-github-square"></i></a>
+                <a href="https://www.linkedin.com/in/zhuyingsong-619212158/"><i className="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Aliceeeee825"><i className="fab fa-github-square"></i></a>
               </div>
               </li>
             </ul>
