@@ -130,3 +130,40 @@ select:required {
     text-align: center;
     font-size: 22px;
 }
+
+
+@media (max-width: 450px) {
+
+    //GLOBAL MOBILE STYLES //
+    h1 {
+        font-family: $heading-font;
+        color: $font-color;
+        font-weight: 700;
+        font-size: 5rem;
+        line-height: 4.5rem;
+        margin-bottom: 0;
+    }
+
+    h3 {
+        font-family: $heading-font;
+        color: $font-color;
+        font-size: 3.5rem;
+        text-align: left;
+        line-height: 3rem;
+        margin-bottom: 0;
+    }
+
+    button {
+        background-color: white;
+        font-family: $body-font;
+        color: $secondary-color;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 10px 40px;
+        border-radius: 50px;
+        border: none;
+        font-size: 2rem;
+  }
+}
+

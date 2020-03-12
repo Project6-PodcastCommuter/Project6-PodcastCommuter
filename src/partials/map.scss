@@ -31,7 +31,6 @@
 }
 
 .commuteResult img {
-    // max-width: 250px;
     width: 40%;
     margin: 0 auto;
 }
@@ -42,6 +41,22 @@
     font-size: 1.8rem;
 }
 
+.routeType {
+    display: none;
+}
+
+    // responsive map Test
+.mapContainer {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.map {
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 20px;
+}
+
 
 @media (max-width: 950px) {
     .commuteResult img {
@@ -49,14 +64,7 @@
         min-width: 100px;
         margin: 0 auto;
     }
-    
-    .commuteResult button {
-        font-size: 1.4rem;
-        text-align: center;
-        margin: 0 auto;
-        margin-top: 10px;
-        padding: 10px 15px;
-    }
+
 
     .routeResults h3 {
         line-height: 3.5rem;
@@ -71,8 +79,16 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 520px) {
     // ROUTE RESULT MOBILE STYLES //
+
+    .commuteResult button {
+        font-size: 1.4rem;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 10px;
+        padding: 10px 15px;
+    }
 
     .commuteText {
         text-align: left;
