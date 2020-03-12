@@ -188,7 +188,7 @@ class App extends Component {
           <div className="formInfo" id='formInfo'>
             <h3>Let's find some podcasts.</h3>
             <p>Enter your starting and ending location, along with what type of podcast you’re in the mood for. We will calculate
-            your commute time, and ask your to select your preferred mode of transportation. Based on the time of your trip,
+            your commute time, and ask you to select your preferred mode of transportation. Based on the time of your trip,
             we will give you some podcast recommendations.</p>
           </div>
           <form action="" onSubmit={this.handleSubmit} className="mapForm">
