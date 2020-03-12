@@ -212,11 +212,12 @@ class Map extends Component {
                         src={require("./assets/walk.svg") } alt="Feet walking to show pedestrian option"
                         ></img>
                         {/* Do not display hours when time is under 60 minutes */}
-
+                        <label className="routeType" htmlFor="walk">Walk</label>
                         <button
                         type="submit"
                         onClick={this.chooseWalk}
                         className="routeTypeButton"
+                        name="walk"
                         >
                         {this.state.routeResult["pedestrian"]["travelHour"] !==
                         "00" ? (
@@ -246,11 +247,12 @@ class Map extends Component {
                         className="mobileRouteTypeImg"
                         src={require("./assets/bike.svg")}
                         ></img>
-
+                    <label className="routeType" htmlFor="bike">Bike</label>
                         <button
                         type="submit"
                         onClick={this.chooseBike}
                         className="routeTypeButton"
+                        name="bike"
                         >
                         {this.state.routeResult["bicycle"]["travelHour"] !==
                         "00" ? (

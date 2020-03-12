@@ -29,8 +29,10 @@ class App extends Component {
       podData: [],
       isLoading: false,
       isLoadingPodcast: false,
+      menuOpen: false,
     }
   }
+
 
   // Function to grab commute time from Map.js
   // Function is called in Map.js
@@ -122,25 +124,16 @@ class App extends Component {
   }
 
 
-  
-
   handleSubmit = (e) => {
     e.preventDefault();
-    e.target.reset();
     const from = `${this.state.fromStreet.trim()}, ${this.state.fromCity.trim()}, ${this.state.fromProvince}`
     const to = `${this.state.toStreet.trim()}, ${this.state.toCity.trim()}, ${this.state.toProvince}`
     this.setState({
-      fromCity: '',
-      fromStreet: '',
-      fromProvince: '',
-      toCity: '',
-      toProvince: '',
-      toStreet: '',
       from: from,
       to: to,
       userInput: this.state.userEntry,
-      userEntry: '',
       isLoading: true,
+      userEntry: '',
     })
 
     setTimeout(() => {
@@ -167,7 +160,6 @@ class App extends Component {
   }
 
 
-
   // Importing components and vital information for app to run
   render(){
     return(
@@ -175,13 +167,15 @@ class App extends Component {
         <header>
           <nav className="wrapper" id="header">
             <img className="logo" alt="Logo for Podcast Commuter"src={require('./assets/logo.png')}></img>
-            <ul className="mainNav">
-              <li><a href="#formInfo">Search</a></li>
-              <li><a href="#mapResults">Results</a></li>
-              <li><a href="#podcastResults">Recommendations</a></li>
-              <li><a href="#finalPodcast">Listen</a></li>
-            </ul>
-            <i className="fas fa-bars"></i>
+              <label for="toggle" class="hamburger"><span class="sr-only">Navigation menu</span><i class="fa fa-bars"></i></label>
+              <label for="toggle" class="close"><span class="sr-only">Close menu</span><i class="fas fa-times"></i></label>
+              <input type="checkbox" id="toggle" name="toggle" class="inputButton" />
+              <ul className="mainNav">
+                <li className="menu"><a href="#formInfo">Search</a></li>
+                <li className="menu"><a href="#mapResults">Results</a></li>
+                <li className="menu"><a href="#podcastResults">Recommendations</a></li>
+                <li className="menu"><a href="#finalPodcast">Listen</a></li>
+              </ul>
           </nav>
           <div className="headerContent wrapper">
             <div className="headerInfo">
@@ -256,7 +250,7 @@ class App extends Component {
               </input>
             </div>
             <div>
-              <button className="mapSubmitButton">Search</button> 
+              <button className="mapSubmitButton">Search</button>
             </div>
           </form>
         </section>

@@ -115,6 +115,33 @@ nav ul li:active {
     }
 }
 
+.hamburger {
+    display: none;
+}
+
+.close {
+    display: none;
+}
+
+.hamburger i {
+    position: fixed;
+    top: 20px;
+    right: 26px;
+    z-index: 2;
+}
+
+.close i {
+    position: fixed;
+    top: 20px;
+    right: 26px;
+    z-index: 2;
+}
+
+.inputButton {
+    display: none;
+}
+
+
 @media (max-width: 1300px) {
     .headerInfo h1 {
         line-height: 5rem;
@@ -148,12 +175,17 @@ nav ul li:active {
         color: $primary-color;
     }
 
+    .fa-times {
+        display: inline-block;
+        font-size: 4rem;
+        color: $primary-color;
+    }
+
     .headerContent {
         flex-direction: column-reverse;
     }
 
     .headerImage {  
-        // min-width: 350px;
         margin: 0 auto;
     }
 
@@ -170,6 +202,67 @@ nav ul li:active {
 
     .headerInfo h2 {
         padding: 15px 0;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        padding: 12px 26px;
+        display: inline-block !important;
+        font-size: 3.4rem;
+        cursor: pointer;
+    }
+
+    .hamburger i {
+        position: fixed;
+        top: 20px;
+        right: 26px;
+        z-index: 2;
+    }
+
+    input[type="checkbox"]:checked {
+        .hamburger {
+            display: none;
+        }
+    }
+
+    input[type="checkbox"]:checked + ul{
+        display: block;
+        text-align: right;
+        float: right;
+        background: $secondary-color;
+        position: fixed;
+        width: 100vw;
+        right: 0%;
+        top: 0;
+        padding: 5px 0;
+        z-index: 1;
+        height: 100vh;
+        transition: all 0.5s;
+
+        .menu {
+            display: block;
+        }
+    }
+
+
+    .menu:first-child {
+            padding-top: 50px;
+    }
+
+    .menu a {
+        display: block;
+        font-size: 2.6rem;
+        width: 100%;
+        padding: 10px 0;
+        transition: all 0.3s;
+        padding-right: 25px;
+        text-align: left;
+        color: white;
+        font-family: $body-font
     }
 
 }
@@ -193,6 +286,7 @@ nav ul li:active {
 
     header button {
         margin: 0 auto;
+        margin-bottom: 30px;
     }
 
     .headerContent {
