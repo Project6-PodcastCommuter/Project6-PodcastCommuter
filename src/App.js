@@ -141,6 +141,7 @@ class App extends Component {
       userInput: this.state.userEntry,
       userEntry: '',
       isLoading: true,
+      menuOpen: false
     })
 
     setTimeout(() => {
@@ -166,6 +167,21 @@ class App extends Component {
     });
   }
 
+  toggleBurger = () => {
+    const stateToBeSet = !this.state.menuOpen
+    if (this.state.menuOpen){
+      document.querySelector('.hamburgerContainer').classList.add('hide')
+      this.setState({
+        menuOpen: stateToBeSet
+      })
+    }else{
+      document.querySelector('.hamburgerContainer').classList.remove('hide')
+      this.setState({
+        menuOpen: stateToBeSet
+      })
+    }
+  }
+
 
 
   // Importing components and vital information for app to run
@@ -181,7 +197,17 @@ class App extends Component {
               <li><a href="#podcastResults">Recommendations</a></li>
               <li><a href="#finalPodcast">Listen</a></li>
             </ul>
-            <i className="fas fa-bars"></i>
+
+              <ul className="hamburgerNav hide">
+                <i className="fas fa-bars" onClick={this.toggleBurger}></i>
+            <div className="hamburgerContainer hide">
+                <li><a href="#formInfo" onClick={this.toggleBurger}>Search</a></li>
+                <li><a href="#mapResults" onClick={this.toggleBurger}>Results</a></li>
+                <li><a href="#podcastResults" onClick={this.toggleBurger}>Recommendations</a></li>
+                <li><a href="#finalPodcast" onClick={this.toggleBurger}>Listen</a></li>
+            </div>
+              </ul>
+
           </nav>
           <div className="headerContent wrapper">
             <div className="headerInfo">

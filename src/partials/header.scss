@@ -59,8 +59,18 @@ nav ul li:active {
     outline: none;
 }
 
-.fa-bars {
+
+.hamburgerNav{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: right;
+    
+}
+
+.hide{
     display: none;
+
 }
 
 .logo {
