@@ -245,8 +245,6 @@ class App extends Component {
             </div>
           </form>
         </section>
-
-        {this.state.isLoading ? <Preloader /> : null}
         
         <Map 
         grabCommuteTime={this.grabCommuteTime} 
